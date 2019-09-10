@@ -22,7 +22,7 @@ function setup() {
 
   // No stroke for it to look more realistic
   noStroke();
-  // Set the nice pink
+  
   fill(255,238,220);
 
   // The ellipse mode will make it easier to align everything
@@ -64,7 +64,7 @@ ellipse(200,225,10,10);
 
   noFill();
   stroke(255,120,120);
-  //abstract vibes + symmetrical 
+  //abstract vibes + symmetrical
   triangle(300, 200, 100, 100, 100, 300);
 
   // Draw the mouth our of an ellipse and a dividing line
