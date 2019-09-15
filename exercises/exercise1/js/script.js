@@ -15,14 +15,18 @@ let squareX;
 let squareY;
 let squareSize = 100;
 
+let cowboyX;
+let cowboyY;
+
 
 // preload()
 //
-// Nothing here
-
+// loaded cowboy image
+  let cowboy;
 function preload() {
+cowboy = loadImage("assets/images/cowboy.jpg");
+  }
 
-}
 
 
 // setup()
@@ -32,7 +36,8 @@ function preload() {
 function setup() {
   // Create our canvas
   createCanvas(640,640);
-
+  //added cowboy image used the console log to check the width and height
+   image(cowboy, 0, 0, 150, 150);
   // Start the circle off screen to the bottom left
   // We divide the size by two because we're drawing from the center
   circleX = -circleSize/2;
@@ -43,8 +48,9 @@ function setup() {
   squareX = width + squareSize/2;
   squareY = height + squareSize/2;
 
+
   // We'll draw rectangles from the center
-  rectMode(CENTER);
+
   // We won't have a stroke in this
   noStroke();
 }
@@ -57,7 +63,8 @@ function setup() {
 
 function draw() {
   // We don't fill the background so we get a drawing effect
-
+//thanks to your notes I was able to do this for it to be at the  current mouse location.
+ rect(mouseX,mouseY,10,10);
   // Move circle up and to the right
   circleX += 1;
   circleY -= 1;
@@ -66,11 +73,12 @@ function draw() {
   // Display the circle
   ellipse(circleX,circleY,circleSize,circleSize);
 
+
   // Move square up and to the left
   squareX -= 1;
   squareY -= 1;
   // Make the square transparent blue
-  fill(0,0,255,10);
+  fill(0,0,255,3);
   // Display the square
   rect(squareX,squareY,squareSize,squareSize);
 }
