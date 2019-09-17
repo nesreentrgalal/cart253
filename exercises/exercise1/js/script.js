@@ -88,19 +88,15 @@ function draw() {
   fill(0,0,255,3);
   // Display the square
   rect(squareX,squareY,squareSize,squareSize);
-  //circle
 
-  circleX += 1;
-  circleY -= 1;
-
-
-  fill(0,0,255,5);
-
-  //rectangle
-  fill (0,255,0);
-  rectX = rectX +1;
+  //rectangle fill to green (opacity)
+  fill (0,255,0,10);
+  //speed and movement
+  rectX = rectX +2;
+  //display
   rect(rectX,rectY,rectSize,rectSize);
-
+//same goes for oval/fill/speed and position and display
+//decided not to make it have opacity 
   fill (0,0,150,100);
   ovalY = ovalY +1;
   ellipse(ovalX,ovalY,ovalSize,ovalSize);
