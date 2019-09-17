@@ -15,9 +15,13 @@ let squareX;
 let squareY;
 let squareSize = 100;
 
-let cowboyX;
-let cowboyY;
+let rectX = 0;
+let rectY = 300;
+let rectSize = 50;
 
+let ovalX = 300;
+let ovalY = 0;
+let ovalSize = 60;
 
 // preload()
 //
@@ -49,6 +53,8 @@ function setup() {
   squareY = height + squareSize/2;
 
 
+
+
   // We'll draw rectangles from the center
 
   // We won't have a stroke in this
@@ -63,6 +69,7 @@ function setup() {
 
 function draw() {
   // We don't fill the background so we get a drawing effect
+
 //thanks to your notes I was able to do this for it to be at the  current mouse location.
  rect(mouseX,mouseY,10,10);
   // Move circle up and to the right
@@ -81,4 +88,26 @@ function draw() {
   fill(0,0,255,3);
   // Display the square
   rect(squareX,squareY,squareSize,squareSize);
+  //circle
+
+  circleX += 1;
+  circleY -= 1;
+
+
+  fill(0,0,255,5);
+
+  //rectangle
+  fill (0,255,0);
+  rectX = rectX +1;
+  rect(rectX,rectY,rectSize,rectSize);
+
+  fill (0,0,150,100);
+  ovalY = ovalY +1;
+  ellipse(ovalX,ovalY,ovalSize,ovalSize);
+
+
+
+
+
+
 }
