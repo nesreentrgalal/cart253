@@ -71,7 +71,7 @@ function draw() {
   // We don't fill the background so we get a drawing effect
 
 //thanks to your notes I was able to do this for it to be at the  current mouse location.
- rect(mouseX,mouseY,10,10);
+ rect(mouseX,mouseY,70,70);
   // Move circle up and to the right
   circleX += 1;
   circleY -= 1;
@@ -96,7 +96,7 @@ function draw() {
   //display
   rect(rectX,rectY,rectSize,rectSize);
 //same goes for oval/fill/speed and position and display
-//decided not to make it have opacity 
+//decided not to make it have opacity
   fill (0,0,150,100);
   ovalY = ovalY +1;
   ellipse(ovalX,ovalY,ovalSize,ovalSize);
