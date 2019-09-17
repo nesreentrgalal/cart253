@@ -71,7 +71,7 @@ function draw() {
   // We don't fill the background so we get a drawing effect
 
 //thanks to your notes I was able to do this for it to be at the  current mouse location.
- rect(mouseX,mouseY,70,70);
+ rect(mouseX,mouseY,60,60);
   // Move circle up and to the right
   circleX += 1;
   circleY -= 1;
