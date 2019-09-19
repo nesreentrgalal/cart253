@@ -54,7 +54,20 @@ function setup() {
 // game over situations.
 function draw() {
 // A pink background
+
   background(255,220,220);
+//changes colours when hitting more than 2,5 and 10 another if statement
+  if (dodges > 2) {
+  background(0,255,0);
+}
+
+if (dodges > 5) {
+background(255,0,0);
+}
+
+if (dodges > 10) {
+background(0,0,150);
+}
 //text
 textAlign(RIGHT,TOP);
 textSize(40);
@@ -137,8 +150,8 @@ text(dodges,width,0);
     enemyX = 0;
     enemyY = random(0,height);
     //increase enemy size and speed everytime the player dodges
-    enemySize = enemySize + 20;
-    enemySpeed = enemySpeed + 8;
+    enemySize = enemySize + 10;
+    enemySpeed = enemySpeed + 2;
 
 
 
