@@ -153,10 +153,14 @@ text(dodges,width,0);
 
   // The player is blue
   fill(50,0,255);
-  // Draw the player as a circle
+  //added a blue stroke to make it look cool and contrasty
+  stroke (70,0,200);
+  strokeWeight(10);
+  // Draw the player as a square
   rect(avatarX,avatarY,avatarSize,avatarSize);
 
   // The enemy is light purple
+  noStroke();
   fill(200,0,255);
   // Draw the enemy as a circle
   ellipse(enemyX,enemyY,enemySize,enemySize);
