@@ -80,8 +80,10 @@ background(255,0,0);
 if (dodges > 10) {
 background(0,0,150);
 }
+// banner from https://www.pinterest.ca/pin/354658539375967667/?lp=true
+//to make it look  more cowboy yeehawww
+image(banner,450,5,60,60);
 
-image(cowboy,avatarX,avatarY,60,60);
 //text
 textAlign(RIGHT,TOP);
 textFont('Georgia');
@@ -139,7 +141,7 @@ text(dodges,width,0);
     avatarY = height/2;
     // Reset the dodge counter
     dodges = 0;
-
+    
   }
 
   // Check if the avatar has gone off the screen (cheating!)
@@ -179,7 +181,7 @@ text(dodges,width,0);
 
   // Display the number of successful dodges in the console
   console.log(dodges);
-
+image(cowboy,avatarX,avatarY,avatarSize,avatarSize);
   // The enemy is light purple
   //removed the rectange so it doesnt overlap with the cowboy
   stroke (153,153,0);
@@ -187,5 +189,6 @@ text(dodges,width,0);
   strokeWeight(5);
   // Draw the enemy as a circle
   ellipse(enemyX,enemyY,enemySize,enemySize);
+
 
 }
