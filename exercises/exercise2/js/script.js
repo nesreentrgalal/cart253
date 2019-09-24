@@ -8,9 +8,12 @@ A simple dodging game with keyboard controls
 ******************************************************/
 
 // The position and size of our avatar circle
+let cowboy;
+
+
 let avatarX;
 let avatarY;
-let avatarSize = 50;
+let avatarSize = 60;
 
 // The speed and velocity of our avatar circle
 let avatarSpeed = 10;
@@ -29,12 +32,21 @@ let enemyVX = 5;
 // How many dodges the player has made
 let dodges = 0;
 
+function preload() {
+
+  //load image of cowboy
+  cowboy = loadImage("assets/images/cowboy.png");
+  banner = loadImage("assets/images/banner.jpg");
+
+}
 // setup()
 //
 // Make the canvas, position the avatar and anemy
 function setup() {
   // Create our playing area
+
   createCanvas(500,500);
+
 
   // Put the avatar in the centre
   avatarX = width/2;
@@ -68,12 +80,15 @@ background(255,0,0);
 if (dodges > 10) {
 background(0,0,150);
 }
+
+image(cowboy,avatarX,avatarY,60,60);
 //text
 textAlign(RIGHT,TOP);
 textFont('Georgia');
 textSize(60);
 fill(255);
 text(dodges,width,0);
+
 
   // Default the avatar's velocity to 0 in case no key is pressed this frame
   avatarVX = 0;
@@ -165,17 +180,11 @@ text(dodges,width,0);
   // Display the number of successful dodges in the console
   console.log(dodges);
 
-  // The player is blue
-  fill(50,0,255);
-  //added a blue stroke to make it look cool and contrasty
-  stroke (70,0,200);
-  strokeWeight(10);
-  // Draw the player as a square
-  rect(avatarX,avatarY,avatarSize,avatarSize);
-
   // The enemy is light purple
-  noStroke();
+  //removed the rectange so it doesnt overlap with the cowboy
+  stroke (153,153,0);
   fill(200,0,255);
+  strokeWeight(5);
   // Draw the enemy as a circle
   ellipse(enemyX,enemyY,enemySize,enemySize);
 
