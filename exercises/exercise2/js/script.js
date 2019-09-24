@@ -70,7 +70,8 @@ background(0,0,150);
 }
 //text
 textAlign(RIGHT,TOP);
-textSize(40);
+textFont('Georgia');
+textSize(60);
 fill(255);
 text(dodges,width,0);
 
