@@ -16,6 +16,10 @@ https://creativenerds.co.uk/freebies/80-free-wildlife-icons-the-best-ever-animal
 let targetX;
 let targetY;
 let targetImage;
+let targetspeed=8;
+let targetVelocityX=6;
+
+
 
 // The ten decoy images
 let decoyImage1;
@@ -28,6 +32,8 @@ let decoyImage7;
 let decoyImage8;
 let decoyImage9;
 let decoyImage10;
+
+// set a new game starter
 
 
 // The number of decoys to show on the screen, randomly
@@ -147,7 +153,8 @@ function draw() {
     noStroke();
     fill(random(255));
     background(255,0,255);
-
+    targetVelocityX=targetspeed;
+    targetX=targetX+targetVelocityX;
 
 
 
@@ -159,7 +166,10 @@ function draw() {
     noFill();
     stroke(random(255));
     strokeWeight(10);
+    image(targetImage,targetX,targetY,100,100);
+    imageMode(CENTER);
     ellipse(targetX,targetY,targetImage.width,targetImage.height);
+
   }
 }
 
