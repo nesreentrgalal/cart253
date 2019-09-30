@@ -21,6 +21,7 @@ let targetVelocityX=6;
 
 
 
+
 // The ten decoy images
 let decoyImage1;
 let decoyImage2;
@@ -33,12 +34,15 @@ let decoyImage8;
 let decoyImage9;
 let decoyImage10;
 
+let imageSize;
+
 // set a new game starter
 
 
 // The number of decoys to show on the screen, randomly
 // chosen from the decoy images
-let numDecoys = 100;
+//more number of decoy
+let numDecoys = 300;
 
 // Keep track of whether they've won
 let gameOver = false;
@@ -68,13 +72,20 @@ function preload() {
 function setup() {
   createCanvas(windowWidth,windowHeight);
   background("#ffff00");
+  //changed some decoys sizes
+let imageSizeX=random(4,500);
+
   imageMode(CENTER);
+
 
   // Use a for loop to draw as many decoys as we need
   for (let i = 0; i < numDecoys; i++) {
     // Choose a random location on the canvas for this decoy
     let x = random(0,width);
     let y = random(0,height);
+
+
+
     // Generate a random number we can use for probability
     let r = random();
     // Use the random number to display one of the ten decoy
@@ -82,13 +93,13 @@ function setup() {
     // We'll talk more about this nice quality of random soon enough.
     // But basically each "if" and "else if" has a 10% chance of being true
     if (r < 0.1) {
-      image(decoyImage1,x,y);
-    }
+      image(decoyImage1,x,y,imageSizeX,imageSizeX);
+        }
     else if (r < 0.2) {
       image(decoyImage2,x,y);
     }
     else if (r < 0.3) {
-      image(decoyImage3,x,y);
+      image(decoyImage3,x,y,imageSizeX,imageSizeX);
     }
     else if (r < 0.4) {
       image(decoyImage4,x,y);
@@ -106,7 +117,7 @@ function setup() {
       image(decoyImage8,x,y);
     }
     else if (r < 0.9) {
-      image(decoyImage9,x,y);
+      image(decoyImage9,x,y,imageSizeX,imageSizeX);
     }
     else if (r < 1.0) {
       image(decoyImage10,x,y);
@@ -153,6 +164,7 @@ function draw() {
     noStroke();
     fill(random(255));
     background(255,0,255);
+    //speed and velocity to make the doggie move
     targetVelocityX=targetspeed;
     targetX=targetX+targetVelocityX;
 
@@ -169,6 +181,15 @@ function draw() {
     image(targetImage,targetX,targetY,100,100);
     imageMode(CENTER);
     ellipse(targetX,targetY,targetImage.width,targetImage.height);
+//text for level
+    textFont("Futura");
+    textSize(50);
+    textAlign(CENTER);
+    noStroke();
+    fill(255,0,0);
+    text("next level",600,500);
+
+
 
   }
 }
