@@ -75,8 +75,8 @@ function setup() {
   createCanvas(windowWidth,windowHeight);
   background("#ffff00");
   //changed some decoys sizes
-let imageSizeX=random(4,200);
-imageMode(CENTER);
+  let imageSizeX=random(4,200);
+  imageMode(CENTER);
 
 
   // Use a for loop to draw as many decoys as we need
@@ -133,20 +133,22 @@ imageMode(CENTER);
 
   // And draw it (because it's the last thing drawn, it will always be on top)
   image(targetImage,targetX,targetY);
-
+//rectangle colour and width
+  strokeWeight(8);
   fill(255,0,10,150);
-  rect(width-120,40,100,100);
-  stroke(0);
-  image(targetImage,width-70,90,100,100);
-//instructions
-  let findDoggie = "find the sausage dog!"
-  textFont("Helvetica");
-  textSize(20);
-  textAlign(RIGHT,TOP);
-  strokeWeight(5);
-  fill(0,0,255);
   stroke(255);
-  text(findDoggie,width,0);
+  rect(width-120,40,100,100);
+  //image to show for instructions
+  image(targetImage,width-70,90,100,100);
+//text instructions
+  let findDoggie = "find the sausage dog!"
+    textFont("Futura");
+    textSize(20);
+    textAlign(RIGHT,TOP);
+    strokeWeight(5);
+    fill(0,0,255);
+    stroke(255);
+    text(findDoggie,width,8);
 
 
 }
