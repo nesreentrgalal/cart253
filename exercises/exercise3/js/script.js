@@ -142,7 +142,7 @@ function setup() {
   image(targetImage,width-70,90,100,100);
 //text instructions
   let findDoggie = "find the sausage dog!"
-    textFont("Futura");
+    textFont("Helvetica");
     textSize(20);
     textAlign(RIGHT,TOP);
     strokeWeight(5);
