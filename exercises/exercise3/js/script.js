@@ -135,11 +135,10 @@ imageMode(CENTER);
   image(targetImage,targetX,targetY);
 
   fill(255,0,10,150);
-  rect(1300,0,125,125);
+  rect(width-120,40,100,100);
   stroke(0);
-  imageMode(CORNER);
-  image(targetImage,1300,0);
-
+  image(targetImage,width-70,90,100,100);
+//instructions
   let findDoggie = "find the sausage dog!"
   textFont("Helvetica");
   textSize(20);
@@ -147,7 +146,7 @@ imageMode(CENTER);
   strokeWeight(5);
   fill(0,0,255);
   stroke(255);
-  text(findDoggie, width, 0);
+  text(findDoggie,width,0);
 
 
 }
