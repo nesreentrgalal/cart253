@@ -36,6 +36,8 @@ let decoyImage10;
 
 let imageSize;
 
+
+
 // set a new game starter
 
 
@@ -74,8 +76,7 @@ function setup() {
   background("#ffff00");
   //changed some decoys sizes
 let imageSizeX=random(4,500);
-
-  imageMode(CENTER);
+imageMode(CENTER);
 
 
   // Use a for loop to draw as many decoys as we need
@@ -158,7 +159,7 @@ let imageSizeX=random(4,500);
 function draw() {
   if (gameOver) {
     // Prepare our typography
-    textFont("Helvetica");
+    textFont("Futura");
     textSize(128);
     textAlign(CENTER,CENTER);
     noStroke();
@@ -168,9 +169,7 @@ function draw() {
     targetVelocityX=targetspeed;
     targetX=targetX+targetVelocityX;
 
-
-
-    // Tell them they won!
+  // Tell them they won!
     text("YOU FOUND ME!",width/2,height/2);
 
     // Draw a circle around the sausage dog to show where it is (even though
@@ -181,13 +180,6 @@ function draw() {
     image(targetImage,targetX,targetY,100,100);
     imageMode(CENTER);
     ellipse(targetX,targetY,targetImage.width,targetImage.height);
-//text for level
-    textFont("Futura");
-    textSize(50);
-    textAlign(CENTER);
-    noStroke();
-    fill(255,0,0);
-    text("next level",600,500);
 
 
 
