@@ -136,7 +136,7 @@ function setup() {
 //rectangle colour and width
   strokeWeight(8);
   fill(255,0,10,150);
-  stroke(255);
+  stroke(0,0,255);
   rect(width-120,40,100,100);
   //image to show for instructions
   image(targetImage,width-70,90,100,100);
