@@ -75,7 +75,7 @@ function setup() {
   createCanvas(windowWidth,windowHeight);
   background("#ffff00");
   //changed some decoys sizes
-let imageSizeX=random(4,500);
+let imageSizeX=random(4,200);
 imageMode(CENTER);
 
 
@@ -134,8 +134,9 @@ imageMode(CENTER);
   // And draw it (because it's the last thing drawn, it will always be on top)
   image(targetImage,targetX,targetY);
 
-  fill(255,0,10,120);
+  fill(255,0,10,150);
   rect(1300,0,125,125);
+  stroke(0);
   imageMode(CORNER);
   image(targetImage,1300,0);
 
@@ -146,7 +147,7 @@ imageMode(CENTER);
   strokeWeight(5);
   fill(0,0,255);
   stroke(255);
-  text(findDoggie, 1440, 0);
+  text(findDoggie, width, 0);
 
 
 }
@@ -169,7 +170,7 @@ function draw() {
     targetVelocityX=targetspeed;
     targetX+=targetVelocityX;
 
-  // Tell them they won!
+    // Tell them they won!
     text("YOU FOUND ME!",width/2,height/2);
 
     // Draw a circle around the sausage dog to show where it is (even though
