@@ -166,8 +166,8 @@ function draw() {
     fill(random(255));
     background(255,0,255);
     //speed and velocity to make the doggie move
-  
-    targetX=targetX+targetVelocityX;
+    targetVelocityX=targetspeed;
+    targetX+=targetVelocityX;
 
   // Tell them they won!
     text("YOU FOUND ME!",width/2,height/2);
