@@ -12,10 +12,10 @@ eating to stay alive.
 
 Modified by Nesreen
 the purpose of this game is the computer has to detect the malware, to kill the virus
-in the computer, the more it moves and speeds, the more it loses health aka battery.
+in the computer, the more it moves and speeds, the more it loses health aka battery life .
 The malware gets scared when they realize the computer is killing them, since they are getting
 destroyed, they get smaller but harder to catch because they are scared so they speed up and
-the smaller it gets the harder the computer can reach it
+the smaller it gets the harder the computer can reach it, since it becomes almost invisible in a sense.
 
 Includes: Physics-based movement, keyboard controls, health/stamina,
 random movement, screen wrap.
@@ -63,6 +63,8 @@ let ty= 10;
 let backgroundImage;
 let backgroundSound;
 
+
+
 function preload() {
 backgroundImage = loadImage("assets/images/background.jpg");//https://www.pinterest.ca/pin/417286721702485883/?lp=true
 computerImage = loadImage("assets/images/computer1.png");// https://www.mockupworld.co/free/set-of-retro-computer-devices-mockups/ then I edited in on photoshop
@@ -82,28 +84,29 @@ function setup() {
   setupPlayer();
 }
 
+
 // setupPrey()
 //
-// Initialises prey's position, velocity, and health
+// Initialises malware's position, velocity, and health
 function setupPrey() {
-  preyX = width / 5;
-  preyY = height / 2;
-  preyVX = -preyMaxSpeed;
-  preyVY = preyMaxSpeed;
-  preyHealth = preyMaxHealth;
+   preyX = width / 5;
+   preyY = height / 2;
+   preyVX = -preyMaxSpeed;
+   preyVY = preyMaxSpeed;
+   preyHealth = preyMaxHealth;
 }
 
 // setupPlayer()
 //
 // Initialises player position and health
 function setupPlayer() {
-  playerX = 4 * width / 5;
-  playerY = height / 2;
-  playerHealth = playerMaxHealth;
+   playerX = 4 * width / 5;
+   playerY = height / 2;
+   playerHealth = playerMaxHealth;
 }
 
 function setupSound(){ // add vaporwave music
-  backgroundSound.loop();
+   backgroundSound.loop();
 }
 
 // draw()
@@ -117,53 +120,52 @@ function draw() {
 //they get smaller and faster cause the prey are scared for their life!
   background(backgroundImage);
   if (keyIsDown(ENTER)) {
-
-    backgroundSound.loop();
+       backgroundSound.loop();
   }
 
   if (preyEaten === 3) {
-    preyRadius = 20;
-    preyMaxSpeed = 5;
+      preyRadius = 20;
+      preyMaxSpeed = 5;
 
   }
   if (preyEaten === 6) {
-    preyRadius = 18;
-    preyMaxSpeed = 7;
+     preyRadius = 18;
+     preyMaxSpeed = 7;
   }
   if (preyEaten === 9) {
-    preyRadius = 16;
-    preyMaxSpeed = 9;
+     preyRadius = 16;
+     preyMaxSpeed = 9;
   }
   if (preyEaten === 10) {
-    preyRadius = 13;
-    preyMaxSpeed = 11;
+     preyRadius = 13;
+     preyMaxSpeed = 11;
 
   }
   if (preyEaten === 12) {
-    preyRadius = 10;
-    preyMaxSpeed = 13;
+     preyRadius = 10;
+     preyMaxSpeed = 13;
 
   }
   if (preyEaten === 15) {
-    preyRadius = 7;
-    preyMaxSpeed = 10;
+     preyRadius = 7;
+     preyMaxSpeed = 10;
 }
     if (preyEaten === 18) {
-      preyRadius = 4;
-      preyMaxSpeed = 7;
+       preyRadius = 4;
+       preyMaxSpeed = 7;
 
   }
 
   if (preyEaten === 21) {
-    preyRadius = 1;
-    preyMaxSpeed = 4;
+     preyRadius = 1;
+     preyMaxSpeed = 4;
 
 }
-
-  textAlign(LEFT,BOTTOM);
-  textSize(15);
-  fill(0);
-  text("press Enter to hear the music!",200,500);
+// music text
+textAlign(LEFT,BOTTOM);
+textSize(15);
+fill(0);
+text("press Enter to hear the music!",200,500);
 
 //takes count how many times the computer kills a malware
 textAlign(RIGHT,TOP);
@@ -323,9 +325,9 @@ function checkEating() {
 
 // movePrey()
 //
-// Moves the prey based on random velocity changes
+// Moves the malware based on random velocity changes
 function movePrey() {
-  // Change the prey's velocity at random intervals
+  // Change the malware's velocity at random intervals
   // random() will be < 0.05 5% of the time, so the prey
   // will change direction on 5% of frames
 
@@ -341,7 +343,7 @@ function movePrey() {
      ty += 0.1;
 
 
-  // Update prey position based on velocity
+  // Update malware position based on velocity
   preyX = preyX + preyVX;
   preyY = preyY + preyVY;
 
@@ -363,7 +365,7 @@ function movePrey() {
 
 // drawPrey()
 //
-// Draw the prey as an ellipse with alpha based on health
+// Draw the malware as an ellipse with alpha based on health
 function drawPrey() {
   fill(preyFill, preyHealth);
   ellipse(preyX, preyY, preyRadius * 2);
@@ -377,12 +379,11 @@ function drawPlayer() {
   ellipse(playerX, playerY, playerRadius * 2);
 }
 
-
 // showGameOver()
-//
 // Display text about the game being over!
 function showGameOver() {
   // Set up the font
+  backgroundSound.stop();
   textSize(32);
   textAlign(CENTER, CENTER);
   fill(0);
