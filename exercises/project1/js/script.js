@@ -10,6 +10,13 @@ if they overlap the (randomly moving) prey they "eat it" by sucking out its life
 and adding it to their own. The player "dies" slowly over time so they have to keep
 eating to stay alive.
 
+Modified by Nesreen
+the purpose of this game is the computer has to detect the malware, to kill the virus
+in the computer, the more it moves and speeds, the more it loses health aka battery.
+The malware gets scared when they realize the computer is killing them, since they are getting
+destroyed, they get smaller but harder to catch because they are scared so they speed up and
+the smaller it gets the harder the computer can reach it
+
 Includes: Physics-based movement, keyboard controls, health/stamina,
 random movement, screen wrap.
 
@@ -21,6 +28,7 @@ let gameOver = false;
 // Player position, size, velocity
 let playerX;
 let playerY;
+let computerImage;
 let playerRadius = 25;
 let playerVX = 0;
 let playerVY = 0;
@@ -56,6 +64,7 @@ let backgroundImage;
 
 function preload() {
 backgroundImage = loadImage("assets/images/background.jpg");
+computerImage = loadImage("assets/images/computer1.png");
 
 }
 // setup()
@@ -353,7 +362,7 @@ function showGameOver() {
   textAlign(CENTER, CENTER);
   fill(0);
   // Set up the text to display
-  let gameOverText = "GAME OVER\n"; // \n means "new line"
+  let gameOverText = "GAME OVER!\n"; // \n means "new line"
   gameOverText = gameOverText + "You ate " + preyEaten + " prey\n";
   gameOverText = gameOverText + "before you died."
   // Display it in the centre of the screen
