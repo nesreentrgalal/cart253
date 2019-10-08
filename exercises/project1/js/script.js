@@ -29,7 +29,7 @@ let gameOver = false;
 let playerX;
 let playerY;
 let computerImage;
-let playerRadius = 25;
+let playerRadius = 130;
 let playerVX = 0;
 let playerVY = 0;
 let playerMaxSpeed = 3;
@@ -75,7 +75,7 @@ backgroundSound = loadSound("assets/sounds/vaporwave.wav");//https://www.youtube
 //
 // Sets up the basic elements of the game
 function setup() {
-  createCanvas(500, 500);
+  createCanvas(600, 600);
 
   noStroke();
 
@@ -165,13 +165,14 @@ function draw() {
 textAlign(LEFT,BOTTOM);
 textSize(15);
 fill(0);
-text("press Enter to hear the music!",200,500);
+text("press Enter to hear the music!",210,590);
 
 //takes count how many times the computer kills a malware
 textAlign(RIGHT,TOP);
 textSize(20);
 fill(255);
 text(preyEaten,width,0);
+
 
   if (!gameOver) {
     handleInput();
@@ -373,10 +374,12 @@ function drawPrey() {
 
 // drawPlayer()
 //
-// Draw the player as an ellipse with alpha value based on health
+// Draw the player as a computer with alpha value based on health
 function drawPlayer() {
-  fill(playerFill, playerHealth);
-  ellipse(playerX, playerY, playerRadius * 2);
+  push();
+  tint(255,playerHealth);
+  image(computerImage,playerX, playerY,130,130);
+  pop();
 }
 
 // showGameOver()
