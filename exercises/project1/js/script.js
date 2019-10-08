@@ -58,8 +58,8 @@ let eatHealth = 10;
 // Number of prey eaten during the game (the "score")
 let preyEaten = 0;
 //noise
-let tx= 0;
-let ty= 10;
+let tx = 0;
+let ty = 10;
 
 let backgroundImage;
 let backgroundSound;
@@ -74,11 +74,11 @@ let cdImageHeight = 50;
 
 
 function preload() {
-backgroundImage = loadImage("assets/images/background.jpg");//https://www.pinterest.ca/pin/417286721702485883/?lp=true
-computerImage = loadImage("assets/images/computer1.png");// https://www.mockupworld.co/free/set-of-retro-computer-devices-mockups/ then I edited in on photoshop
-backgroundSound = loadSound("assets/sounds/vaporwave.wav");//https://www.youtube.com/watch?v=aQkPcPqTq4M
-cdImage = loadImage("assets/images/music.png"); // https://apk.tools/details-vaporwave-music-player-windows-95-music-player-apk/
-malwareImage = loadImage("assets/images/malware.png")
+  backgroundImage = loadImage("assets/images/background.jpg"); //https://www.pinterest.ca/pin/417286721702485883/?lp=true
+  computerImage = loadImage("assets/images/computer1.png"); // https://www.mockupworld.co/free/set-of-retro-computer-devices-mockups/ then I edited in on photoshop
+  backgroundSound = loadSound("assets/sounds/vaporwave.wav"); //https://www.youtube.com/watch?v=aQkPcPqTq4M
+  cdImage = loadImage("assets/images/music.png"); // https://apk.tools/details-vaporwave-music-player-windows-95-music-player-apk/
+  malwareImage = loadImage("assets/images/malware.png")
 }
 // setup()
 //
@@ -98,24 +98,24 @@ function setup() {
 //
 // Initialises malware's position, velocity, and health
 function setupPrey() {
-   preyX = width / 5;
-   preyY = height / 2;
-   preyVX = -preyMaxSpeed;
-   preyVY = preyMaxSpeed;
-   preyHealth = preyMaxHealth;
+  preyX = width / 5;
+  preyY = height / 2;
+  preyVX = -preyMaxSpeed;
+  preyVY = preyMaxSpeed;
+  preyHealth = preyMaxHealth;
 }
 
 // setupPlayer()
 //
 // Initialises player position and health
 function setupPlayer() {
-   playerX = 4 * width / 5;
-   playerY = height / 2;
-   playerHealth = playerMaxHealth;
+  playerX = 4 * width / 5;
+  playerY = height / 2;
+  playerHealth = playerMaxHealth;
 }
 
-function setupSound(){ // add vaporwave music
-   backgroundSound.loop();
+function setupSound() { // add vaporwave music
+  backgroundSound.loop();
 }
 
 // draw()
@@ -126,63 +126,63 @@ function setupSound(){ // add vaporwave music
 // displays the two agents.
 // When the game is over, shows the game over screen.
 function draw() {
-//they get smaller and faster cause the prey are scared for their life! x3
+  //they get smaller and faster cause the prey are scared for their life! x3
   background(backgroundImage);
 
-// when clicking on image music starts!
-  image(cdImage,cdImageX,cdImageY,cdImageWidth,cdImageHeight);
+  // when clicking on image music starts!
+  image(cdImage, cdImageX, cdImageY, cdImageWidth, cdImageHeight);
 
-//they get smaller and faster cause the prey are scared for their life! x3
+  //they get smaller and faster cause the prey are scared for their life! x3
 
   if (preyEaten === 3) {
-      preyRadius = 20;
-      preyMaxSpeed = 5;
+    preyRadius = 20;
+    preyMaxSpeed = 5;
 
   }
   if (preyEaten === 6) {
-     preyRadius = 18;
-     preyMaxSpeed = 7;
+    preyRadius = 18;
+    preyMaxSpeed = 7;
   }
   if (preyEaten === 9) {
-     preyRadius = 16;
-     preyMaxSpeed = 9;
+    preyRadius = 16;
+    preyMaxSpeed = 9;
   }
   if (preyEaten === 10) {
-     preyRadius = 13;
-     preyMaxSpeed = 11;
+    preyRadius = 13;
+    preyMaxSpeed = 11;
 
   }
   if (preyEaten === 12) {
-     preyRadius = 10;
-     preyMaxSpeed = 13;
+    preyRadius = 10;
+    preyMaxSpeed = 13;
 
   }
   if (preyEaten === 15) {
-     preyRadius = 7;
-     preyMaxSpeed = 10;
-}
-    if (preyEaten === 18) {
-       preyRadius = 4;
-       preyMaxSpeed = 7;
+    preyRadius = 7;
+    preyMaxSpeed = 10;
+  }
+  if (preyEaten === 18) {
+    preyRadius = 4;
+    preyMaxSpeed = 7;
 
   }
 
   if (preyEaten === 21) {
-     preyRadius = 1;
-     preyMaxSpeed = 4;
+    preyRadius = 1;
+    preyMaxSpeed = 4;
 
-}
-// music text
-textAlign(LEFT,BOTTOM);
-textSize(15);
-fill(0);
-text("press the cd to hear the music!",210,590);
+  }
+  // music text
+  textAlign(LEFT, BOTTOM);
+  textSize(15);
+  fill(0);
+  text("press the cd to hear the music!", 210, 590);
 
-//takes count how many times the computer kills a malware
-textAlign(RIGHT,TOP);
-textSize(20);
-fill(255);
-text(preyEaten,width,0);
+  //takes count how many times the computer kills a malware
+  textAlign(RIGHT, TOP);
+  textSize(20);
+  fill(255);
+  text(preyEaten, width, 0);
 
 
   if (!gameOver) {
@@ -196,8 +196,7 @@ text(preyEaten,width,0);
 
     drawPrey();
     drawPlayer();
-  }
-  else {
+  } else {
     showGameOver();
   }
 }
@@ -211,45 +210,39 @@ function handleInput() {
   if (keyIsDown(LEFT_ARROW)) {
     playerVX = -playerMaxSpeed;
 
-  }
-  else if (keyIsDown(RIGHT_ARROW)) {
+  } else if (keyIsDown(RIGHT_ARROW)) {
     playerVX = playerMaxSpeed;
 
-  }
-  else {
+  } else {
     playerVX = 0;
   }
   //speed is faster when clicking on shift key for horizontal
-  if(keyIsDown(SHIFT) && keyIsDown(LEFT_ARROW)) {
-   playerVX = -15;
+  if (keyIsDown(SHIFT) && keyIsDown(LEFT_ARROW)) {
+    playerVX = -15;
 
-   }
-  else if(keyIsDown(SHIFT) && keyIsDown(RIGHT_ARROW)) {
-   playerVX = 15;
+  } else if (keyIsDown(SHIFT) && keyIsDown(RIGHT_ARROW)) {
+    playerVX = 15;
 
-    }
+  }
 
   // Check for vertical movement
   if (keyIsDown(UP_ARROW)) {
     playerVY = -playerMaxSpeed;
 
-  }
-  else if (keyIsDown(DOWN_ARROW)) {
+  } else if (keyIsDown(DOWN_ARROW)) {
     playerVY = playerMaxSpeed;
 
-  }
-  else {
+  } else {
     playerVY = 0;
   }
   //speed is faster when clicking on shift key for vertical
-  if(keyIsDown(SHIFT) && keyIsDown(UP_ARROW)) {
+  if (keyIsDown(SHIFT) && keyIsDown(UP_ARROW)) {
     playerVY = -15;
 
-   }
-   else if(keyIsDown(SHIFT) && keyIsDown(DOWN_ARROW)) {
-     playerVY = 15;
+  } else if (keyIsDown(SHIFT) && keyIsDown(DOWN_ARROW)) {
+    playerVY = 15;
 
-    }
+  }
 
 }
 
@@ -266,8 +259,7 @@ function movePlayer() {
   if (playerX < 0) {
     // Off the left side, so add the width to reset to the right
     playerX = playerX + width;
-  }
-  else if (playerX > width) {
+  } else if (playerX > width) {
     // Off the right side, so subtract the width to reset to the left
     playerX = playerX - width;
   }
@@ -275,8 +267,7 @@ function movePlayer() {
   if (playerY < 0) {
     // Off the top, so add the height to reset to the bottom
     playerY = playerY + height;
-  }
-  else if (playerY > height) {
+  } else if (playerY > height) {
     // Off the bottom, so subtract the height to reset to the top
     playerY = playerY - height;
   }
@@ -343,16 +334,16 @@ function movePrey() {
   // random() will be < 0.05 5% of the time, so the prey
   // will change direction on 5% of frames
 
-    // Set velocity based on random values to get a new direction
-    // and speed of movement
-    //
-    // Use map() to convert from the 0-1 range of the random() function
-    // to the appropriate range of velocities for the prey
-    preyVX = map(noise(tx), 0, 1, -preyMaxSpeed, preyMaxSpeed);
-    preyVY = map(noise(ty), 0, 1, -preyMaxSpeed, preyMaxSpeed);
+  // Set velocity based on random values to get a new direction
+  // and speed of movement
+  //
+  // Use map() to convert from the 0-1 range of the random() function
+  // to the appropriate range of velocities for the prey
+  preyVX = map(noise(tx), 0, 1, -preyMaxSpeed, preyMaxSpeed);
+  preyVY = map(noise(ty), 0, 1, -preyMaxSpeed, preyMaxSpeed);
 
-     tx += 0.1;
-     ty += 0.1;
+  tx += 0.1;
+  ty += 0.1;
 
 
   // Update malware position based on velocity
@@ -362,15 +353,13 @@ function movePrey() {
   // Screen wrapping
   if (preyX < 0) {
     preyX = preyX + width;
-  }
-  else if (preyX > width) {
+  } else if (preyX > width) {
     preyX = preyX - width;
   }
 
   if (preyY < 0) {
     preyY = preyY + height;
-  }
-  else if (preyY > height) {
+  } else if (preyY > height) {
     preyY = preyY - height;
   }
 }
@@ -388,16 +377,16 @@ function drawPrey() {
 // Draw the player as a computer with alpha value based on health
 function drawPlayer() {
   push();
-  tint(255,playerHealth);
-  image(computerImage,playerX, playerY,120,120);
+  tint(255, playerHealth);
+  image(computerImage, playerX, playerY, 120, 120);
   pop();
 }
 // if you click on the CD, the music starts!
 function mousePressed() {
-  let d = dist(mouseX,mouseY,cdImageX,cdImageY);
+  let d = dist(mouseX, mouseY, cdImageX, cdImageY);
   if (d < cdImage.width / 2) {
-     backgroundSound.stop();
-     backgroundSound.loop();
+    backgroundSound.stop();
+    backgroundSound.loop();
   }
 }
 
