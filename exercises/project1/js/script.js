@@ -61,10 +61,12 @@ let tx= 0;
 let ty= 10;
 
 let backgroundImage;
+let backgroundSound;
 
 function preload() {
-backgroundImage = loadImage("assets/images/background.jpg");
-computerImage = loadImage("assets/images/computer1.png");
+backgroundImage = loadImage("assets/images/background.jpg");//https://www.pinterest.ca/pin/417286721702485883/?lp=true
+computerImage = loadImage("assets/images/computer1.png");// https://www.mockupworld.co/free/set-of-retro-computer-devices-mockups/ then I edited in on photoshop
+backgroundSound = loadSound("assets/sounds/vaporwave.wav");//https://www.youtube.com/watch?v=aQkPcPqTq4M
 
 }
 // setup()
@@ -100,6 +102,10 @@ function setupPlayer() {
   playerHealth = playerMaxHealth;
 }
 
+function setupSound(){ // add vaporwave music
+  backgroundSound.loop();
+}
+
 // draw()
 //
 // While the game is active, checks input
@@ -110,6 +116,10 @@ function setupPlayer() {
 function draw() {
 //they get smaller and faster cause the prey are scared for their life!
   background(backgroundImage);
+  if (keyIsDown(ENTER)) {
+
+    backgroundSound.loop();
+  }
 
   if (preyEaten === 3) {
     preyRadius = 20;
@@ -144,9 +154,18 @@ function draw() {
 
   }
 
+  if (preyEaten === 21) {
+    preyRadius = 1;
+    preyMaxSpeed = 4;
 
+}
 
+  textAlign(LEFT,BOTTOM);
+  textSize(15);
+  fill(0);
+  text("press Enter to hear the music!",200,500);
 
+//takes count how many times the computer kills a malware
 textAlign(RIGHT,TOP);
 textSize(20);
 fill(255);
@@ -177,9 +196,11 @@ function handleInput() {
   // Check for horizontal movement
   if (keyIsDown(LEFT_ARROW)) {
     playerVX = -playerMaxSpeed;
+
   }
   else if (keyIsDown(RIGHT_ARROW)) {
     playerVX = playerMaxSpeed;
+
   }
   else {
     playerVX = 0;
@@ -187,17 +208,21 @@ function handleInput() {
   //speed is faster when clicking on shift key for horizontal
   if(keyIsDown(SHIFT) && keyIsDown(LEFT_ARROW)) {
    playerVX = -15;
+
    }
   else if(keyIsDown(SHIFT) && keyIsDown(RIGHT_ARROW)) {
    playerVX = 15;
+
     }
 
   // Check for vertical movement
   if (keyIsDown(UP_ARROW)) {
     playerVY = -playerMaxSpeed;
+
   }
   else if (keyIsDown(DOWN_ARROW)) {
     playerVY = playerMaxSpeed;
+
   }
   else {
     playerVY = 0;
@@ -363,7 +388,7 @@ function showGameOver() {
   fill(0);
   // Set up the text to display
   let gameOverText = "GAME OVER!\n"; // \n means "new line"
-  gameOverText = gameOverText + "You ate " + preyEaten + " prey\n";
+  gameOverText = gameOverText + "You killed " + preyEaten + " malware\n";
   gameOverText = gameOverText + "before you died."
   // Display it in the centre of the screen
   text(gameOverText, width / 2, height / 2);
