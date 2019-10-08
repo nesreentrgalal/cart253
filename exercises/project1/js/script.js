@@ -60,11 +60,11 @@ let preyEaten = 0;
 //noise
 let tx = 0;
 let ty = 10;
-
+//images and sound
 let backgroundImage;
 let backgroundSound;
 let malwareImage;
-
+//cd soon to be button
 let cdImage;
 let cdImageX = 10;
 let cdImageY = 180;
@@ -75,10 +75,10 @@ let cdImageHeight = 50;
 
 function preload() {
   backgroundImage = loadImage("assets/images/background.jpg"); //https://www.pinterest.ca/pin/417286721702485883/?lp=true
-  computerImage = loadImage("assets/images/computer1.png"); // https://www.mockupworld.co/free/set-of-retro-computer-devices-mockups/ then I edited in on photoshop
+  computerImage = loadImage("assets/images/computer2.png"); // https://www.mockupworld.co/free/set-of-retro-computer-devices-mockups/ then I edited in on photoshop
   backgroundSound = loadSound("assets/sounds/vaporwave.wav"); //https://www.youtube.com/watch?v=aQkPcPqTq4M
   cdImage = loadImage("assets/images/music.png"); // https://apk.tools/details-vaporwave-music-player-windows-95-music-player-apk/
-  malwareImage = loadImage("assets/images/malware.png")
+
 }
 // setup()
 //
@@ -126,7 +126,7 @@ function setupSound() { // add vaporwave music
 // displays the two agents.
 // When the game is over, shows the game over screen.
 function draw() {
-  //they get smaller and faster cause the prey are scared for their life! x3
+
   background(backgroundImage);
 
   // when clicking on image music starts!
@@ -302,7 +302,7 @@ function checkEating() {
   let d = dist(playerX, playerY, preyX, preyY);
   // Check if it's an overlap
   if (d < playerRadius + preyRadius) {
-    // Increase the player health
+    // Increase the prey health
     playerHealth = playerHealth + eatHealth;
     // Constrain to the possible range
     playerHealth = constrain(playerHealth, 0, playerMaxHealth);
