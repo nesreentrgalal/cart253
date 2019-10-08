@@ -11,8 +11,9 @@ and adding it to their own. The player "dies" slowly over time so they have to k
 eating to stay alive.
 
 Modified by Nesreen
-the purpose of this game is the computer has to detect the malware, to kill the virus
-in the computer, the more it moves and speeds, the more it loses health aka battery life .
+the purpose of this game is the computer has to detect the malware, which is why the text in the computer says detecting malware
+to kill the virus ...in the computer,
+the more it moves and speeds, the more it loses health aka battery life .
 The malware gets scared when they realize the computer is killing them, since they are getting
 destroyed, they get smaller but harder to catch because they are scared so they speed up and
 the smaller it gets the harder the computer can reach it, since it becomes almost invisible in a sense.
@@ -29,7 +30,7 @@ let gameOver = false;
 let playerX;
 let playerY;
 let computerImage;
-let playerRadius = 130;
+let playerRadius = 120;
 let playerVX = 0;
 let playerVY = 0;
 let playerMaxSpeed = 3;
@@ -62,6 +63,13 @@ let ty= 10;
 
 let backgroundImage;
 let backgroundSound;
+let malwareImage;
+
+let cdImage;
+let cdImageX = 10;
+let cdImageY = 180;
+let cdImageWidth = 50;
+let cdImageHeight = 50;
 
 
 
@@ -69,7 +77,8 @@ function preload() {
 backgroundImage = loadImage("assets/images/background.jpg");//https://www.pinterest.ca/pin/417286721702485883/?lp=true
 computerImage = loadImage("assets/images/computer1.png");// https://www.mockupworld.co/free/set-of-retro-computer-devices-mockups/ then I edited in on photoshop
 backgroundSound = loadSound("assets/sounds/vaporwave.wav");//https://www.youtube.com/watch?v=aQkPcPqTq4M
-
+cdImage = loadImage("assets/images/music.png"); // https://apk.tools/details-vaporwave-music-player-windows-95-music-player-apk/
+malwareImage = loadImage("assets/images/malware.png")
 }
 // setup()
 //
@@ -117,11 +126,13 @@ function setupSound(){ // add vaporwave music
 // displays the two agents.
 // When the game is over, shows the game over screen.
 function draw() {
-//they get smaller and faster cause the prey are scared for their life!
+//they get smaller and faster cause the prey are scared for their life! x3
   background(backgroundImage);
-  if (keyIsDown(ENTER)) {
-       backgroundSound.loop();
-  }
+
+// when clicking on image music starts!
+  image(cdImage,cdImageX,cdImageY,cdImageWidth,cdImageHeight);
+
+//they get smaller and faster cause the prey are scared for their life! x3
 
   if (preyEaten === 3) {
       preyRadius = 20;
@@ -165,7 +176,7 @@ function draw() {
 textAlign(LEFT,BOTTOM);
 textSize(15);
 fill(0);
-text("press Enter to hear the music!",210,590);
+text("press the cd to hear the music!",210,590);
 
 //takes count how many times the computer kills a malware
 textAlign(RIGHT,TOP);
@@ -378,22 +389,38 @@ function drawPrey() {
 function drawPlayer() {
   push();
   tint(255,playerHealth);
-  image(computerImage,playerX, playerY,130,130);
+  image(computerImage,playerX, playerY,120,120);
   pop();
 }
+// if you click on the CD, the music starts!
+function mousePressed() {
+  let d = dist(mouseX,mouseY,cdImageX,cdImageY);
+  if (d < cdImage.width / 2) {
+     backgroundSound.stop();
+     backgroundSound.loop();
+  }
+}
+
+
 
 // showGameOver()
 // Display text about the game being over!
 function showGameOver() {
-  // Set up the font
+  //music stops
   backgroundSound.stop();
+  // Set up the font
   textSize(32);
   textAlign(CENTER, CENTER);
   fill(0);
   // Set up the text to display
   let gameOverText = "GAME OVER!\n"; // \n means "new line"
-  gameOverText = gameOverText + "You killed " + preyEaten + " malware\n";
-  gameOverText = gameOverText + "before you died."
+  let gameEndText = "You deleted " + preyEaten + " malware\n";
+  gameEndText = gameEndText + "before you shutted down."
+  // Display it at the top of the screen
+  text(gameOverText, width / 2, height / 2 - 100);
   // Display it in the centre of the screen
-  text(gameOverText, width / 2, height / 2);
+  textSize(18);
+  text(gameEndText, width / 2, height / 2);
+
+
 }
