@@ -24,7 +24,7 @@ let playerY;
 let playerRadius = 25;
 let playerVX = 0;
 let playerVY = 0;
-let playerMaxSpeed = 2;
+let playerMaxSpeed = 3;
 // Player health
 let playerHealth;
 let playerMaxHealth = 255;
@@ -51,6 +51,13 @@ let preyEaten = 0;
 //noise
 let tx= 0;
 let ty= 10;
+
+let backgroundImage;
+
+function preload() {
+backgroundImage = loadImage("assets/images/background.jpg");
+
+}
 // setup()
 //
 // Sets up the basic elements of the game
@@ -92,7 +99,49 @@ function setupPlayer() {
 // displays the two agents.
 // When the game is over, shows the game over screen.
 function draw() {
-  background(100, 100, 200);
+//they get smaller and faster cause the prey are scared for their life!
+  background(backgroundImage);
+
+  if (preyEaten === 3) {
+    preyRadius = 20;
+    preyMaxSpeed = 5;
+
+  }
+  if (preyEaten === 6) {
+    preyRadius = 18;
+    preyMaxSpeed = 7;
+  }
+  if (preyEaten === 9) {
+    preyRadius = 16;
+    preyMaxSpeed = 9;
+  }
+  if (preyEaten === 10) {
+    preyRadius = 13;
+    preyMaxSpeed = 11;
+
+  }
+  if (preyEaten === 12) {
+    preyRadius = 10;
+    preyMaxSpeed = 13;
+
+  }
+  if (preyEaten === 15) {
+    preyRadius = 7;
+    preyMaxSpeed = 10;
+}
+    if (preyEaten === 18) {
+      preyRadius = 4;
+      preyMaxSpeed = 7;
+
+  }
+
+
+
+
+textAlign(RIGHT,TOP);
+textSize(20);
+fill(255);
+text(preyEaten,width,0);
 
   if (!gameOver) {
     handleInput();
@@ -111,6 +160,7 @@ function draw() {
   }
 }
 
+
 // handleInput()
 //
 // Checks arrow keys and adjusts player velocity accordingly
@@ -125,7 +175,7 @@ function handleInput() {
   else {
     playerVX = 0;
   }
-  //speed is faster when clicking on shift key for horizontal 
+  //speed is faster when clicking on shift key for horizontal
   if(keyIsDown(SHIFT) && keyIsDown(LEFT_ARROW)) {
    playerVX = -15;
    }
@@ -235,6 +285,8 @@ function checkEating() {
   }
 }
 
+
+
 // movePrey()
 //
 // Moves the prey based on random velocity changes
@@ -290,6 +342,7 @@ function drawPlayer() {
   fill(playerFill, playerHealth);
   ellipse(playerX, playerY, playerRadius * 2);
 }
+
 
 // showGameOver()
 //
