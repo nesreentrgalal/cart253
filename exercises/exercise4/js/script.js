@@ -11,13 +11,17 @@
 
 // Whether the game has started
 let playing = false;
-
+let title;
 // Game colors (using hexadecimal)
 let bgColor = 0;
 let fgColor = 255;
 let leftPoints = 0;
 let rightPoints= 0;
-
+let myFont;
+let backgroundImage;
+let backgroundImage1;
+let playerImage;
+let backgroundMusic;
 // BALL
 // A ball object with the properties of
 // position, size, velocity, and speed
@@ -74,8 +78,13 @@ let beepSFX;
 //
 // Loads the beep audio for the sound of bouncing
 function preload() {
-  beepSFX = new Audio("assets/sounds/beep.wav");
+  beepSFX = new Audio("assets/sounds/note.wav"); // https://www.youtube.com/watch?v=82-piauOHd4
+  backgroundImage1 = loadImage("assets/images/memphisback1.png"); //edited size on Photoshop
+  backgroundImage = loadImage("assets/images/memphis.png"); //https://cdn.logojoy.com/wp-content/uploads/2018/07/17142754/AdobeStock_104806545-1024x583.png // edited on Photoshop
+  playerImage = loadImage("assets/images/music1.png");// https://www.freepik.com/free-icons/music and then edited it on Photoshop
+  backgroundMusic = loadSound("assets/sounds/music80s.mp3"); //https://www.youtube.com/watch?v=pRgogKa9pOM
 }
+
 
 // setup()
 //
@@ -84,10 +93,12 @@ function preload() {
 // and velocities.
 function setup() {
   // Create canvas and set drawing modes
+
   createCanvas(640, 480);
   rectMode(CENTER);
   noStroke();
   fill(fgColor);
+
 
   setupPaddles();
   resetBall();
@@ -105,14 +116,16 @@ function setupPaddles() {
   rightPaddle.x = width - rightPaddle.w;
   rightPaddle.y = height / 2;
 }
-
+function setupSound() { // add vaporwave music
+  backgroundMusic.loop();
+}
 // draw()
 //
 // Calls the appropriate functions to run the game
 // See how tidy it looks?!
 function draw() {
   // Fill the background
-  background(bgColor);
+  background(backgroundImage1);
 
   if (playing) {
     // If the game is in play, we handle input and move the elements around
@@ -273,7 +286,8 @@ function displayPaddle(paddle) {
 // Draws the ball on screen as a square
 function displayBall() {
   // Draw the ball
-  rect(ball.x, ball.y, ball.size, ball.size);
+
+  image(playerImage, ball.x, ball.y, ball.size, ball.size);
 }
 
 // resetBall()
@@ -285,7 +299,10 @@ function resetBall() {
   ball.y = height / 2;
   ball.vx = ball.speedX;
   ball.vy = ball.speedY;
-
+  //LOOK AT LATER
+ if ( ball.y > height) {
+   ball.vy = random(5,-400);
+ }
 }
 
 
@@ -293,11 +310,14 @@ function resetBall() {
 //
 // Shows a message about how to start the game
 function displayStartMessage() {
+  background(backgroundImage);
   push();
   textAlign(CENTER, CENTER);
   textSize(32);
   text("CLICK TO START", width / 2, height / 2);
   pop();
+
+
 }
 
 // mousePressed()
@@ -306,9 +326,10 @@ function displayStartMessage() {
 // Which will help us be allowed to play audio in the browser
 function mousePressed() {
   playing = true;
+  backgroundMusic.loop();
 }
 //new function  prove the game by displaying the score on the screen, but without using text
-//added colour and size gets bigger everytime there is score 
+//added colour and size gets bigger everytime there is score
 
 function checkScore(){
   if (ball.x < 0) {
