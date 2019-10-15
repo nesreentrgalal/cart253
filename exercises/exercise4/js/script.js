@@ -345,7 +345,7 @@ function mousePressed() {
 
 }
 //new function  prove the game by displaying the score on the screen, but without using text
-//added colour and size gets bigger everytime there is a new score, whoever won, the rectangle
+//added colour and size gets bigger everytime there is a new score, whoever wins, the rectangle
 //gets bigger and colour changes
 
 function checkScore() {
