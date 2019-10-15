@@ -288,7 +288,6 @@ function displayPaddle(paddle) {
 // Draws the ball on screen as a music note
 function displayBall() {
   // display music image, and let it take the previous ball size
-
   image(playerImage, ball.x, ball.y, ball.size, ball.size);
 }
 
