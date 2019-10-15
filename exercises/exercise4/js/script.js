@@ -16,7 +16,7 @@ let title;
 let bgColor = 0;
 let fgColor = 255;
 let leftPoints = 0;
-let rightPoints= 0;
+let rightPoints = 0;
 let backgroundImage;
 let backgroundImage1;
 let playerImage;
@@ -25,8 +25,8 @@ let backgroundMusic;
 // A ball object with the properties of
 // position, size, velocity, and speed
 let ball = {
-  x: 0,
-  y: 0,
+  x: 320,
+  y: 255,
   size: 20,
   vx: 0,
   vy: 0,
@@ -59,14 +59,14 @@ let leftPaddle = {
 // position, size, velocity, and speed
 let rightPaddle = {
   x: 0,
-   y: 0,
-   w: 20,
-   h: 70,
-   vy: 0,
-   speed: 5,
-   upKey: 38,
-   downKey: 40,
-   fgColor: 255
+  y: 0,
+  w: 20,
+  h: 70,
+  vy: 0,
+  speed: 5,
+  upKey: 38,
+  downKey: 40,
+  fgColor: 255
 
 }
 
@@ -80,7 +80,7 @@ function preload() {
   noteSFX = new Audio("assets/sounds/note.wav"); // https://www.youtube.com/watch?v=82-piauOHd4
   backgroundImage1 = loadImage("assets/images/memphisback1.png"); //edited size on Photoshop
   backgroundImage = loadImage("assets/images/memphis.png"); //https://cdn.logojoy.com/wp-content/uploads/2018/07/17142754/AdobeStock_104806545-1024x583.png // edited on Photoshop
-  playerImage = loadImage("assets/images/music1.png");// https://www.freepik.com/free-icons/music and then edited it on Photoshop
+  playerImage = loadImage("assets/images/music1.png"); // https://www.freepik.com/free-icons/music and then edited it on Photoshop
   backgroundMusic = loadSound("assets/sounds/music80s.mp3"); //https://www.youtube.com/watch?v=pRgogKa9pOM
 }
 
@@ -115,6 +115,7 @@ function setupPaddles() {
   rightPaddle.x = width - rightPaddle.w;
   rightPaddle.y = height / 2;
 }
+
 function setupSound() { // add vaporwave music
   backgroundMusic.loop();
 }
@@ -149,8 +150,7 @@ function draw() {
       // This is where we would likely count points, depending on which side
       // the ball went off...
     }
-  }
-  else {
+  } else {
     // Otherwise we display the message to start the game
     displayStartMessage();
   }
@@ -176,8 +176,7 @@ function handleInput(paddle) {
   else if (keyIsDown(paddle.downKey)) {
     // Move down
     paddle.vy = paddle.speed;
-  }
-  else {
+  } else {
     // Otherwise stop moving
     paddle.vy = 0;
   }
@@ -207,20 +206,25 @@ function updateBall() {
 // Returns true if so, false otherwise
 function ballIsOutOfBounds() {
   // Check for ball going off the sides
+  //if the music note  goes on the right, it shows the score in the console
+  // if it goes on the left, it shows the score
   if (ball.x < 0) {
     rightPoints = rightPoints + 1;
-    console.log(rightPoints,"right score!");
+    console.log(rightPoints, "right score!");
+
+
+  }
+  else if (ball.x > width) {
+    leftPoints = leftPoints + 1;
+    console.log(leftPoints, "left score!");
+
+  }
+  if (ball.x < 0 || ball.x > width) {
     return true;
-
+  } else {
+    return false;
   }
-  if (ball.x > width) {
-  leftPoints = leftPoints + 1;
-  console.log(leftPoints,"left score!");
-  return true;
-  }
-  return false;
 }
-
 
 // checkBallWallCollision()
 //
@@ -281,9 +285,9 @@ function displayPaddle(paddle) {
 
 // displayBall()
 //
-// Draws the ball on screen as a square
+// Draws the ball on screen as a music note
 function displayBall() {
-  // Draw the ball
+  // display music image, and let it take the previous ball size
 
   image(playerImage, ball.x, ball.y, ball.size, ball.size);
 }
@@ -292,23 +296,23 @@ function displayBall() {
 //
 // Sets the starting position and velocity of the ball
 function resetBall() {
-  // Initialise the ball's position and velocity
-  ball.x = width / 2;
-  ball.y = height / 2;
+  //  // Initialise the ball's position and velocity
+  // when the right paddle scores
+  if (ball.x < 0) {
+    ball.x = width / 2;
+    ball.y = height / 2;
+    ball.vx = ball.speed;
+    ball.vy = random(2, 8); // random velocity to y
 
+  }
+  //when the left paddle scores, reverse speed
+  else if (ball.x > width) {
+    ball.x = width / 2;
+    ball.y = height / 2;
+    ball.vx = -ball.speed;
+    ball.vy = random(2, 8); // random velocity to y
 
-  //LOOK AT LATER
- if ( ball.x > 0) {
-
-  ball.vx = ball.speed;
-  ball.vy = random(2,8);
-
- }
- else if (ball.x > width){
-
-  ball.vx = -ball.speed;
-  ball.vy = random(2, 8);
-}
+  }
 }
 
 
@@ -335,23 +339,27 @@ function mousePressed() {
   //80s music
   backgroundMusic.stop();
   backgroundMusic.loop();
+  //reset the musc note position
+  ball.x = width / 2;
+  ball.y = height / 2;
+  ball.vx = ball.speed;
+  ball.vy = random(2, 8);
 
 }
 //new function  prove the game by displaying the score on the screen, but without using text
 //added colour and size gets bigger everytime there is a new score, whoever won, the rectangle
 //gets bigger and colour changes
 
-function checkScore(){
+function checkScore() {
   if (ball.x < 0) {
-    rightPaddle.fgColor = color(random(255),random(255),random(255));
+    rightPaddle.fgColor = color(random(255), random(255), random(255));
     rightPaddle.h = rightPaddle.h + 2;
     return true;
 
-  }
-  else if (ball.x > width) {
-  leftPaddle.fgColor = color(random(255),random(255),random(255));
-  leftPaddle.h = leftPaddle.h + 2;
-  return true;
+  } else if (ball.x > width) {
+    leftPaddle.fgColor = color(random(255), random(255), random(255));
+    leftPaddle.h = leftPaddle.h + 2;
+    return true;
   }
   return false;
 }
