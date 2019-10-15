@@ -213,8 +213,7 @@ function ballIsOutOfBounds() {
     console.log(rightPoints, "right score!");
 
 
-  }
-  else if (ball.x > width) {
+  } else if (ball.x > width) {
     leftPoints = leftPoints + 1;
     console.log(leftPoints, "left score!");
 
