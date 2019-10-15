@@ -17,7 +17,6 @@ let bgColor = 0;
 let fgColor = 255;
 let leftPoints = 0;
 let rightPoints= 0;
-let myFont;
 let backgroundImage;
 let backgroundImage1;
 let playerImage;
@@ -31,8 +30,8 @@ let ball = {
   size: 20,
   vx: 0,
   vy: 0,
-  speedX: 5,
-  speedY: 5
+  speed: 5,
+
 }
 
 // PADDLES
@@ -72,13 +71,13 @@ let rightPaddle = {
 }
 
 // A variable to hold the beep sound we will play on bouncing
-let beepSFX;
+let noteSFX;
 
 // preload()
 //
 // Loads the beep audio for the sound of bouncing
 function preload() {
-  beepSFX = new Audio("assets/sounds/note.wav"); // https://www.youtube.com/watch?v=82-piauOHd4
+  noteSFX = new Audio("assets/sounds/note.wav"); // https://www.youtube.com/watch?v=82-piauOHd4
   backgroundImage1 = loadImage("assets/images/memphisback1.png"); //edited size on Photoshop
   backgroundImage = loadImage("assets/images/memphis.png"); //https://cdn.logojoy.com/wp-content/uploads/2018/07/17142754/AdobeStock_104806545-1024x583.png // edited on Photoshop
   playerImage = loadImage("assets/images/music1.png");// https://www.freepik.com/free-icons/music and then edited it on Photoshop
@@ -210,14 +209,13 @@ function ballIsOutOfBounds() {
   // Check for ball going off the sides
   if (ball.x < 0) {
     rightPoints = rightPoints + 1;
-    return true;
     console.log(rightPoints,"right score!");
+    return true;
 
   }
-  else if (ball.x > width) {
+  if (ball.x > width) {
   leftPoints = leftPoints + 1;
   console.log(leftPoints,"left score!");
-
   return true;
   }
   return false;
@@ -235,8 +233,8 @@ function checkBallWallCollision() {
     // It hit so reverse velocity
     ball.vy = -ball.vy;
     // Play our bouncing sound effect by rewinding and then playing
-    beepSFX.currentTime = 0;
-    beepSFX.play();
+    noteSFX.currentTime = 0;
+    noteSFX.play();
   }
 }
 
@@ -266,8 +264,8 @@ function checkBallPaddleCollision(paddle) {
       // Reverse its vx so it starts travelling in the opposite direction
       ball.vx = -ball.vx;
       // Play our bouncing sound effect by rewinding and then playing
-      beepSFX.currentTime = 0;
-      beepSFX.play();
+      noteSFX.currentTime = 0;
+      noteSFX.play();
     }
   }
 }
@@ -277,7 +275,7 @@ function checkBallPaddleCollision(paddle) {
 // Draws the specified paddle
 function displayPaddle(paddle) {
   // Draw the paddles
-  fill(fgColor);
+  fill(paddle.fgColor);
   rect(paddle.x, paddle.y, paddle.w, paddle.h);
 }
 
@@ -297,18 +295,26 @@ function resetBall() {
   // Initialise the ball's position and velocity
   ball.x = width / 2;
   ball.y = height / 2;
-  ball.vx = ball.speedX;
-  ball.vy = ball.speedY;
+
+
   //LOOK AT LATER
- if ( ball.y > height) {
-   ball.vy = random(5,-400);
+ if ( ball.x > 0) {
+
+  ball.vx = ball.speed;
+  ball.vy = random(2,8);
+
  }
+ else if (ball.x > width){
+
+  ball.vx = -ball.speed;
+  ball.vy = random(2, 8);
+}
 }
 
 
 // displayStartMessage()
 //
-// Shows a message about how to start the game
+// Shows a message about how to start the game, added memphis pattern design
 function displayStartMessage() {
   background(backgroundImage);
   push();
@@ -326,20 +332,25 @@ function displayStartMessage() {
 // Which will help us be allowed to play audio in the browser
 function mousePressed() {
   playing = true;
+  //80s music
+  backgroundMusic.stop();
   backgroundMusic.loop();
+
 }
 //new function  prove the game by displaying the score on the screen, but without using text
-//added colour and size gets bigger everytime there is score
+//added colour and size gets bigger everytime there is a new score, whoever won, the rectangle
+//gets bigger and colour changes
 
 function checkScore(){
   if (ball.x < 0) {
-   fgColor = color(random(255),random(255),random(255));
-    rightPaddle.h = rightPaddle.h + 1;
+    rightPaddle.fgColor = color(random(255),random(255),random(255));
+    rightPaddle.h = rightPaddle.h + 2;
     return true;
+
   }
   else if (ball.x > width) {
-  fgColor = color(random(255),random(255),random(255));
-  leftPaddle.h = leftPaddle.h + 1;
+  leftPaddle.fgColor = color(random(255),random(255),random(255));
+  leftPaddle.h = leftPaddle.h + 2;
   return true;
   }
   return false;
