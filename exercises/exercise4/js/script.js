@@ -78,7 +78,7 @@ let noteSFX;
 // Loads the note audio, background music, player image, and image for the sound of bouncing and background image for the start page and game page
 function preload() {
   noteSFX = new Audio("assets/sounds/note.wav"); // https://www.youtube.com/watch?v=82-piauOHd4
-  backgroundImage1 = loadImage("assets/images/memphisback1.png"); //edited size on Photoshop //second background aka game background 
+  backgroundImage1 = loadImage("assets/images/memphisback1.png"); //edited size on Photoshop //second background aka game background
   backgroundImage = loadImage("assets/images/memphis.png"); //https://cdn.logojoy.com/wp-content/uploads/2018/07/17142754/AdobeStock_104806545-1024x583.png // edited on Photoshop
   playerImage = loadImage("assets/images/music1.png"); // https://www.freepik.com/free-icons/music and then edited it on Photoshop
   backgroundMusic = loadSound("assets/sounds/music80s.mp3"); //https://www.youtube.com/watch?v=pRgogKa9pOM
@@ -352,7 +352,6 @@ function checkScore() {
     rightPaddle.fgColor = color(random(255), random(255), random(255));
     rightPaddle.h = rightPaddle.h + 2;
     return true;
-
   } else if (ball.x > width) {
     leftPaddle.fgColor = color(random(255), random(255), random(255));
     leftPaddle.h = leftPaddle.h + 2;
