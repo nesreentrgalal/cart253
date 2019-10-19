@@ -19,6 +19,7 @@ class Predator {
     this.vx = 0;
     this.vy = 0;
     this.speed = speed;
+    //add a property that keeps track of how many Prey it has eaten
     this.preyEaten = 0;
     // Health properties
     this.maxHealth = radius;
