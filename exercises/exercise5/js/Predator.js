@@ -51,6 +51,13 @@ class Predator {
     else {
       this.vx = 0;
     }
+
+    if (keyIsDown(SHIFT) && keyIsDown(this.leftKey)) {
+        this.vx = -15;
+ }
+ else if (keyIsDown(SHIFT) && keyIsDown(this.rightKey)) {
+         this.vx = 15;
+       }
     // Vertical movement
     if (keyIsDown(this.upKey)) {
       this.vy = -this.speed;
@@ -61,6 +68,13 @@ class Predator {
     else {
       this.vy = 0;
     }
+    if (keyIsDown(SHIFT) && keyIsDown(this.upKey)) {
+      this.vy = -15;
+
+  } else if (keyIsDown(SHIFT) && keyIsDown(this.downKey)) {
+      this.vy = 15;
+
+  }
   }
 
   // move
