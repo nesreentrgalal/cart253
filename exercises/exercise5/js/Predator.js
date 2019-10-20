@@ -11,7 +11,7 @@ class Predator {
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
   //added the keys for several players to play
-  constructor(x, y, speed, fillColor, radius, upKey,downKey,leftKey,rightKey) {
+  constructor(x, y, speed, fillColor, radius, upKey,downKey,leftKey,rightKey,name,score) {
     // Position
     this.x = x;
     this.y = y;
@@ -34,6 +34,11 @@ class Predator {
     this.downKey = downKey;
     this.leftKey = leftKey;
     this.rightKey = rightKey;
+
+
+
+    this.name = name;
+    this.score = 0;
   }
 
   // handleInput
@@ -134,6 +139,9 @@ class Predator {
       //added +1 for the keeps track of how many Prey the predator has eaten
       if (prey.health < 0) {
         this.preyEaten += 1;
+        this.score +=1;
+
+
         console.log(this.preyEaten,"getting all that fat");
         prey.reset();
       }
@@ -150,6 +158,15 @@ class Predator {
     fill(this.fillColor);
     this.radius = this.health;
     ellipse(this.x, this.y, this.radius * 2);
+    push();
+    textFont("Futura");
+    textAlign(LEFT, TOP);
+    textSize(20);
+    fill(255);
+    text(this.name + this.score, this.x,this.y);
     pop();
+    pop();
+
+
   }
 }
