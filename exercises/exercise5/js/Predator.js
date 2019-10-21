@@ -11,7 +11,7 @@ class Predator {
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
   //added the keys for several players to play
-  constructor(x, y, speed, image, radius, upKey,downKey,leftKey,rightKey,name,score) {
+  constructor(x, y, speed, image, radius, upKey, downKey, leftKey, rightKey, name, score) {
     // Position
     this.x = x;
     this.y = y;
@@ -36,7 +36,7 @@ class Predator {
     this.rightKey = rightKey;
 
 
-// to give an individual name and score for every predator
+    // to give an individual name and score for every predator
     this.name = name;
     this.score = 0;
   }
@@ -49,37 +49,32 @@ class Predator {
     // Horizontal movement
     if (keyIsDown(this.leftKey)) {
       this.vx = -this.speed;
-    }
-    else if (keyIsDown(this.rightKey)) {
+    } else if (keyIsDown(this.rightKey)) {
       this.vx = this.speed;
-    }
-    else {
+    } else {
       this.vx = 0;
     }
 
     if (keyIsDown(SHIFT) && keyIsDown(this.leftKey)) {
-        this.vx = -15;
- }
- else if (keyIsDown(SHIFT) && keyIsDown(this.rightKey)) {
-         this.vx = 15;
-       }
+      this.vx = -15;
+    } else if (keyIsDown(SHIFT) && keyIsDown(this.rightKey)) {
+      this.vx = 15;
+    }
     // Vertical movement
     if (keyIsDown(this.upKey)) {
       this.vy = -this.speed;
-    }
-    else if (keyIsDown(this.downKey)) {
+    } else if (keyIsDown(this.downKey)) {
       this.vy = this.speed;
-    }
-    else {
+    } else {
       this.vy = 0;
     }
     if (keyIsDown(SHIFT) && keyIsDown(this.upKey)) {
       this.vy = -15;
 
-  } else if (keyIsDown(SHIFT) && keyIsDown(this.downKey)) {
+    } else if (keyIsDown(SHIFT) && keyIsDown(this.downKey)) {
       this.vy = 15;
 
-  }
+    }
   }
 
   // move
@@ -106,15 +101,13 @@ class Predator {
     // Off the left or right
     if (this.x < 0) {
       this.x += width;
-    }
-    else if (this.x > width) {
+    } else if (this.x > width) {
       this.x -= width;
     }
     // Off the top or bottom
     if (this.y < 0) {
       this.y += height;
-    }
-    else if (this.y > height) {
+    } else if (this.y > height) {
       this.y -= height;
     }
   }
@@ -139,10 +132,10 @@ class Predator {
       //added +1 for the keeps track of how many Prey the predator has eaten
       if (prey.health < 0) {
         this.preyEaten += 1;
-        this.score +=1;
+        this.score += 1;
 
 
-        console.log(this.preyEaten,"getting all that fat");
+        console.log(this.preyEaten, "getting all that fat");
         prey.reset();
       }
     }
@@ -161,7 +154,7 @@ class Predator {
     textAlign(LEFT, TOP);
     textSize(20);
     fill(255);
-    text(this.name + this.score, this.x,this.y);
+    text(this.name + this.score, this.x, this.y);
     pop();
     pop();
 
