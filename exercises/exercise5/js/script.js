@@ -54,17 +54,17 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   tiger = new Predator(50, 50, 5, tigerImage, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW,"Tiger:",0);
   lion = new Predator(100,100,5, lionImage, 100,87,83,65,68,"Lion:",0);
-  rabbit= new Predator(60,60,6,rabbitImage,60,85,74,75,73,"Rabbit:",0);
-  antelope = new Prey(100, 100, 10, antelopeImage, 50);
-  zebra = new Prey(100, 100, 8, zebraImage, 60);
-  bee = new Prey(100, 100, 20,beeImage, 10);
+  rabbit= new Predator(60,60,6,rabbitImage,50,85,74,72,75,"Rabbit:",0);
+  antelope = new Prey(100, 100, 10, antelopeImage, 80);
+  zebra = new Prey(100, 100, 8, zebraImage, 90);
+  bee = new Prey(200, 200, 20,beeImage, 50);
 }
 
 // draw()
 //
 // Handles input, movement, eating, and displaying for the system's objects
 function draw() {
-  // added nature landscape image 
+  // added nature landscape image
  image(backgroundImage,0, 0, windowWidth, windowHeight);
 
   // Handle input for the tiger

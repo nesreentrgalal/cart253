@@ -36,13 +36,13 @@ class Predator {
     this.rightKey = rightKey;
 
 
-
+// to give an individual name and score for every predator
     this.name = name;
     this.score = 0;
   }
 
   // handleInput
-  //
+  //Added Sprinting with SHIFT
   // Checks if an arrow key is pressed and sets the predator's
   // velocity appropriately.
   handleInput() {
@@ -154,7 +154,6 @@ class Predator {
   // with a radius the same size as its current health.
   display() {
     push();
-    noStroke();
     this.radius = this.health;
     image(this.image, this.x, this.y, this.radius * 2, this.radius * 2);
     push();
