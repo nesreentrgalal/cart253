@@ -15,6 +15,35 @@ let antelope;
 let zebra;
 let bee;
 
+// images of predators
+
+let tigerImage;
+let lionImage;
+let rabbitImage;
+
+//images of preys
+
+let antelopeImage;
+let zebraImage;
+let beeImage;
+
+//background
+
+let backgroundImage;
+
+// preload to put images
+// edited and modified images on photoshop
+
+function preload() {
+  tigerImage = loadImage("assets/images/tiger.png"); //https://pixabay.com/vectors/tiger-predator-cat-big-cat-felidae-1394584/
+  lionImage = loadImage("assets/images/lion.png"); // https://cdn.pixabay.com/photo/2019/06/02/18/27/lion-4247082_960_720.png
+  rabbitImage = loadImage("assets/images/rabbit.png"); // https://all-free-download.com/free-vector/vector-clip-art/rabbit_silhouette_56315.html
+  antelopeImage = loadImage("assets/images/antelope.png"); // https://media.istockphoto.com/vectors/vector-jump-antelope-silhouette-view-side-for-retro-symbols-emblems-vector-id862426884?k=6&m=862426884&s=612x612&w=0&h=Sl1oobI_etsCUTE-lXQsESsTS_z-vkf1ERvC3hTayH4=
+  zebraImage = loadImage("assets/images/zebra.png"); // https://www.carstickers.com/products/stickers/animal-stickers/zebra-car-stickers-decals/details/zebra-silhouette-running-sticker-9142/
+  beeImage = loadImage("assets/images/bee.png"); // https://www.shutterstock.com/search/bee+silhouette
+  backgroundImage = loadImage("assets/images/landscape.png"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
+
+}
 
 // setup()
 //
@@ -23,20 +52,20 @@ let bee;
 //added key codes
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  tiger = new Predator(100, 100, 5, color(200, 200, 0), 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW,"Tiger:",0);
-  lion = new Predator(150,100,5, color(255,0,255), 100,87,83,65,68,"Lion:",0);
-  rabbit= new Predator(120,130,6,color(255,200,150),60,85,74,75,73,"Rabbit:",0);
-  antelope = new Prey(100, 100, 10, color(255, 100, 10), 50);
-  zebra = new Prey(100, 100, 8, color(255, 255, 255), 60);
-  bee = new Prey(100, 100, 20, color(255, 255, 0), 10);
+  tiger = new Predator(50, 50, 5, tigerImage, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW,"Tiger:",0);
+  lion = new Predator(100,100,5, lionImage, 100,87,83,65,68,"Lion:",0);
+  rabbit= new Predator(60,60,6,rabbitImage,60,85,74,75,73,"Rabbit:",0);
+  antelope = new Prey(100, 100, 10, antelopeImage, 50);
+  zebra = new Prey(100, 100, 8, zebraImage, 60);
+  bee = new Prey(100, 100, 20,beeImage, 10);
 }
 
 // draw()
 //
 // Handles input, movement, eating, and displaying for the system's objects
 function draw() {
-  // Clear the background to black
-  background(0);
+  // added nature landscape image 
+ image(backgroundImage,0, 0, windowWidth, windowHeight);
 
   // Handle input for the tiger
   tiger.handleInput();

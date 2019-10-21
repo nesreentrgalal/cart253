@@ -11,7 +11,7 @@ class Predator {
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
   //added the keys for several players to play
-  constructor(x, y, speed, fillColor, radius, upKey,downKey,leftKey,rightKey,name,score) {
+  constructor(x, y, speed, image, radius, upKey,downKey,leftKey,rightKey,name,score) {
     // Position
     this.x = x;
     this.y = y;
@@ -27,7 +27,7 @@ class Predator {
     this.healthLossPerMove = 0.1;
     this.healthGainPerEat = 1;
     // Display properties
-    this.fillColor = fillColor;
+    this.image = image;
     this.radius = this.health; // Radius is defined in terms of health
     // Input properties
     this.upKey = upKey;
@@ -155,9 +155,8 @@ class Predator {
   display() {
     push();
     noStroke();
-    fill(this.fillColor);
     this.radius = this.health;
-    ellipse(this.x, this.y, this.radius * 2);
+    image(this.image, this.x, this.y, this.radius * 2, this.radius * 2);
     push();
     textFont("Futura");
     textAlign(LEFT, TOP);
