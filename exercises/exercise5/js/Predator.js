@@ -41,6 +41,7 @@ class Predator {
     this.score = 0;
   }
 
+
   // handleInput
   //Added Sprinting with SHIFT
   // Checks if an arrow key is pressed and sets the predator's

@@ -73,7 +73,7 @@ class Prey {
   display() {
     push();
     this.radius = this.health;
-    image(this.image, this.x, this.y, this.radius * 2, this.radius * 2);
+    image(this.image, this.x, this.y, this.radius, this.radius);
     pop();
   }
 
