@@ -8,7 +8,7 @@
 // Our predator
 let tiger; // controls up,down, right and left arrow keys, sprint key is shift
 let lion; // up is W, down is S, right is D and left is A, sprint key is enter
-let rabbit; //up is U and down is J, right is K and left is H, sprint key is ALT 
+let rabbit; //up is U and down is J, right is K and left is H, sprint key is ALT
 
 // The three prey
 let antelope;

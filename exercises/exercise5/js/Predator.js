@@ -66,6 +66,7 @@ class Predator {
     } else {
       this.vy = 0;
     }
+    //sprinting value 
     if (keyIsDown(this.sprintKey)) {
       this.vx = 10;
       this.vy = 10;
@@ -80,9 +81,9 @@ class Predator {
   move() {
     // if the radius of the predator is bigger than O , you can move if not you can't move anymore
     if (this.radius > 0) {
-    this.x += this.vx;
-    this.y += this.vy;
-  }
+      this.x += this.vx;
+      this.y += this.vy;
+    }
     // Update health
     this.health = this.health - this.healthLossPerMove;
     this.health = constrain(this.health, 0, this.maxHealth);
