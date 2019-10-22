@@ -134,8 +134,7 @@ class Predator {
       if (prey.health < 0) {
         this.preyEaten += 1;
         this.score += 1;
-
-
+       //console message
         console.log(this.preyEaten, "getting all that fat");
         prey.reset();
       }
@@ -144,12 +143,16 @@ class Predator {
 
   // display
   //
-  // Draw the predator as an ellipse on the canvas
+  // Draw the predator as an animal silhouette image  on the canvas
   // with a radius the same size as its current health.
   display() {
     push();
     this.radius = this.health;
+    if (this.radius > 0) {
     image(this.image, this.x, this.y, this.radius * 2, this.radius * 2);
+
+    }
+
     push();
     textFont("Futura");
     textAlign(LEFT, TOP);
