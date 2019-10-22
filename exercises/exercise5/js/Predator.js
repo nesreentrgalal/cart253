@@ -78,9 +78,11 @@ class Predator {
   // Lowers health (as a cost of living)
   // Handles wrapping
   move() {
-    // Update position
+    // if the radius of the predator is bigger than O , you can move if not you can't move anymore
+    if (this.radius > 0) {
     this.x += this.vx;
     this.y += this.vy;
+  }
     // Update health
     this.health = this.health - this.healthLossPerMove;
     this.health = constrain(this.health, 0, this.maxHealth);
