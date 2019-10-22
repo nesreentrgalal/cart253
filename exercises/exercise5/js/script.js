@@ -6,9 +6,9 @@
 // The predator loses health over time, so must keep eating to survive.
 
 // Our predator
-let tiger;
-let lion;
-let rabbit;
+let tiger; // controls up,down, right and left arrow keys, sprint key is shift
+let lion; // up is W, down is S, right is D and left is A, sprint key is enter
+let rabbit; //up is U and down is J, right is K and left is H, sprint key is ALT 
 
 // The three prey
 let antelope;
@@ -52,9 +52,9 @@ function preload() {
 //added key codes
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  tiger = new Predator(50, 50, 5, tigerImage, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Tiger:", 0);
-  lion = new Predator(100, 100, 5, lionImage, 100, 87, 83, 65, 68, "Lion:", 0);
-  rabbit = new Predator(60, 60, 6, rabbitImage, 50, 85, 74, 72, 75, "Rabbit:", 0);
+  tiger = new Predator(50, 50, 5, tigerImage, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Tiger:", 0,16);
+  lion = new Predator(100, 100, 5, lionImage, 100, 87, 83, 65, 68, "Lion:", 0,13);
+  rabbit = new Predator(60, 60, 6, rabbitImage, 50, 85, 74, 72, 75, "Rabbit:", 0,18);
   antelope = new Prey(100, 100, 10, antelopeImage, 80);
   zebra = new Prey(100, 100, 8, zebraImage, 90);
   bee = new Prey(200, 200, 20, beeImage, 50);

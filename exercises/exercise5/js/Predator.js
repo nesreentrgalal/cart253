@@ -11,7 +11,7 @@ class Predator {
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
   //added the keys for several players to play
-  constructor(x, y, speed, image, radius, upKey, downKey, leftKey, rightKey, name, score) {
+  constructor(x, y, speed, image, radius, upKey, downKey, leftKey, rightKey, name, score, sprintKey) {
     // Position
     this.x = x;
     this.y = y;
@@ -19,7 +19,7 @@ class Predator {
     this.vx = 0;
     this.vy = 0;
     this.speed = speed;
-    //add a property that keeps track of how many Prey it has eaten
+    //add a property that keeps track of how many Prey it has eaten in the console
     this.preyEaten = 0;
     // Health properties
     this.maxHealth = radius;
@@ -34,6 +34,7 @@ class Predator {
     this.downKey = downKey;
     this.leftKey = leftKey;
     this.rightKey = rightKey;
+    this.sprintKey = sprintKey;
 
 
     // to give an individual name and score for every predator
@@ -56,11 +57,7 @@ class Predator {
       this.vx = 0;
     }
 
-    if (keyIsDown(SHIFT) && keyIsDown(this.leftKey)) {
-      this.vx = -15;
-    } else if (keyIsDown(SHIFT) && keyIsDown(this.rightKey)) {
-      this.vx = 15;
-    }
+
     // Vertical movement
     if (keyIsDown(this.upKey)) {
       this.vy = -this.speed;
@@ -69,12 +66,9 @@ class Predator {
     } else {
       this.vy = 0;
     }
-    if (keyIsDown(SHIFT) && keyIsDown(this.upKey)) {
-      this.vy = -15;
-
-    } else if (keyIsDown(SHIFT) && keyIsDown(this.downKey)) {
-      this.vy = 15;
-
+    if (keyIsDown(this.sprintKey)) {
+      this.vx = 10;
+      this.vy = 10;
     }
   }
 
@@ -150,9 +144,7 @@ class Predator {
     this.radius = this.health;
     if (this.radius > 0) {
     image(this.image, this.x, this.y, this.radius * 2, this.radius * 2);
-
     }
-
     push();
     textFont("Futura");
     textAlign(LEFT, TOP);
