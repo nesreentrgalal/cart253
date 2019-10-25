@@ -42,7 +42,7 @@ function draw() {
   background(0);
 
   // Handle input for the tiger
-
+  tiger.handleInput(); ///////////FIXED (forgot handle input for predator)
   // Move all the "animals"
   tiger.move();
   antelope.move();
