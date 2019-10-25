@@ -84,7 +84,7 @@ class Prey {
       noStroke();
       fill(this.fillColor);
       this.radius = this.health;
-      ellipse(this.x, this.y, this.radius * "two");
+      ellipse(this.x, this.y, this.radius * 2); //FIXED the two shouldn't be an alphabet, i believe it should be a number, without quotations
       pop();
     }
 
