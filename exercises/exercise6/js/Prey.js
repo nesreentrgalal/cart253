@@ -27,7 +27,7 @@ class Prey {
     this.speed = speed;
     // Time properties for noise() function
     this.tx = random(0, 150); // To make x and y noise different //FIXED  doesnt make sense that the random is between 0 and 0, needs to be a number bigger than 0
-    this.ty = random(0, 150); // we use random starting values //FIXED same as above, cant be the same number 
+    this.ty = random(0, 150); // we use random starting values //FIXED same as above, cant be the same number
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
@@ -40,7 +40,7 @@ class Prey {
   //
   // Sets velocity based on the noise() function and the Prey's speed
   // Moves based on the resulting velocity and handles wrapping
-  mover() {
+  move() { // FIXED (typo again with MOVE)
     // Set velocity via noise()
     this.vx = map(noise(this.tx), 0, 1, -this.speed, this.speed);
     this.vy = map(noise(this.ty), 0, 1, -this.speed, this.speed);
