@@ -60,7 +60,8 @@ class Prey {
     // wraps it to the other side if so
     handleWrapping() {
       // Off the left or right
-      if (this.x > 0) {
+      //FIXED it should be smaller than 0
+      if (this.x < 0) {
         this.x += width;
       }
       else if (this.x > width) {
