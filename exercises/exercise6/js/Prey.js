@@ -51,7 +51,7 @@ class Prey {
     this.tx += 0.01;
     this.ty += 0.01;
     // Handle wrapping
-    this.handleWrapping(); // FIXED Typo warping to wrapping 
+    this.handleWrapping(); // FIXED Typo warping to wrapping
 
 
     // handleWrapping
@@ -71,7 +71,7 @@ class Prey {
         this.y += height;
       }
       else if (this.y > height) {
-        this.y -= hight;
+        this.y -= height; //FIXED typo for height
       }
     }
 
