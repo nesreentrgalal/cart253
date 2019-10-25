@@ -60,7 +60,7 @@ let playing = false;
 let startImage;
 // add font
 let font;
-
+let backgroundMusic;
 let button;
 
 function preload() {
@@ -79,6 +79,7 @@ function preload() {
   explorer8Image = loadImage("assets/images/internetexplorerpink.png");
   startImage = loadImage("assets/images/startgame.png");
   font = loadFont("assets/font/source-sans.ttf");
+  backgroundMusic = loadSound('assets/sounds/Expanse.mp3');
 
 
 }
@@ -91,7 +92,7 @@ function preload() {
 function setup() {
   createCanvas(640, 480);
   google = new Predator(50, 50, 5, googleImage, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
-  fire = new Predator(100, 100, 5, fireImage, 100, 87, 83, 65, 68, "Fire:", 0, 13);
+  fire = new Predator(100, 100, 5, fireImage, 60, 87, 83, 65, 68, "Fire:", 0, 13);
   safari = new Predator(60, 60, 6, safariImage, 50, 85, 74, 72, 75, "Safari:", 0, 18);
   explorer = new Prey(100, 100, 10, explorerImage, 80);
   explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
@@ -105,7 +106,11 @@ function setup() {
 
 
 }
+function setupSound() { // add 80s music
+  backgroundMusic.stop();
+  backgroundMusic.loop();
 
+}
 // draw()
 //
 // Handles input, movement, eating, and displaying for the system's objects
@@ -208,6 +213,9 @@ function mousePressed(){
   if (playing === false){
     playing = true;
   }
+  if (playing === true) {
+      setupSound();
+}
 }
 
 function clickFunction(){
