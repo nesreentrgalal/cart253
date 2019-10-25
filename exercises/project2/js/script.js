@@ -4,7 +4,8 @@
 // Creates a predator and three prey (of different sizes and speeds)
 // The predator chases the prey using the arrow keys and consumes them.
 // The predator loses health over time, so must keep eating to survive.
-
+//game over
+let gameOver = false;
 // Our predator
 let google; // controls up,down, right and left arrow keys, sprint key is shift
 let fire; // up is W, down is S, right is D and left is A, sprint key is enter
@@ -27,10 +28,30 @@ let explorerImage;
 let explorer1Image;
 let explorer2Image;
 
+// // purple and green internet explorer
+let explorer3Image;
+let explorer4Image;
+let explorer5Image;
+
+// pink and yellow internet explorer images
+let explorer6Image;
+let explorer7Image;
+let explorer8Image;
+
+
 //background
 
 let backgroundImage;
 
+// purple and green internet explorer
+let explorer3;
+let explorer4;
+let explorer5;
+
+// pink and yellow internet explorer
+let explorer6;
+let explorer7;
+let explorer8;
 // preload to put images
 // edited and modified images on photoshop
 //playing property to add in the title function for the player to know when to play and when to not to
@@ -50,8 +71,15 @@ function preload() {
   explorer1Image = loadImage("assets/images/internetexplorer.png"); // https://www.carstickers.com/products/stickers/animal-stickers/zebra-car-stickers-decals/details/zebra-silhouette-running-sticker-9142/
   explorer2Image = loadImage("assets/images/internetexplorer.png"); // https://www.shutterstock.com/search/bee+silhouette
   backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
+  explorer3Image = loadImage("assets/images/internetexplorergreen.png");
+  explorer4Image = loadImage("assets/images/internetexplorergreen.png");
+  explorer5Image = loadImage("assets/images/internetexplorergreen.png");
+  explorer6Image = loadImage("assets/images/internetexplorerpink.png");
+  explorer7Image = loadImage("assets/images/internetexplorerpink.png");
+  explorer8Image = loadImage("assets/images/internetexplorerpink.png");
   startImage = loadImage("assets/images/startgame.png");
   font = loadFont("assets/font/source-sans.ttf");
+
 
 }
 
@@ -68,6 +96,12 @@ function setup() {
   explorer = new Prey(100, 100, 10, explorerImage, 80);
   explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
   explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
+  explorer3 = new Prey1(100, 100, 10, explorer3Image, 80);
+  explorer4 = new Prey1(100, 100, 10, explorer4Image, 80);
+  explorer5 = new Prey1(100, 100, 10, explorer5Image, 80);
+  explorer6 = new Prey2(100, 100, 10, explorer6Image, 80);
+  explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
+  explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
 
 
 }
@@ -97,6 +131,12 @@ function draw() {
   explorer.move();
   explorer1.move();
   explorer2.move();
+  explorer3.move();
+  explorer4.move();
+  explorer5.move();
+  explorer6.move();
+  explorer7.move();
+  explorer8.move();
   fire.move();
   safari.move();
 
@@ -104,20 +144,44 @@ function draw() {
   google.handleEating(explorer);
   google.handleEating(explorer1);
   google.handleEating(explorer2);
+  google.handleEating(explorer3);
+  google.handleEating(explorer4);
+  google.handleEating(explorer5);
+  google.handleEating(explorer6);
+  google.handleEating(explorer7);
+  google.handleEating(explorer8);
 
   fire.handleEating(explorer);
   fire.handleEating(explorer1);
   fire.handleEating(explorer2);
+  fire.handleEating(explorer3);
+  fire.handleEating(explorer4);
+  fire.handleEating(explorer5);
+  fire.handleEating(explorer6);
+  fire.handleEating(explorer7);
+  fire.handleEating(explorer8);
 
   safari.handleEating(explorer);
   safari.handleEating(explorer1);
   safari.handleEating(explorer2);
+  safari.handleEating(explorer3);
+  safari.handleEating(explorer4);
+  safari.handleEating(explorer5);
+  safari.handleEating(explorer6);
+  safari.handleEating(explorer7);
+  safari.handleEating(explorer8);
 
   // Display all the "animals"
   google.display();
   explorer.display();
   explorer1.display();
   explorer2.display();
+  explorer3.display();
+  explorer4.display();
+  explorer5.display();
+  explorer6.display();
+  explorer7.display();
+  explorer8.display();
   fire.display();
   safari.display();
 
@@ -127,8 +191,8 @@ function draw() {
   function titleScreen() {
 
    background (startImage,0,0);
-
 // Text
+  push();
   textFont(font);
   fill(255);
   textAlign(CENTER,TOP);
@@ -145,8 +209,7 @@ function mousePressed(){
     playing = true;
   }
 }
-push();
+
 function clickFunction(){
 	background(random(255));
 }
-pop();

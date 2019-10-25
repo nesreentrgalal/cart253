@@ -149,14 +149,13 @@ class Predator {
       image(this.image, this.x, this.y, this.radius * 2, this.radius * 2);
     }
     push();
-    textFont("Futura");
+    textFont(font);
     textAlign(LEFT, TOP);
     textSize(20);
     fill(255);
     text(this.name + this.score, this.x, this.y);
     pop();
     pop();
-
 
   }
 }
