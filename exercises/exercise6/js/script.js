@@ -56,6 +56,6 @@ function draw() {
   // Display all the "animals"
   tiger.display();
   antelop.display();
-  zebra.display(); //fixed typo disploy to display 
+  zebra.display(); //fixed typo disploy to display
   bee.display(); /////////////FIXED missing two ee's for bee
 }
