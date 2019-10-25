@@ -74,7 +74,7 @@ class Predator {
   move() {
     // Update position
     this.x += this.vx; //FIXED added a plus
-    this.y += this.vy; //FIXED added a plus for y as well 
+    this.y += this.vy; //FIXED added a plus for y as well
     // Update health
     this.health = this.health - this.healthLossPerMove;
     this.health = constrain(this.health, 0, this.maxHealth);
@@ -130,7 +130,7 @@ class Predator {
   // Draw the predator as an ellipse on the canvas
   // with a radius the same size as its current health.
   display() {
-    pish(); //FIXED typo for push
+    push(); //FIXED typo for push
     noStroke();
     fill(this.fillColor);
     this.radius = this.health;
