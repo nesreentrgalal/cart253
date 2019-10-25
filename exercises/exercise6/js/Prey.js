@@ -52,7 +52,7 @@ class Prey {
     this.ty += 0.01;
     // Handle wrapping
     this.handleWrapping(); // FIXED Typo warping to wrapping
-
+} // FIXED missing bracket for move 
 
     // handleWrapping
     //
