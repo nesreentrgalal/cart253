@@ -15,7 +15,7 @@ class Prey {
   //
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
-  //changed why to y
+  //FIXED changed why to y
   constructor(x, y , speed, fillColor, radius) {
     // Position
     this.x = x;
@@ -26,8 +26,8 @@ class Prey {
     //FXIED typo for speed
     this.speed = speed;
     // Time properties for noise() function
-    this.tx = random(0, 0); // To make x and y noise different
-    this.ty = random(0, 0); // we use random starting values
+    this.tx = random(0, 150); // To make x and y noise different //FIXED  doesnt make sense that the random is between 0 and 0, needs to be a number bigger than 0
+    this.ty = random(0, 0); // we use random starting values 
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
