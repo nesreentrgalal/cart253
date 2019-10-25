@@ -58,7 +58,7 @@ class Predator {
     if (keyIsDown(this.upKey)) {
       this.vy = -this.speed;
     }
-    else if (keyIsDown(this.downKey)) { //FIXED Typo clown to down, Pippin i know you like the clown emoji but there is no key that is clown sadly :(
+    else if (keyIsDown(this.downKey)) { //FIXED Typo clown to down, Pippin i know you like the clown emoji but there is clown key sadly :(
       this.vy = this.speed;
     }
     else {
@@ -73,7 +73,7 @@ class Predator {
   // Handles wrapping
   move() {
     // Update position
-    this.x = this.vx;
+    this.x += this.vx; //FIXED added a plus
     this.y = this.vy;
     // Update health
     this.health = this.health - this.healthLossPerMove;
