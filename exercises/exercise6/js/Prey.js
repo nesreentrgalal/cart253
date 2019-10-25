@@ -15,14 +15,15 @@ class Prey {
   //
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, why, speed, fillColor, radius) {
+  //changed why to y
+  constructor(x, y , speed, fillColor, radius) {
     // Position
     this.x = x;
     this.y = y;
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;
-    //FXIED typo for speed 
+    //FXIED typo for speed
     this.speed = speed;
     // Time properties for noise() function
     this.tx = random(0, 0); // To make x and y noise different
