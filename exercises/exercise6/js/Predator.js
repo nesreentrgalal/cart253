@@ -31,7 +31,7 @@ class Predator {
     this.healthGainPerEat = 1;
     // Display properties
     this.fillColor = fillColor;
-    this.radius = this.health; // Radius is defined in terms of health //FIXED typo radios to radius 
+    this.radius = this.health; // Radius is defined in terms of health //FIXED typo radios to radius
     // Input properties
     this.upKey = UP_ARROW; //FIXED TYPO appkey to upkey
     this.downKey = DOWN_ARROW;
@@ -130,7 +130,7 @@ class Predator {
   // Draw the predator as an ellipse on the canvas
   // with a radius the same size as its current health.
   display() {
-    pish();
+    pish(); //FIXED typo for push 
     noStroke();
     fill(this.fillColor);
     this.radius = this.health;
