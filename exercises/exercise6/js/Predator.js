@@ -110,7 +110,7 @@ class Predator {
   // the predator's. If the prey dies, it gets reset.
   handleEating(prey) {
     // Calculate distance from this predator to the prey
-    let d = dist(thisX, thisY, prey.x, prey.y);
+    let d = dist(this.x, this.y, prey.x, prey.y); // missing a point for this.x and this.y and doesnt have to be in caps locks 
     // Check if the distance is less than their two radii (an overlap)
     if (d < this.radius + prey.radius) {
       // Increase predator health and constrain it to its possible range
@@ -120,7 +120,7 @@ class Predator {
       prey.health -= this.healthGainPerEat;
       // Check if the prey died and reset it if so
       if (prey.health < 0) {
-        prey.reset(); //FIXED typo with reset 
+        prey.reset(); //FIXED typo with reset
       }
     }
   }
