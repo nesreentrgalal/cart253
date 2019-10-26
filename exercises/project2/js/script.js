@@ -195,19 +195,33 @@ function draw() {
   safari.display();
 
  gameOverScreen();
+ reset();
 
 }
 }
 function gameOverScreen() {
+  //if all predator radius are zero, game over screen shows up
   if (google.radius === 0 && fire.radius === 0 && safari.radius === 0 )   {
     playing = false;
     titleScreen = false;
     image(endImage, 0, 0, 640,480);
+    //stop music
     backgroundMusic.stop();
+    // text for reset
+    textFont(font);
+    fill(255);
+    textAlign(CENTER);
+    textSize (30);
+    text("reset?",320,308);
+
   }
 
 }
+function reset(){
+   gameOver = false;
+   playing = true;
 
+}
 
 
   function titleScreen() {
@@ -232,7 +246,10 @@ function mousePressed(){
   }
   if (playing === true) {
       setupSound();
-}
+    }
+    if (gameOver === true) {
+   reset();
+ }
 }
 
 function clickFunction(){
