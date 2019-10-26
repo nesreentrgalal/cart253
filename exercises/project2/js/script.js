@@ -58,6 +58,8 @@ let explorer8;
 let playing = false;
 // title screen
 let startImage;
+//game over Screen
+let endImage;
 // add font
 let font;
 let backgroundMusic;
@@ -80,6 +82,7 @@ function preload() {
   startImage = loadImage("assets/images/startgame.png");
   font = loadFont("assets/font/source-sans.ttf");
   backgroundMusic = loadSound('assets/sounds/Expanse.mp3');
+  endImage = loadImage("assets/images/gameover.png");
 
 
 }
@@ -90,10 +93,11 @@ function preload() {
 // Creates objects for the predator and three prey
 //added key codes
 function setup() {
+  //decided to make the predators small, since my canvas is small
   createCanvas(640, 480);
-  google = new Predator(50, 50, 5, googleImage, 40, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
-  fire = new Predator(100, 100, 5, fireImage, 60, 87, 83, 65, 68, "Fire:", 0, 13);
-  safari = new Predator(60, 60, 6, safariImage, 50, 85, 74, 72, 75, "Safari:", 0, 18);
+  google = new Predator(50, 50, 5, googleImage, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
+  fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
+  safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
   explorer = new Prey(100, 100, 10, explorerImage, 80);
   explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
   explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
@@ -124,7 +128,7 @@ function draw() {
 // If the game is being played,
 // then the preys and predators will be active
  else {
-  // added nature landscape image
+  // added 80s image collage image
   background (backgroundImage,0,0);
 
   // Handle input for the tiger
@@ -190,8 +194,21 @@ function draw() {
   fire.display();
   safari.display();
 
+ gameOverScreen();
+
 }
 }
+function gameOverScreen() {
+  if (google.radius === 0 && fire.radius === 0 && safari.radius === 0 )   {
+    playing = false;
+    titleScreen = false;
+    image(endImage, 0, 0, 640,480);
+    backgroundMusic.stop();
+  }
+
+}
+
+
 
   function titleScreen() {
 
@@ -204,8 +221,8 @@ function draw() {
   textSize (30);
   text("click to play",320,30);
   push();
-  button = createButton("Simple Button");
-  button.position(10, 300);
+  button = createButton("instructions");
+  button.position(280, 180);
   button.mousePressed(clickFunction);
   pop();
 }
