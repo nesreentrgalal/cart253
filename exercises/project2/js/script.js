@@ -208,18 +208,26 @@ function gameOverScreen() {
     //stop music
     backgroundMusic.stop();
     // text for reset
+    push();
     textFont(font);
     fill(255);
     textAlign(CENTER);
     textSize (30);
     text("reset?",320,308);
+    pop();
 
+  let gameOverText = " Google " + google.score + " prey\n";
+   gameOverText = gameOverText + "Fire " + fire.score + " prey\n";
+  gameOverText = gameOverText + " Safari " + safari.score + " prey\n";
+  text(gameOverText, 320, 50);
+  textAlign(CENTER);
   }
 
 }
 function reset(){
    gameOver = false;
    playing = true;
+
 
 }
 
