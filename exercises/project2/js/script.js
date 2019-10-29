@@ -65,6 +65,8 @@ let font;
 let backgroundMusic;
 let button;
 
+let instuctionImage;
+
 function preload() {
   googleImage = loadImage("assets/images/googlechrome.png"); //https://pixabay.com/vectors/tiger-predator-cat-big-cat-felidae-1394584/
   fireImage = loadImage("assets/images/firefox.png"); // https://cdn.pixabay.com/photo/2019/06/02/18/27/lion-4247082_960_720.png
@@ -83,6 +85,7 @@ function preload() {
   font = loadFont("assets/font/source-sans.ttf");
   backgroundMusic = loadSound('assets/sounds/Expanse.mp3');
   endImage = loadImage("assets/images/gameover.png");
+  instuctionImage = loadImage("assets/images/instructions.png");
 
 
 }
@@ -101,12 +104,13 @@ function setup() {
   explorer = new Prey(100, 100, 10, explorerImage, 80);
   explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
   explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
-  explorer3 = new Prey1(100, 100, 10, explorer3Image, 80);
-  explorer4 = new Prey1(100, 100, 10, explorer4Image, 80);
-  explorer5 = new Prey1(100, 100, 10, explorer5Image, 80);
+  explorer3 = new Prey1(100, 100, 10, explorer3Image, 200);
+  explorer4 = new Prey1(100, 100, 10, explorer4Image, 200);
+  explorer5 = new Prey1(100, 100, 10, explorer5Image, 200);
   explorer6 = new Prey2(100, 100, 10, explorer6Image, 80);
   explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
   explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
+
 
 
 }
@@ -115,6 +119,14 @@ function setupSound() { // add 80s music
   backgroundMusic.loop();
 
 }
+
+function reset() {
+  gameOver = true;
+}
+function titleScreen() {
+  playing = false;
+}
+
 // draw()
 //
 // Handles input, movement, eating, and displaying for the system's objects
@@ -195,10 +207,12 @@ function draw() {
   safari.display();
 
  gameOverScreen();
- reset();
+
 
 }
 }
+
+
 function gameOverScreen() {
   //if all predator radius are zero, game over screen shows up
   if (google.radius === 0 && fire.radius === 0 && safari.radius === 0 )   {
@@ -215,7 +229,7 @@ function gameOverScreen() {
     textSize (30);
     text("reset?",320,308);
     pop();
-
+//game over text
   let gameOverText = " Google " + google.score + " prey\n";
    gameOverText = gameOverText + "Fire " + fire.score + " prey\n";
   gameOverText = gameOverText + " Safari " + safari.score + " prey\n";
@@ -224,42 +238,64 @@ function gameOverScreen() {
   }
 
 }
-function reset(){
-   gameOver = false;
-   playing = true;
-
-
-}
-
 
   function titleScreen() {
 
    background (startImage,0,0);
 // Text
-  push();
+
   textFont(font);
   fill(255);
   textAlign(CENTER,TOP);
   textSize (30);
   text("click to play",320,30);
   push();
-  button = createButton("instructions");
-  button.position(280, 180);
-  button.mousePressed(clickFunction);
+  //button
+  button = createButton("Instructions");
+  button.position(280, 450);
+	button.mouseClicked(clickFunction);
   pop();
-}
-function mousePressed(){
-  if (playing === false){
-    playing = true;
   }
-  if (playing === true) {
-      setupSound();
+
+function mousePressed(){
+  if (!playing) {
+     playing = true;
+     setupSound();
+   }
+  if (gameOver === true) {
+      reset();
     }
-    if (gameOver === true) {
-   reset();
- }
 }
 
-function clickFunction(){
-	background(random(255));
+function reset(){
+if (playing === true) {
+background (backgroundImage,0,0);
+titleScreen = false;
+ google = new Predator(50, 50, 5, googleImage, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
+  fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
+  safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
+  explorer = new Prey(100, 100, 10, explorerImage, 80);
+  explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
+  explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
+  explorer3 = new Prey1(100, 100, 10, explorer3Image, 80);
+  explorer4 = new Prey1(100, 100, 10, explorer4Image, 80);
+  explorer5 = new Prey1(100, 100, 10, explorer5Image, 80);
+  explorer6 = new Prey2(100, 100, 10, explorer6Image, 80);
+  explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
+  explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
+
+  google.health = google.maxHealth;
+  google.score = 0;
+
+  fire.health = fire.maxHealth;
+  fire.score = 0;
+
+  safari.health = safari.maxHealth;
+  safari.score = 0;
+  }
 }
+push();
+function clickFunction(){
+  background(instuctionImage);
+}
+pop();
