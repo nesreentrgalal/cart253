@@ -64,7 +64,7 @@ let endImage;
 let font;
 let backgroundMusic;
 let button;
-
+let button1;
 let instuctionImage;
 
 function preload() {
@@ -208,7 +208,8 @@ function draw() {
 
  gameOverScreen();
 
-
+ button.remove();
+ button1.remove();
 }
 }
 
@@ -242,30 +243,17 @@ function gameOverScreen() {
   function titleScreen() {
 
    background (startImage,0,0);
-// Text
-
-  textFont(font);
-  fill(255);
-  textAlign(CENTER,TOP);
-  textSize (30);
-  text("click to play",320,30);
   push();
   //button
   button = createButton("Instructions");
   button.position(280, 450);
 	button.mouseClicked(clickFunction);
   pop();
+
+  instructionScreen();
   }
 
-function mousePressed(){
-  if (!playing) {
-     playing = true;
-     setupSound();
-   }
-  if (gameOver === true) {
-      reset();
-    }
-}
+
 
 function reset(){
 if (playing === true) {
@@ -294,8 +282,40 @@ titleScreen = false;
   safari.score = 0;
   }
 }
+
+function instructionScreen() {
+    playing = false;
+   background (instructionImage,0,0);
+   mousePressed();
+
+ }
+
+ function clickFunction(){
+    playing = false;
+     background(instuctionImage);
+    backgroundMusic.stop();
+    //
+    textFont(font);
+    fill(255);
+    textAlign(CENTER,TOP);
+    textSize (30);
+    text("click to play",320,380);
+    //
+    button1 = createButton("play");
+    button1.position(310, 440);
+  	button1.mousePressed(mousePressed);
+    //
+     button.remove();
+
+ }
 push();
-function clickFunction(){
-  background(instuctionImage);
-}
-pop();
+ function mousePressed(){
+   if (!playing) {
+      playing = true;
+      setupSound();
+    }
+   if (gameOver === true) {
+       reset();
+     }
+ }
+ pop();
