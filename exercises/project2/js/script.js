@@ -214,6 +214,8 @@ function draw() {
 
     button.remove();
     button1.remove();
+
+    
   }
 }
 
@@ -233,12 +235,12 @@ function gameOverScreen() {
     fill(255);
     textAlign(CENTER);
     textSize(30);
-    text("reset?", 320, 308);
+    text("Reset?", 320, 308);
     pop();
     //game over text
-    let gameOverText = " Google " + google.score + " prey\n";
-    gameOverText = gameOverText + "Fire " + fire.score + " prey\n";
-    gameOverText = gameOverText + " Safari " + safari.score + " prey\n";
+    let gameOverText = " Google " + google.score + " internet explorers\n";
+    gameOverText = gameOverText + "Fire " + fire.score + " internet explorers\n";
+    gameOverText = gameOverText + " Safari " + safari.score + " internet explorers\n";
     text(gameOverText, 320, 50);
     textAlign(CENTER);
   }
