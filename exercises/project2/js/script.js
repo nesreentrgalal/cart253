@@ -52,6 +52,10 @@ let explorer5;
 let explorer6;
 let explorer7;
 let explorer8;
+
+//
+let explorer8Array = [];
+let explorer8Number = 100;
 // preload to put images
 // edited and modified images on photoshop
 //playing property to add in the title function for the player to know when to play and when to not to
@@ -65,7 +69,7 @@ let font;
 let backgroundMusic;
 let button;
 let button1;
-let instuctionImage;
+let instructionImage;
 
 function preload() {
   googleImage = loadImage("assets/images/googlechrome.png"); //https://pixabay.com/vectors/tiger-predator-cat-big-cat-felidae-1394584/
@@ -85,7 +89,8 @@ function preload() {
   font = loadFont("assets/font/source-sans.ttf");
   backgroundMusic = loadSound('assets/sounds/Expanse.mp3');
   endImage = loadImage("assets/images/gameover.png");
-  instuctionImage = loadImage("assets/images/instructions.png");
+  instructionImage = loadImage("assets/images/instructions.png");
+
 
 
 }
@@ -111,9 +116,10 @@ function setup() {
   explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
   explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
 
-
+  titleScreen();
 
 }
+
 function setupSound() { // add 80s music
   backgroundMusic.stop();
   backgroundMusic.loop();
@@ -123,103 +129,102 @@ function setupSound() { // add 80s music
 function reset() {
   gameOver = true;
 }
-function titleScreen() {
-  playing = false;
-}
 
 // draw()
 //
 // Handles input, movement, eating, and displaying for the system's objects
 function draw() {
 
-  if (playing === false){
- // Added function for title screen
-   titleScreen();
- }
+  if (playing === false) {
+    // Added function for title screen
 
-// If the game is being played,
-// then the preys and predators will be active
- else {
-  // added 80s image collage image
-  background (backgroundImage,0,0);
+    // titleScreen();
+  }
 
-  // Handle input for the tiger
-  google.handleInput();
-  fire.handleInput();
-  safari.handleInput();
-  // Move all the "animals"
-  google.move();
-  explorer.move();
-  explorer1.move();
-  explorer2.move();
-  explorer3.move();
-  explorer4.move();
-  explorer5.move();
-  explorer6.move();
-  explorer7.move();
-  explorer8.move();
-  fire.move();
-  safari.move();
+  // If the game is being played,
+  // then the preys and predators will be active
+  else {
+    // added 80s image collage image
+    background(backgroundImage, 0, 0);
 
-  // Handle the predators eating any of the prey
-  google.handleEating(explorer);
-  google.handleEating(explorer1);
-  google.handleEating(explorer2);
-  google.handleEating(explorer3);
-  google.handleEating(explorer4);
-  google.handleEating(explorer5);
-  google.handleEating(explorer6);
-  google.handleEating(explorer7);
-  google.handleEating(explorer8);
+    // Handle input for the tiger
+    google.handleInput();
+    fire.handleInput();
+    safari.handleInput();
+    // Move all the "browsers"
+    google.move();
+    explorer.move();
+    explorer1.move();
+    explorer2.move();
+    explorer3.move();
+    explorer4.move();
+    explorer5.move();
+    explorer6.move();
+    explorer7.move();
+    explorer8.move();
+    fire.move();
+    safari.move();
 
-  fire.handleEating(explorer);
-  fire.handleEating(explorer1);
-  fire.handleEating(explorer2);
-  fire.handleEating(explorer3);
-  fire.handleEating(explorer4);
-  fire.handleEating(explorer5);
-  fire.handleEating(explorer6);
-  fire.handleEating(explorer7);
-  fire.handleEating(explorer8);
+    // Handle the predators eating any of the prey
+    google.handleEating(explorer);
+    google.handleEating(explorer1);
+    google.handleEating(explorer2);
+    google.handleEating(explorer3);
+    google.handleEating(explorer4);
+    google.handleEating(explorer5);
+    google.handleEating(explorer6);
+    google.handleEating(explorer7);
+    google.handleEating(explorer8);
 
-  safari.handleEating(explorer);
-  safari.handleEating(explorer1);
-  safari.handleEating(explorer2);
-  safari.handleEating(explorer3);
-  safari.handleEating(explorer4);
-  safari.handleEating(explorer5);
-  safari.handleEating(explorer6);
-  safari.handleEating(explorer7);
-  safari.handleEating(explorer8);
+    fire.handleEating(explorer);
+    fire.handleEating(explorer1);
+    fire.handleEating(explorer2);
+    fire.handleEating(explorer3);
+    fire.handleEating(explorer4);
+    fire.handleEating(explorer5);
+    fire.handleEating(explorer6);
+    fire.handleEating(explorer7);
+    fire.handleEating(explorer8);
 
-  // Display all the "animals"
-  google.display();
-  explorer.display();
-  explorer1.display();
-  explorer2.display();
-  explorer3.display();
-  explorer4.display();
-  explorer5.display();
-  explorer6.display();
-  explorer7.display();
-  explorer8.display();
-  fire.display();
-  safari.display();
+    safari.handleEating(explorer);
+    safari.handleEating(explorer1);
+    safari.handleEating(explorer2);
+    safari.handleEating(explorer3);
+    safari.handleEating(explorer4);
+    safari.handleEating(explorer5);
+    safari.handleEating(explorer6);
+    safari.handleEating(explorer7);
+    safari.handleEating(explorer8);
 
- gameOverScreen();
+    // Display all the "browswers"
+    google.display();
+    explorer.display();
+    explorer1.display();
+    explorer2.display();
+    explorer3.display();
+    explorer4.display();
+    explorer5.display();
+    explorer6.display();
+    explorer7.display();
+    explorer8.display();
+    fire.display();
+    safari.display();
 
- button.remove();
- button1.remove();
-}
+    gameOverScreen();
+
+    button.remove();
+    button1.remove();
+  }
 }
 
 
 function gameOverScreen() {
   //if all predator radius are zero, game over screen shows up
-  if (google.radius === 0 && fire.radius === 0 && safari.radius === 0 )   {
+  if (google.radius === 0 && fire.radius === 0 && safari.radius === 0) {
     playing = false;
     titleScreen = false;
-    image(endImage, 0, 0, 640,480);
+    gameOver = true;
+    image(endImage, 0, 0, 640, 480);
     //stop music
     backgroundMusic.stop();
     // text for reset
@@ -227,95 +232,90 @@ function gameOverScreen() {
     textFont(font);
     fill(255);
     textAlign(CENTER);
-    textSize (30);
-    text("reset?",320,308);
+    textSize(30);
+    text("reset?", 320, 308);
     pop();
-//game over text
-  let gameOverText = " Google " + google.score + " prey\n";
-   gameOverText = gameOverText + "Fire " + fire.score + " prey\n";
-  gameOverText = gameOverText + " Safari " + safari.score + " prey\n";
-  text(gameOverText, 320, 50);
-  textAlign(CENTER);
+    //game over text
+    let gameOverText = " Google " + google.score + " prey\n";
+    gameOverText = gameOverText + "Fire " + fire.score + " prey\n";
+    gameOverText = gameOverText + " Safari " + safari.score + " prey\n";
+    text(gameOverText, 320, 50);
+    textAlign(CENTER);
   }
 
 }
 
-  function titleScreen() {
+function titleScreen() {
 
-   background (startImage,0,0);
+  background(startImage, 0, 0);
   push();
   //button
   button = createButton("Instructions");
   button.position(280, 450);
-	button.mouseClicked(clickFunction);
+  button.mouseClicked(clickFunction);
   pop();
 
-  instructionScreen();
-  }
+
+
+}
 
 
 
-function reset(){
-if (playing === true) {
-background (backgroundImage,0,0);
-titleScreen = false;
- google = new Predator(50, 50, 5, googleImage, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
-  fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
-  safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
-  explorer = new Prey(100, 100, 10, explorerImage, 80);
-  explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
-  explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
-  explorer3 = new Prey1(100, 100, 10, explorer3Image, 80);
-  explorer4 = new Prey1(100, 100, 10, explorer4Image, 80);
-  explorer5 = new Prey1(100, 100, 10, explorer5Image, 80);
-  explorer6 = new Prey2(100, 100, 10, explorer6Image, 80);
-  explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
-  explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
+function reset() {
 
-  google.health = google.maxHealth;
-  google.score = 0;
+    // background(backgroundImage, 0, 0);
+    playing = true;
+    gameOver = false;
 
-  fire.health = fire.maxHealth;
-  fire.score = 0;
+    google = new Predator(50, 50, 5, googleImage, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
+    fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
+    safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
+    explorer = new Prey(100, 100, 10, explorerImage, 80);
+    explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
+    explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
+    explorer3 = new Prey1(100, 100, 10, explorer3Image, 80);
+    explorer4 = new Prey1(100, 100, 10, explorer4Image, 80);
+    explorer5 = new Prey1(100, 100, 10, explorer5Image, 80);
+    explorer6 = new Prey2(100, 100, 10, explorer6Image, 80);
+    explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
+    explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
 
-  safari.health = safari.maxHealth;
-  safari.score = 0;
+  setupSound();
+}
+
+
+
+function clickFunction() {
+  playing = false;
+  background(instructionImage);
+  backgroundMusic.stop();
+  //
+  textFont(font);
+  fill(255);
+  textAlign(CENTER, TOP);
+  textSize(30);
+  text("click the button to play!", 320, 380);
+  //
+  push();
+  button1 = createButton("play");
+  button1.position(310, 440);
+  button1.mouseClicked(playPressed);
+  //
+  button.remove();
+  pop();
+}
+
+function playPressed() {
+  if (!playing) {
+    playing = true;
+    setupSound();
+    reset();
+
   }
 }
 
-function instructionScreen() {
-    playing = false;
-   background (instructionImage,0,0);
-   mousePressed();
-
- }
-
- function clickFunction(){
-    playing = false;
-     background(instuctionImage);
-    backgroundMusic.stop();
-    //
-    textFont(font);
-    fill(255);
-    textAlign(CENTER,TOP);
-    textSize (30);
-    text("click to play",320,380);
-    //
-    button1 = createButton("play");
-    button1.position(310, 440);
-  	button1.mousePressed(mousePressed);
-    //
-     button.remove();
-
- }
-push();
- function mousePressed(){
-   if (!playing) {
-      playing = true;
-      setupSound();
-    }
-   if (gameOver === true) {
-       reset();
-     }
- }
- pop();
+function mousePressed(){
+ if (gameOver === true ){
+   reset();
+}
+}
