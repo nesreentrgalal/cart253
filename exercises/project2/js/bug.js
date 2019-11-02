@@ -4,7 +4,7 @@
 // on screen based on a noise() function. It can move around
 // the screen and be consumed by Predator objects.
 
-class Prey1 {
+class Bug {
 
   // constructor
   //
@@ -19,14 +19,14 @@ class Prey1 {
     this.vy = 0;
     this.speed = speed;
     // Time properties for noise() function
-    this.tx = random(0, 500); // To make x and y noise different
-    this.ty = random(0, 500); // we use random starting values
+    this.tx = random(0, 10); // To make x and y noise different
+    this.ty = random(0, 10); // we use random starting values
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
     this.image = image;
-    this.radius = this.health;
+
   }
 
   // move
@@ -40,9 +40,8 @@ class Prey1 {
     // Update position
     this.x += this.vx;
     this.y += this.vy;
-    // Update time properties
-    this.tx += 0.01;
-    this.ty += 0.01;
+
+
     // Handle wrapping
     this.handleWrapping();
   }
@@ -75,7 +74,7 @@ class Prey1 {
 
     this.radius = this.health;
     //radius kinda disapears woo
-    image(this.image, this.x, this.y, this.radius, this.radius,(frameCount % 100)*20, 50);
+    image(this.image, this.x, this.y, this.radius/2, this.radius/2);
 
 
 

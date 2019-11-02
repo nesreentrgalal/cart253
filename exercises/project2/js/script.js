@@ -36,7 +36,6 @@ let explorer5Image;
 // pink and yellow internet explorer images
 let explorer6Image;
 let explorer7Image;
-let explorer8Image;
 
 
 //background
@@ -51,11 +50,13 @@ let explorer5;
 // pink and yellow internet explorer
 let explorer6;
 let explorer7;
-let explorer8;
+
 
 //
-let explorer8Array = [];
-let explorer8Number = 100;
+
+let explorer8 = [];
+let explorer8Image = 5;
+
 // preload to put images
 // edited and modified images on photoshop
 //playing property to add in the title function for the player to know when to play and when to not to
@@ -67,9 +68,16 @@ let endImage;
 // add font
 let font;
 let backgroundMusic;
+//add button for instructions
 let button;
+// add button for play
 let button1;
 let instructionImage;
+//
+let bug;
+let bug1;
+let bug2;
+let bugImage;
 
 function preload() {
   googleImage = loadImage("assets/images/googlechrome.png"); //https://pixabay.com/vectors/tiger-predator-cat-big-cat-felidae-1394584/
@@ -90,9 +98,17 @@ function preload() {
   backgroundMusic = loadSound('assets/sounds/Expanse.mp3');
   endImage = loadImage("assets/images/gameover.png");
   instructionImage = loadImage("assets/images/instructions.png");
+  bugImage = loadImage("assets/images/bug.png")
 
+  for (let i = 1; i <= explorer8Image; i++) {
+    // Each time i has a number in it, going 1 -> 2 -> 3 -> 4 -> 5
+    // So we can use that fact to make a string with the next filename:
+    let explorer8Image = "assets/images/internetexplorerpink" + i + ".png";
 
+    // And then we can load that image into our array
+    explorer8.push(loadImage(explorer8Image));
 
+  }
 }
 
 // setup()
@@ -102,6 +118,7 @@ function preload() {
 //added key codes
 function setup() {
   //decided to make the predators small, since my canvas is small
+
   createCanvas(640, 480);
   google = new Predator(50, 50, 5, googleImage, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
   fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
@@ -109,13 +126,17 @@ function setup() {
   explorer = new Prey(100, 100, 10, explorerImage, 80);
   explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
   explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
-  explorer3 = new Prey1(100, 100, 10, explorer3Image, 200);
-  explorer4 = new Prey1(100, 100, 10, explorer4Image, 200);
-  explorer5 = new Prey1(100, 100, 10, explorer5Image, 200);
+  explorer3 = new Prey1(100, 100, 10, explorer3Image, 400);
+  explorer4 = new Prey1(100, 100, 10, explorer4Image, 400);
+  explorer5 = new Prey1(100, 100, 10, explorer5Image, 400);
   explorer6 = new Prey2(100, 100, 10, explorer6Image, 80);
   explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
   explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
+  bug = new Bug(100, 100, 10, bugImage, 80);
+  bug1 = new Bug(100, 100, 10, bugImage, 80);
+  bug2 = new Bug(100, 100, 10, bugImage, 80);
 
+  // to first show the title screen first
   titleScreen();
 
 }
@@ -126,6 +147,7 @@ function setupSound() { // add 80s music
 
 }
 
+// reset game if game over is true
 function reset() {
   gameOver = true;
 }
@@ -164,7 +186,9 @@ function draw() {
     explorer8.move();
     fire.move();
     safari.move();
-
+    bug.move();
+   bug1.move();
+   bug2.move();
     // Handle the predators eating any of the prey
     google.handleEating(explorer);
     google.handleEating(explorer1);
@@ -176,6 +200,7 @@ function draw() {
     google.handleEating(explorer7);
     google.handleEating(explorer8);
 
+
     fire.handleEating(explorer);
     fire.handleEating(explorer1);
     fire.handleEating(explorer2);
@@ -186,6 +211,7 @@ function draw() {
     fire.handleEating(explorer7);
     fire.handleEating(explorer8);
 
+
     safari.handleEating(explorer);
     safari.handleEating(explorer1);
     safari.handleEating(explorer2);
@@ -195,6 +221,7 @@ function draw() {
     safari.handleEating(explorer6);
     safari.handleEating(explorer7);
     safari.handleEating(explorer8);
+
 
     // Display all the "browswers"
     google.display();
@@ -209,13 +236,23 @@ function draw() {
     explorer8.display();
     fire.display();
     safari.display();
+    bug.display();
+    bug1.display();
+    bug2.display();
 
     gameOverScreen();
-
+    //remove buttons when playing
     button.remove();
     button1.remove();
 
-    
+    //array
+    for (let i = 0; i < explorer8.length; i++) {
+
+      explorer8[i].display();
+      explorer8[i].move();
+      explorer8.push(explorer8Image);
+
+    }
   }
 }
 
@@ -247,6 +284,7 @@ function gameOverScreen() {
 
 }
 
+// title screen image and button and when is mouse clicked it redirects to instruction image
 function titleScreen() {
 
   background(startImage, 0, 0);
@@ -262,30 +300,30 @@ function titleScreen() {
 }
 
 
-
+// when reset is activated the preys and predators and musc are reactivated
 function reset() {
 
-    // background(backgroundImage, 0, 0);
-    playing = true;
-    gameOver = false;
+  playing = true;
+  gameOver = false;
 
-    google = new Predator(50, 50, 5, googleImage, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
-    fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
-    safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
-    explorer = new Prey(100, 100, 10, explorerImage, 80);
-    explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
-    explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
-    explorer3 = new Prey1(100, 100, 10, explorer3Image, 80);
-    explorer4 = new Prey1(100, 100, 10, explorer4Image, 80);
-    explorer5 = new Prey1(100, 100, 10, explorer5Image, 80);
-    explorer6 = new Prey2(100, 100, 10, explorer6Image, 80);
-    explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
-    explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
+  google = new Predator(50, 50, 5, googleImage, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
+  fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
+  safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
+  explorer = new Prey(100, 100, 10, explorerImage, 80);
+  explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
+  explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
+  explorer3 = new Prey1(100, 100, 10, explorer3Image, 80);
+  explorer4 = new Prey1(100, 100, 10, explorer4Image, 80);
+  explorer5 = new Prey1(100, 100, 10, explorer5Image, 80);
+  explorer6 = new Prey2(100, 100, 10, explorer6Image, 80);
+  explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
+  explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
+  bug = new Bug(100, 100, 10, bugImage, 80);
 
   setupSound();
 }
 
-
+// instruction page with a play button to start playing
 
 function clickFunction() {
   playing = false;
@@ -307,6 +345,7 @@ function clickFunction() {
   pop();
 }
 
+// once the play button is pressed, playing starts as well as the musicccc
 function playPressed() {
   if (!playing) {
     playing = true;
@@ -315,9 +354,9 @@ function playPressed() {
 
   }
 }
-
-function mousePressed(){
- if (gameOver === true ){
-   reset();
-}
+// when in the game over page, and mouse is pressed, the game starts again
+function mousePressed() {
+  if (gameOver === true) {
+    reset();
+  }
 }
