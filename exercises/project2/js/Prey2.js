@@ -3,6 +3,7 @@
 // A class that represents a simple prey that moves
 // on screen based on a noise() function. It can move around
 // the screen and be consumed by Predator objects.
+
 //GREEN
 class Prey2 {
 
@@ -73,7 +74,7 @@ class Prey2 {
   display() {
     push();
     this.radius = this.health;
-    //so that the radius doesn't show that it's huge
+    //so that the radius doesn't show that it's huge once it resets 
     if (this.radius > 0) {
       image(this.image, this.x, this.y, this.radius, this.radius);
     }

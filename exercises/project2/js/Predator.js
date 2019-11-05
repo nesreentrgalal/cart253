@@ -143,7 +143,7 @@ class Predator {
   }
 
 
-  //stay away from the bug, score goes back to zero
+  //stay away from the bug, lose a score 
   bugvspredator(bug) {
 
     let d = dist(this.x, this.y, bug.x, bug.y);

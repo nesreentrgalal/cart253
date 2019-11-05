@@ -77,7 +77,7 @@ let bugImage;
 let blueExplorer = [];
 //array for blue explorer
 
-let numBlue = 3;
+let numBlue = 4;
 
 
 function preload() {
@@ -353,12 +353,12 @@ function clickFunction() {
   textAlign(CENTER, TOP);
   textSize(30);
   text("click the button to play!", 320, 380);
-  //
+  //button for play
   push();
   button1 = createButton("play");
   button1.position(310, 440);
   button1.mouseClicked(playPressed);
-  //
+  //to remove button of instructions 
   button.remove();
   pop();
 }
