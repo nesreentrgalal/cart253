@@ -77,7 +77,7 @@ let bugImage;
 let blueExplorer = [];
 //array for blue explorer
 
-let numBlue = 4;
+let numBlue = 3;
 
 
 function preload() {
@@ -120,7 +120,7 @@ function setup() {
   explorer7 = new Prey2(100, 100, 10, explorerGreenImage, 80);
   explorer8 = new Prey2(100, 100, 10, explorerGreenImage, 80);
   bug = new Bug(100, 100, 10, bugImage, 10);
-  bug1 = new Bug(100, 100, 10, bugImage,10);
+  bug1 = new Bug(100, 100, 10, bugImage, 10);
   bug2 = new Bug(100, 100, 10, bugImage, 10);
 
 
@@ -334,9 +334,9 @@ function reset() {
   explorer6 = new Prey2(100, 100, 10, explorerGreenImage, 80);
   explorer7 = new Prey2(100, 100, 10, explorerGreenImage, 80);
   explorer8 = new Prey2(100, 100, 10, explorerGreenImage, 80);
-  bug = new Bug(100, 100, 10, bugImage, 20);
-  bug1 = new Bug(100, 100, 10, bugImage, 20);
-  bug2 = new Bug(100, 100, 10, bugImage, 20);
+  bug = new Bug(100, 100, 10, bugImage, 10);
+  bug1 = new Bug(100, 100, 10, bugImage, 10);
+  bug2 = new Bug(100, 100, 10, bugImage, 10);
 
   setupSound();
 }
@@ -358,7 +358,7 @@ function clickFunction() {
   button1 = createButton("play");
   button1.position(310, 440);
   button1.mouseClicked(playPressed);
-  //to remove button of instructions 
+  //to remove button of instructions
   button.remove();
   pop();
 }

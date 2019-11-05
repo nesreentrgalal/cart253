@@ -143,24 +143,24 @@ class Predator {
   }
 
 
-  //stay away from the bug, lose a score 
+  //stay away from the bug, lose score
   bugvspredator(bug) {
 
     let d = dist(this.x, this.y, bug.x, bug.y);
     if (d < this.radius + bug.radius) {
-    if(this.overlappingBug === false){
-      this.overlappingBug = true;
-      this.score = constrain(this.score - 1, 0, 100);
-    }
+      if (this.overlappingBug === false) {
+        this.overlappingBug = true;
+        this.score = constrain(this.score - 1, 0, 100);
+      }
     }
     else {
-          this.overlappingBug = false;
+      this.overlappingBug = false;
 
     }
   }
   // display
   //
-  // Draw the predator as an animal silhouette image  on the canvas
+  // Draw the predator as an browser image  on the canvas
   // with a radius the same size as its current health.
   display() {
     push();
