@@ -29,13 +29,11 @@ let explorer1Image;
 let explorer2Image;
 
 // // purple and green internet explorer
-let explorer3Image;
-let explorer4Image;
-let explorer5Image;
+let explorerGreenImage;
 
 // pink and yellow internet explorer images
-let explorer6Image;
-let explorer7Image;
+let explorerPinkImage;
+
 
 
 //background
@@ -52,10 +50,6 @@ let explorer6;
 let explorer7;
 
 
-//
-
-let explorer8 = [];
-let explorer8Image = 5;
 
 // preload to put images
 // edited and modified images on photoshop
@@ -78,37 +72,32 @@ let bug;
 let bug1;
 let bug2;
 let bugImage;
+//
+let pinkExplorer =[];
+let greenExplorer = [];
+let normalExplorer = [];
+//
+let numPink = 4;
+let numGreen = 5;
+let numBlue = 2;
+
 
 function preload() {
-  googleImage = loadImage("assets/images/googlechrome.png"); //https://pixabay.com/vectors/tiger-predator-cat-big-cat-felidae-1394584/
-  fireImage = loadImage("assets/images/firefox.png"); // https://cdn.pixabay.com/photo/2019/06/02/18/27/lion-4247082_960_720.png
-  safariImage = loadImage("assets/images/safari.png"); // https://all-free-download.com/free-vector/vector-clip-art/rabbit_silhouette_56315.html
-  explorerImage = loadImage("assets/images/internetexplorer.png"); // https://media.istockphoto.com/vectors/vector-jump-antelope-silhouette-view-side-for-retro-symbols-emblems-vector-id862426884?k=6&m=862426884&s=612x612&w=0&h=Sl1oobI_etsCUTE-lXQsESsTS_z-vkf1ERvC3hTayH4=
-  explorer1Image = loadImage("assets/images/internetexplorer.png"); // https://www.carstickers.com/products/stickers/animal-stickers/zebra-car-stickers-decals/details/zebra-silhouette-running-sticker-9142/
-  explorer2Image = loadImage("assets/images/internetexplorer.png"); // https://www.shutterstock.com/search/bee+silhouette
+  googleImage = loadImage("assets/images/googlechrome.png"); //https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/1024px-Google_Chrome_icon_%28September_2014%29.svg.png
+  fireImage = loadImage("assets/images/firefox.png"); // https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1200px-Firefox_logo%2C_2019.svg.png
+  safariImage = loadImage("assets/images/safari.png"); //https://www.pngix.com/pngfile/middle/36-369269_safari-icon-safari-web-browser-png-transparent-png.png
+  explorerImage = loadImage("assets/images/internetexplorer.png"); // https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Internet_Explorer_9_icon.svg/1200px-Internet_Explorer_9_icon.svg.png
   backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
-  explorer3Image = loadImage("assets/images/internetexplorergreen.png");
-  explorer4Image = loadImage("assets/images/internetexplorergreen.png");
-  explorer5Image = loadImage("assets/images/internetexplorergreen.png");
-  explorer6Image = loadImage("assets/images/internetexplorerpink.png");
-  explorer7Image = loadImage("assets/images/internetexplorerpink.png");
-  explorer8Image = loadImage("assets/images/internetexplorerpink.png");
-  startImage = loadImage("assets/images/startgame.png");
-  font = loadFont("assets/font/source-sans.ttf");
-  backgroundMusic = loadSound('assets/sounds/Expanse.mp3');
-  endImage = loadImage("assets/images/gameover.png");
-  instructionImage = loadImage("assets/images/instructions.png");
-  bugImage = loadImage("assets/images/bug.png")
+  explorerGreenImage = loadImage("assets/images/internetexplorergreen.png"); // edited on photoshop
+  explorerPinkImage = loadImage("assets/images/internetexplorerpink.png"); //edited on photoshop
+  startImage = loadImage("assets/images/startgame.png"); // collage created by me on photoshop
+  font = loadFont("assets/font/source-sans.ttf"); // https://www.1001fonts.com/source-sans-pro-font.html
+  backgroundMusic = loadSound('assets/sounds/Expanse.mp3'); // https://www.youtube.com/watch?v=oKH0_NI-4jU by Forhill
+  endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/6e/9f/79/6e9f794cfbc61c12ad329b5abd8111dd.jpg but collage created by me
+  instructionImage = loadImage("assets/images/instruction.png"); //https://i.pinimg.com/564x/ab/e0/27/abe0273100a7008c3e19187eb0c6e481.jpg background
+  bugImage = loadImage("assets/images/bug.png") // http://icons.iconarchive.com/icons/icons8/ios7/256/Programming-Bug-2-icon.png
 
-  for (let i = 1; i <= explorer8Image; i++) {
-    // Each time i has a number in it, going 1 -> 2 -> 3 -> 4 -> 5
-    // So we can use that fact to make a string with the next filename:
-    let explorer8Image = "assets/images/internetexplorerpink" + i + ".png";
 
-    // And then we can load that image into our array
-    explorer8.push(loadImage(explorer8Image));
-
-  }
 }
 
 // setup()
@@ -124,17 +113,44 @@ function setup() {
   fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
   safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
   explorer = new Prey(100, 100, 10, explorerImage, 80);
-  explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
-  explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
-  explorer3 = new Prey1(100, 100, 10, explorer3Image, 400);
-  explorer4 = new Prey1(100, 100, 10, explorer4Image, 400);
-  explorer5 = new Prey1(100, 100, 10, explorer5Image, 400);
-  explorer6 = new Prey2(100, 100, 10, explorer6Image, 80);
-  explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
-  explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
+  explorer1 = new Prey(100, 100, 8, explorerImage, 90);
+  explorer2 = new Prey(200, 200, 20, explorerImage, 50);
+  explorer3 = new Prey1(100, 100, 10, explorerPinkImage, 100);
+  explorer4 = new Prey1(100, 100, 10, explorerPinkImage, 200);
+  explorer5 = new Prey1(100, 100, 10, explorerPinkImage, 100);
+  explorer6 = new Prey2(100, 100, 10, explorerGreenImage, 80);
+  explorer7 = new Prey2(100, 100, 10, explorerGreenImage, 80);
+  explorer8 = new Prey2(100, 100, 10, explorerGreenImage, 80);
   bug = new Bug(100, 100, 10, bugImage, 80);
   bug1 = new Bug(100, 100, 10, bugImage, 80);
   bug2 = new Bug(100, 100, 10, bugImage, 80);
+
+  for (let i = 0; i < numPink; i++) {
+    // Position the new square randomly and give it a random size
+    let newpinkExplorer = new Prey1(explorerPinkImage);
+    // Add the new square to the shapes array
+    pinkExplorer.push(newpinkExplorer);
+  }
+  // Create the circles
+  for (let i = 0; i < numGreen; i++) {
+    // Position the new circle randomly and give it a random size and fill
+    let newgreenExplorer = new Prey2 (explorerGreenImage);
+    // Add the new circle to the shapes array
+    greenExplorer.push(newgreenExplorer);
+  }
+  // Create the growing circles
+  for (let i = 0; i < numBlue; i++) {
+    // Position the new growing circle randomly and give it a random size and fill
+    let newblueExplorer = new Prey (explorerImage);
+    // Add the new growing circle to the shapes array
+    normalExplorer.push(newblueExplorer);
+  }
+
+  // By this point we have 10 squares, 20 circles, and 15 growing circles in our shapes array.
+  // That is, we have 45 SHAPES in that array, and we can treat it as an array of shapes,
+  // knowing that each shape will respond appropriate to the basic shape methods of
+  // update and draw with its own version.
+
 
   // to first show the title screen first
   titleScreen();
@@ -167,7 +183,7 @@ function draw() {
   // then the preys and predators will be active
   else {
     // added 80s image collage image
-    background(backgroundImage, 0, 0);
+    background(backgroundImage, 0, 0); // done by me on photoshop
 
     // Handle input for the tiger
     google.handleInput();
@@ -187,8 +203,8 @@ function draw() {
     fire.move();
     safari.move();
     bug.move();
-   bug1.move();
-   bug2.move();
+    bug1.move();
+    bug2.move();
     // Handle the predators eating any of the prey
     google.handleEating(explorer);
     google.handleEating(explorer1);
@@ -240,22 +256,20 @@ function draw() {
     bug1.display();
     bug2.display();
 
+
+    google.bugvspredator();
+    safari.bugvspredator();
+    fire.bugvspredator();
+
     gameOverScreen();
     //remove buttons when playing
     button.remove();
     button1.remove();
 
-    //array
-    for (let i = 0; i < explorer8.length; i++) {
 
-      explorer8[i].display();
-      explorer8[i].move();
-      explorer8.push(explorer8Image);
 
-    }
-  }
 }
-
+}
 
 function gameOverScreen() {
   //if all predator radius are zero, game over screen shows up
@@ -310,15 +324,17 @@ function reset() {
   fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
   safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
   explorer = new Prey(100, 100, 10, explorerImage, 80);
-  explorer1 = new Prey(100, 100, 8, explorer1Image, 90);
-  explorer2 = new Prey(200, 200, 20, explorer2Image, 50);
-  explorer3 = new Prey1(100, 100, 10, explorer3Image, 80);
-  explorer4 = new Prey1(100, 100, 10, explorer4Image, 80);
-  explorer5 = new Prey1(100, 100, 10, explorer5Image, 80);
-  explorer6 = new Prey2(100, 100, 10, explorer6Image, 80);
-  explorer7 = new Prey2(100, 100, 10, explorer7Image, 80);
-  explorer8 = new Prey2(100, 100, 10, explorer8Image, 80);
+  explorer1 = new Prey(100, 100, 8, explorerImage, 90);
+  explorer2 = new Prey(200, 200, 20, explorerImage, 50);
+  explorer3 = new Prey1(100, 100, 10, explorerPinkImage, 400);
+  explorer4 = new Prey1(100, 100, 10, explorerPinkImage, 400);
+  explorer5 = new Prey1(100, 100, 10, explorerPinkImage, 400);
+  explorer6 = new Prey2(100, 100, 10, explorerGreenImage, 80);
+  explorer7 = new Prey2(100, 100, 10, explorerGreenImage, 80);
+  explorer8 = new Prey2(100, 100, 10, explorerGreenImage, 80);
   bug = new Bug(100, 100, 10, bugImage, 80);
+  bug1 = new Bug(100, 100, 10, bugImage, 80);
+  bug2 = new Bug(100, 100, 10, bugImage, 80);
 
   setupSound();
 }

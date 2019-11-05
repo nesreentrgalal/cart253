@@ -75,7 +75,7 @@ class Prey1 {
 
     this.radius = this.health;
     //radius kinda disapears woo
-    image(this.image, this.x, this.y, this.radius, this.radius,(frameCount % 100)*20, 50);
+    image(this.image, this.x, this.y, this.radius, this.radius,(frameCount % 80)*20, 50);
 
 
 

@@ -128,6 +128,7 @@ class Predator {
       prey.health -= this.healthGainPerEat;
       // Check if the prey died and reset it if so
       //added +1 for the keeps track of how many Prey the predator has eaten
+
       if (prey.health < 0) {
         this.preyEaten += 1;
         this.score += 1;
@@ -136,6 +137,7 @@ class Predator {
         prey.reset();
       }
     }
+
   }
 
   handleEating(prey1) {
@@ -190,7 +192,13 @@ class Predator {
     }
   }
 
+  bugvspredator(){
 
+    let d = dist(this.x, this.y, bug.x, bug.y);
+   if (d < this.radius + bug.radius){
+     this.score -= this.score;
+  }
+  }
   // display
   //
   // Draw the predator as an animal silhouette image  on the canvas
