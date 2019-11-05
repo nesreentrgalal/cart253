@@ -27,6 +27,9 @@ class Bug {
     // Display properties
     this.image = image;
 
+    this.radius = radius;
+    console.log(this.radius);
+
   }
 
   // move
@@ -71,11 +74,12 @@ class Bug {
   // Prey is an image  on the canvas
   // with a radius the same size as its current health.
   display() {
-
-    this.radius = this.health;
+    push();
+    // this.radius = this.health;
     //radius kinda disapears woo
-    image(this.image, this.x, this.y, this.radius/2, this.radius/2);
-
+    imageMode(CENTER);
+    image(this.image, this.x, this.y, this.radius*2, this.radius*2);
+    pop();
 
 
   }
@@ -92,6 +96,6 @@ class Bug {
     // Default health
     this.health = this.maxHealth;
     // Default radius
-    this.radius = this.health;
+    // this.radius = this.health;
   }
 }

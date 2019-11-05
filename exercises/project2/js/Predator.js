@@ -40,6 +40,8 @@ class Predator {
     // to give an individual name and score for every predator
     this.name = name;
     this.score = 0;
+    this.overlappingBug = false;
+
   }
 
 
@@ -140,65 +142,22 @@ class Predator {
 
   }
 
-  handleEating(prey1) {
-    // Calculate distance from this predator to the prey
-     push();
-    let d = dist(this.x, this.y, prey1.x, prey1.y);
-    // Check if the distance is less than their two radii (an overlap)
-    if (d < this.radius + prey1.radius) {
-      // Increase predator health and constrain it to its possible range
-      this.health += this.healthGainPerEat;
-      this.health = constrain(this.health, 0, this.maxHealth);
 
-
-      // Decrease prey health by the same amount
-      prey1.health -= this.healthGainPerEat;
-
-
-      // Check if the prey died and reset it if so
-      //added +1 for the keeps track of how many Prey the predator has eaten
-      if (prey1.health < 0) {
-        this.preyEaten += 1;
-        this.score += 1;
-        //console message
-        console.log(this.preyEaten, "getting all that fat");
-        prey1.reset();
-        pop();
-      }
-    }
-  }
-  handleEating(prey2) {
-    // Calculate distance from this predator to the prey
-    let d = dist(this.x, this.y, prey2.x, prey2.y);
-    // Check if the distance is less than their two radii (an overlap)
-    if (d < this.radius + prey2.radius) {
-      // Increase predator health and constrain it to its possible range
-      this.health += this.healthGainPerEat;
-      this.health = constrain(this.health, 0, this.maxHealth);
-
-
-      // Decrease prey health by the same amount
-      prey2.health -= this.healthGainPerEat;
-      // Check if the prey died and reset it if so
-      //added +1 for the keeps track of how many Prey the predator has eaten
-      if (prey2.health < 0) {
-        this.preyEaten += 1;
-        this.score = this.score+1;
-        //console message
-        console.log(this.preyEaten, "getting all that fat");
-        prey2.reset();
-        prey2.speed = prey2.speed + 10;
-      }
-    }
-  }
-//stay away from the bug
-  bugvspredator(bug){
+  //stay away from the bug, score goes back to zero
+  bugvspredator(bug) {
 
     let d = dist(this.x, this.y, bug.x, bug.y);
-   if (d < this.radius + bug.radius){
-     this.score = constrain(this.score-1,0,100);
+    if (d < this.radius + bug.radius) {
+    if(this.overlappingBug === false){
+      this.overlappingBug = true;
+      this.score = constrain(this.score - 1, 0, 100);
+    }
+    }
+    else {
+          this.overlappingBug = false;
+
+    }
   }
-}
   // display
   //
   // Draw the predator as an animal silhouette image  on the canvas

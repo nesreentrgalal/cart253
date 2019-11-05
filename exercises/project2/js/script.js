@@ -77,7 +77,7 @@ let bugImage;
 let blueExplorer = [];
 //array for blue explorer
 
-let numBlue = 5;
+let numBlue = 3;
 
 
 function preload() {
@@ -119,16 +119,16 @@ function setup() {
   explorer6 = new Prey2(100, 100, 10, explorerGreenImage, 80);
   explorer7 = new Prey2(100, 100, 10, explorerGreenImage, 80);
   explorer8 = new Prey2(100, 100, 10, explorerGreenImage, 80);
-  bug = new Bug(100, 100, 10, bugImage, 80);
-  bug1 = new Bug(100, 100, 10, bugImage, 80);
-  bug2 = new Bug(100, 100, 10, bugImage, 80);
+  bug = new Bug(100, 100, 10, bugImage, 10);
+  bug1 = new Bug(100, 100, 10, bugImage,10);
+  bug2 = new Bug(100, 100, 10, bugImage, 10);
 
 
   // array for normalexplorer
   for (let i = 0; i < numBlue; i++) {
-    // Position the new growing circle randomly and give it a random size and fill
-    let newblueExplorer = new Prey (100, 100, 10, explorerImage, 80);
-    // Add the new growing circle to the shapes array
+    // Position the blue explorer
+    let newblueExplorer = new Prey(100, 100, 10, explorerImage, 80);
+    // Add the new browser to the  array
     blueExplorer.push(newblueExplorer);
   }
 
@@ -240,7 +240,7 @@ function draw() {
     bug1.display();
     bug2.display();
 
-// when you get
+    // when you get close to the bug
     google.bugvspredator(bug);
     google.bugvspredator(bug1);
     google.bugvspredator(bug2);
@@ -257,20 +257,20 @@ function draw() {
     button1.remove();
 
     push();
-       //array
+    //array and so that the predators can eat them
 
-       for (let i = 0; i < blueExplorer.length; i++) {
-       // ... and update and display it
-       blueExplorer[i].move();
-       blueExplorer[i].display();
-       google.handleEating(blueExplorer[i]);
-       fire.handleEating(blueExplorer[i]);
-       safari.handleEating(blueExplorer[i]);
-   pop();
+    for (let i = 0; i < blueExplorer.length; i++) {
+      // ... and update and display it
+      blueExplorer[i].move();
+      blueExplorer[i].display();
+      google.handleEating(blueExplorer[i]);
+      fire.handleEating(blueExplorer[i]);
+      safari.handleEating(blueExplorer[i]);
+      pop();
 
-       }
+    }
 
-}
+  }
 }
 
 function gameOverScreen() {
@@ -334,9 +334,9 @@ function reset() {
   explorer6 = new Prey2(100, 100, 10, explorerGreenImage, 80);
   explorer7 = new Prey2(100, 100, 10, explorerGreenImage, 80);
   explorer8 = new Prey2(100, 100, 10, explorerGreenImage, 80);
-  bug = new Bug(100, 100, 10, bugImage, 80);
-  bug1 = new Bug(100, 100, 10, bugImage, 80);
-  bug2 = new Bug(100, 100, 10, bugImage, 80);
+  bug = new Bug(100, 100, 10, bugImage, 20);
+  bug1 = new Bug(100, 100, 10, bugImage, 20);
+  bug2 = new Bug(100, 100, 10, bugImage, 20);
 
   setupSound();
 }

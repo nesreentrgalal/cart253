@@ -76,10 +76,10 @@ class Prey1 {
     this.radius = this.health;
     //radius kinda disapears woo
     //starts bigger and gets smaller
-  if (this.radius > 0) {
-    image(this.image, this.x, this.y, this.radius, this.radius,(frameCount % 80)*20, 50);
+    if (this.radius > 0) {
+      image(this.image, this.x, this.y, this.radius, this.radius, (frameCount % 80) * 20, 50);
 
-}
+    }
 
   }
 

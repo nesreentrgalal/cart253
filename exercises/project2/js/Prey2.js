@@ -74,9 +74,9 @@ class Prey2 {
     push();
     this.radius = this.health;
     //so that the radius doesn't show that it's huge
-      if (this.radius > 0) {
-    image(this.image, this.x, this.y, this.radius, this.radius);
-  }
+    if (this.radius > 0) {
+      image(this.image, this.x, this.y, this.radius, this.radius);
+    }
     pop();
   }
 
@@ -92,5 +92,6 @@ class Prey2 {
     this.health = this.maxHealth;
     // Default radius
     this.radius = this.health;
+    this.speed = this.speed + 5;
   }
 }
