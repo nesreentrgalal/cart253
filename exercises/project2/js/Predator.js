@@ -176,7 +176,6 @@ class Predator {
       this.health += this.healthGainPerEat;
       this.health = constrain(this.health, 0, this.maxHealth);
 
-      // prey2.speed += 5;
 
       // Decrease prey health by the same amount
       prey2.health -= this.healthGainPerEat;
@@ -184,21 +183,22 @@ class Predator {
       //added +1 for the keeps track of how many Prey the predator has eaten
       if (prey2.health < 0) {
         this.preyEaten += 1;
-        this.score += 1;
+        this.score = this.score+1;
         //console message
         console.log(this.preyEaten, "getting all that fat");
         prey2.reset();
+        prey2.speed = prey2.speed + 10;
       }
     }
   }
-
-  bugvspredator(){
+//stay away from the bug
+  bugvspredator(bug){
 
     let d = dist(this.x, this.y, bug.x, bug.y);
    if (d < this.radius + bug.radius){
-     this.score -= this.score;
+     this.score = constrain(this.score-1,0,100);
   }
-  }
+}
   // display
   //
   // Draw the predator as an animal silhouette image  on the canvas

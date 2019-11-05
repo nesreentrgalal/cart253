@@ -73,13 +73,11 @@ let bug1;
 let bug2;
 let bugImage;
 //
-let pinkExplorer =[];
-let greenExplorer = [];
-let normalExplorer = [];
-//
-let numPink = 4;
-let numGreen = 5;
-let numBlue = 2;
+
+let blueExplorer = [];
+//array for blue explorer
+
+let numBlue = 5;
 
 
 function preload() {
@@ -125,31 +123,16 @@ function setup() {
   bug1 = new Bug(100, 100, 10, bugImage, 80);
   bug2 = new Bug(100, 100, 10, bugImage, 80);
 
-  for (let i = 0; i < numPink; i++) {
-    // Position the new square randomly and give it a random size
-    let newpinkExplorer = new Prey1(explorerPinkImage);
-    // Add the new square to the shapes array
-    pinkExplorer.push(newpinkExplorer);
-  }
-  // Create the circles
-  for (let i = 0; i < numGreen; i++) {
-    // Position the new circle randomly and give it a random size and fill
-    let newgreenExplorer = new Prey2 (explorerGreenImage);
-    // Add the new circle to the shapes array
-    greenExplorer.push(newgreenExplorer);
-  }
-  // Create the growing circles
+
+  // array for normalexplorer
   for (let i = 0; i < numBlue; i++) {
     // Position the new growing circle randomly and give it a random size and fill
-    let newblueExplorer = new Prey (explorerImage);
+    let newblueExplorer = new Prey (100, 100, 10, explorerImage, 80);
     // Add the new growing circle to the shapes array
-    normalExplorer.push(newblueExplorer);
+    blueExplorer.push(newblueExplorer);
   }
 
-  // By this point we have 10 squares, 20 circles, and 15 growing circles in our shapes array.
-  // That is, we have 45 SHAPES in that array, and we can treat it as an array of shapes,
-  // knowing that each shape will respond appropriate to the basic shape methods of
-  // update and draw with its own version.
+
 
 
   // to first show the title screen first
@@ -217,6 +200,7 @@ function draw() {
     google.handleEating(explorer8);
 
 
+
     fire.handleEating(explorer);
     fire.handleEating(explorer1);
     fire.handleEating(explorer2);
@@ -256,17 +240,35 @@ function draw() {
     bug1.display();
     bug2.display();
 
-
-    google.bugvspredator();
-    safari.bugvspredator();
-    fire.bugvspredator();
+// when you get
+    google.bugvspredator(bug);
+    google.bugvspredator(bug1);
+    google.bugvspredator(bug2);
+    safari.bugvspredator(bug);
+    safari.bugvspredator(bug1);
+    safari.bugvspredator(bug2);
+    fire.bugvspredator(bug);
+    fire.bugvspredator(bug1);
+    fire.bugvspredator(bug2);
 
     gameOverScreen();
     //remove buttons when playing
     button.remove();
     button1.remove();
 
+    push();
+       //array
 
+       for (let i = 0; i < blueExplorer.length; i++) {
+       // ... and update and display it
+       blueExplorer[i].move();
+       blueExplorer[i].display();
+       google.handleEating(blueExplorer[i]);
+       fire.handleEating(blueExplorer[i]);
+       safari.handleEating(blueExplorer[i]);
+   pop();
+
+       }
 
 }
 }
