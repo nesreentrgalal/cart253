@@ -5,7 +5,7 @@
 // the screen and be consumed by Predator objects.
 
 //GREEN
-class Prey2 {
+class Preygreen {
 
   // constructor
   //
@@ -74,7 +74,7 @@ class Prey2 {
   display() {
     push();
     this.radius = this.health;
-    //so that the radius doesn't show that it's huge once it resets 
+    //so that the radius doesn't show that it's huge once it resets
     if (this.radius > 0) {
       image(this.image, this.x, this.y, this.radius, this.radius);
     }

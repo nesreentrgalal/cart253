@@ -77,7 +77,7 @@ let bugImage;
 let blueExplorer = [];
 //array for blue explorer
 
-let numBlue = 3;
+let numBlue = 4;
 
 
 function preload() {
@@ -113,12 +113,12 @@ function setup() {
   explorer = new Prey(100, 100, 10, explorerImage, 80);
   explorer1 = new Prey(100, 100, 8, explorerImage, 90);
   explorer2 = new Prey(200, 200, 20, explorerImage, 50);
-  explorer3 = new Prey1(100, 100, 10, explorerPinkImage, 100);
-  explorer4 = new Prey1(100, 100, 10, explorerPinkImage, 200);
-  explorer5 = new Prey1(100, 100, 10, explorerPinkImage, 100);
-  explorer6 = new Prey2(100, 100, 10, explorerGreenImage, 80);
-  explorer7 = new Prey2(100, 100, 10, explorerGreenImage, 80);
-  explorer8 = new Prey2(100, 100, 10, explorerGreenImage, 80);
+  explorer3 = new Preypink(100, 100, 10, explorerPinkImage, 100);
+  explorer4 = new Preypink(100, 100, 10, explorerPinkImage, 200);
+  explorer5 = new Preypink(100, 100, 10, explorerPinkImage, 100);
+  explorer6 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
+  explorer7 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
+  explorer8 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
   bug = new Bug(100, 100, 10, bugImage, 10);
   bug1 = new Bug(100, 100, 10, bugImage, 10);
   bug2 = new Bug(100, 100, 10, bugImage, 10);
@@ -328,12 +328,12 @@ function reset() {
   explorer = new Prey(100, 100, 10, explorerImage, 80);
   explorer1 = new Prey(100, 100, 8, explorerImage, 90);
   explorer2 = new Prey(200, 200, 20, explorerImage, 50);
-  explorer3 = new Prey1(100, 100, 10, explorerPinkImage, 400);
-  explorer4 = new Prey1(100, 100, 10, explorerPinkImage, 400);
-  explorer5 = new Prey1(100, 100, 10, explorerPinkImage, 400);
-  explorer6 = new Prey2(100, 100, 10, explorerGreenImage, 80);
-  explorer7 = new Prey2(100, 100, 10, explorerGreenImage, 80);
-  explorer8 = new Prey2(100, 100, 10, explorerGreenImage, 80);
+  explorer3 = new Preypink(100, 100, 10, explorerPinkImage, 400);
+  explorer4 = new Preypink(100, 100, 10, explorerPinkImage, 400);
+  explorer5 = new Preypink(100, 100, 10, explorerPinkImage, 400);
+  explorer6 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
+  explorer7 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
+  explorer8 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
   bug = new Bug(100, 100, 10, bugImage, 10);
   bug1 = new Bug(100, 100, 10, bugImage, 10);
   bug2 = new Bug(100, 100, 10, bugImage, 10);

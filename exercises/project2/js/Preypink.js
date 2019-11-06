@@ -5,7 +5,7 @@
 // the screen and be consumed by Predator objects.
 
 //PINK
-class Prey1 {
+class Preypink{
 
   // constructor
   //
