@@ -75,7 +75,7 @@ class Bug {
   // with a radius the same size as its current health.
   display() {
     push();
-    // this.radius = this.health;
+    // bug is in the center
     //radius kinda disapears woo
     imageMode(CENTER);
     image(this.image, this.x, this.y, this.radius * 2, this.radius * 2);
@@ -95,7 +95,7 @@ class Bug {
     this.y = random(0, height);
     // Default health
     this.health = this.maxHealth;
-    // Default radius
-    // this.radius = this.health;
+
+
   }
 }

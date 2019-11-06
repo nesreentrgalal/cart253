@@ -1,9 +1,11 @@
 // Predator-Prey Simulation
 // by Pippin Barr
-//
+//Modified by Nesreen Galal
 // Creates a predator and three prey (of different sizes and speeds)
 // The predator chases the prey using the arrow keys and consumes them.
 // The predator loses health over time, so must keep eating to survive.
+//one class radius' hides, one speeds up when resetting, one makes the player lose scores
+
 //game over
 let gameOver = false;
 // Our predator
@@ -40,12 +42,12 @@ let explorerPinkImage;
 
 let backgroundImage;
 
-// purple and green internet explorer
+// pink and yellow internet explorer
 let explorer3;
 let explorer4;
 let explorer5;
 
-// pink and yellow internet explorer
+// purple and green internet explorer
 let explorer6;
 let explorer7;
 
@@ -92,7 +94,7 @@ function preload() {
   font = loadFont("assets/font/source-sans.ttf"); // https://www.1001fonts.com/source-sans-pro-font.html
   backgroundMusic = loadSound('assets/sounds/Expanse.mp3'); // https://www.youtube.com/watch?v=oKH0_NI-4jU by Forhill
   endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/6e/9f/79/6e9f794cfbc61c12ad329b5abd8111dd.jpg but collage created by me
-  instructionImage = loadImage("assets/images/instruction.png"); //https://i.pinimg.com/564x/ab/e0/27/abe0273100a7008c3e19187eb0c6e481.jpg background
+  instructionImage = loadImage("assets/images/instruction.png"); //https://i.pinimg.com/564x/ab/e0/27/abe0273100a7008c3e19187eb0c6e481.jpg just background but collage created by me
   bugImage = loadImage("assets/images/bug.png") // http://icons.iconarchive.com/icons/icons8/ios7/256/Programming-Bug-2-icon.png
 
 
@@ -119,9 +121,9 @@ function setup() {
   explorer6 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
   explorer7 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
   explorer8 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
-  bug = new Bug(100, 100, 10, bugImage, 10);
-  bug1 = new Bug(100, 100, 10, bugImage, 10);
-  bug2 = new Bug(100, 100, 10, bugImage, 10);
+  bug = new Bug(100, 100, 10, bugImage, 20);
+  bug1 = new Bug(100, 100, 10, bugImage, 20);
+  bug2 = new Bug(100, 100, 10, bugImage, 20);
 
 
   // array for normalexplorer
@@ -316,7 +318,7 @@ function titleScreen() {
 }
 
 
-// when reset is activated the preys and predators and musc are reactivated
+// when reset is activated the preys and predators and music are reactivated
 function reset() {
 
   playing = true;
@@ -334,9 +336,9 @@ function reset() {
   explorer6 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
   explorer7 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
   explorer8 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
-  bug = new Bug(100, 100, 10, bugImage, 10);
-  bug1 = new Bug(100, 100, 10, bugImage, 10);
-  bug2 = new Bug(100, 100, 10, bugImage, 10);
+  bug = new Bug(100, 100, 10, bugImage, 20);
+  bug1 = new Bug(100, 100, 10, bugImage, 20);
+  bug2 = new Bug(100, 100, 10, bugImage, 20);
 
   setupSound();
 }

@@ -152,8 +152,7 @@ class Predator {
         this.overlappingBug = true;
         this.score = constrain(this.score - 1, 0, 100);
       }
-    }
-    else {
+    } else {
       this.overlappingBug = false;
 
     }

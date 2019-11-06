@@ -5,7 +5,7 @@
 // the screen and be consumed by Predator objects.
 
 //PINK
-class Preypink{
+class Preypink {
 
   // constructor
   //
@@ -77,6 +77,7 @@ class Preypink{
     this.radius = this.health;
     //radius kinda disapears woo
     //starts bigger and gets smaller
+    //so that the radius is not big once it restarts 
     if (this.radius > 0) {
       image(this.image, this.x, this.y, this.radius, this.radius, (frameCount % 80) * 20, 50);
 
