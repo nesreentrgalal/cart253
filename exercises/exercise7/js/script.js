@@ -1,10 +1,8 @@
 // Predator-Prey Simulation
 // by Pippin Barr
 //Modified by Nesreen Galal
-// Creates a predator and three prey (of different sizes and speeds)
-// The predator chases the prey using the arrow keys and consumes them.
-// The predator loses health over time, so must keep eating to survive.
-//one class radius' hides, one speeds up when resetting, one makes the player lose scores
+
+// Hidden Objects game, a spin on Agatha Chrisite's game
 
 //game over
 let gameOver = false;
@@ -75,13 +73,17 @@ let bug1;
 let bug2;
 let bugImage;
 //
+let numDecoys = 20;
 
 let blueExplorer = [];
+let decoyFire = [];
 //array for blue explorer
 
 let numBlue = 4;
+//decoys
+let decoyImage1;
 
-
+// load images and sound
 function preload() {
   googleImage = loadImage("assets/images/googlechrome.png"); //https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/1024px-Google_Chrome_icon_%28September_2014%29.svg.png
   fireImage = loadImage("assets/images/firefox.png"); // https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1200px-Firefox_logo%2C_2019.svg.png
@@ -95,7 +97,10 @@ function preload() {
   backgroundMusic = loadSound('assets/sounds/Expanse.mp3'); // https://www.youtube.com/watch?v=oKH0_NI-4jU by Forhill
   endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/6e/9f/79/6e9f794cfbc61c12ad329b5abd8111dd.jpg but collage created by me
   instructionImage = loadImage("assets/images/instruction.png"); //https://bellykids.bigcartel.com/product/motel-by-yoko-honda
-  bugImage = loadImage("assets/images/bug.png") // http://icons.iconarchive.com/icons/icons8/ios7/256/Programming-Bug-2-icon.png
+
+  //decoy is all firefox for now, will modify
+  decoyImage1 = loadImage("assets/images/firefox.png");
+
 
 
 }
@@ -121,9 +126,11 @@ function setup() {
   explorer6 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
   explorer7 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
   explorer8 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
-  bug = new Bug(100, 100, 10, bugImage, 20);
-  bug1 = new Bug(100, 100, 10, bugImage, 20);
-  bug2 = new Bug(100, 100, 10, bugImage, 20);
+
+
+
+
+
 
 
   // array for normalexplorer
@@ -133,12 +140,16 @@ function setup() {
     // Add the new browser to the  array
     blueExplorer.push(newblueExplorer);
   }
-
-
-
+  for (let i = 0; i < numDecoys; i++) {
+    // Position the blue explorer
+    let newdecoyFire = new Decoy(100, 100, 10, decoyImage1, 80);
+    // Add the new browser to the  array
+  decoyFire.push(newdecoyFire);
+  }
 
   // to first show the title screen first
   titleScreen();
+
 
 }
 
@@ -187,9 +198,7 @@ function draw() {
     explorer8.move();
     fire.move();
     safari.move();
-    bug.move();
-    bug1.move();
-    bug2.move();
+
     // Handle the predators eating any of the prey
     google.handleEating(explorer);
     google.handleEating(explorer1);
@@ -238,20 +247,11 @@ function draw() {
     explorer8.display();
     fire.display();
     safari.display();
-    bug.display();
-    bug1.display();
-    bug2.display();
 
-    // when you get close to the bug
-    google.bugvspredator(bug);
-    google.bugvspredator(bug1);
-    google.bugvspredator(bug2);
-    safari.bugvspredator(bug);
-    safari.bugvspredator(bug1);
-    safari.bugvspredator(bug2);
-    fire.bugvspredator(bug);
-    fire.bugvspredator(bug1);
-    fire.bugvspredator(bug2);
+
+
+
+
 
     gameOverScreen();
     //remove buttons when playing
@@ -259,7 +259,7 @@ function draw() {
     button1.remove();
 
     push();
-    //array and so that the predators can eat them
+
 
     for (let i = 0; i < blueExplorer.length; i++) {
       // ... and update and display it
@@ -268,6 +268,17 @@ function draw() {
       google.handleEating(blueExplorer[i]);
       fire.handleEating(blueExplorer[i]);
       safari.handleEating(blueExplorer[i]);
+      pop();
+
+    }
+push();
+    for (let i = 0; i < decoyFire.length; i++) {
+      // ... and update and display it
+
+      decoyFire[i].display();
+      google.handleEating(decoyFire[i]);
+      fire.handleEating(decoyFire[i]);
+      safari.handleEating(decoyFire[i]);
       pop();
 
     }
@@ -336,9 +347,6 @@ function reset() {
   explorer6 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
   explorer7 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
   explorer8 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
-  bug = new Bug(100, 100, 10, bugImage, 20);
-  bug1 = new Bug(100, 100, 10, bugImage, 20);
-  bug2 = new Bug(100, 100, 10, bugImage, 20);
 
   setupSound();
 }

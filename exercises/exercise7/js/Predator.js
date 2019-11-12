@@ -143,20 +143,7 @@ class Predator {
   }
 
 
-  //stay away from the bug, lose score
-  bugvspredator(bug) {
 
-    let d = dist(this.x, this.y, bug.x, bug.y);
-    if (d < this.radius + bug.radius) {
-      if (this.overlappingBug === false) {
-        this.overlappingBug = true;
-        this.score = constrain(this.score - 1, 0, 100);
-      }
-    } else {
-      this.overlappingBug = false;
-
-    }
-  }
   // display
   //
   // Draw the predator as an browser image  on the canvas
