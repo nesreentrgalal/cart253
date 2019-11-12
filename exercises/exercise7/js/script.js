@@ -131,16 +131,7 @@ function setup() {
 
 
 
-
-
-  // array for normalexplorer
-  for (let i = 0; i < numBlue; i++) {
-    // Position the blue explorer
-    let newblueExplorer = new Prey(100, 100, 10, explorerImage, 80);
-    // Add the new browser to the  array
-    blueExplorer.push(newblueExplorer);
-  }
-  for (let i = 0; i < numDecoys; i++) {
+for (let i = 0; i < numDecoys; i++) {
     // Position the blue explorer
     let newdecoyFire = new Decoy(100, 100, 10, decoyImage1, 80);
     // Add the new browser to the  array
