@@ -75,7 +75,7 @@ let bugImage;
 //
 let numDecoys = 20;
 
-let blueExplorer = [];
+let decoySuprise = [];
 let decoyFire = [];
 //array for blue explorer
 
@@ -86,8 +86,6 @@ let decoyImage1;
 // load images and sound
 function preload() {
   googleImage = loadImage("assets/images/googlechrome.png"); //https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Google_Chrome_icon_%28September_2014%29.svg/1024px-Google_Chrome_icon_%28September_2014%29.svg.png
-  fireImage = loadImage("assets/images/firefox.png"); // https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/1200px-Firefox_logo%2C_2019.svg.png
-  safariImage = loadImage("assets/images/safari.png"); //https://www.pngix.com/pngfile/middle/36-369269_safari-icon-safari-web-browser-png-transparent-png.png
   explorerImage = loadImage("assets/images/internetexplorer.png"); // https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Internet_Explorer_9_icon.svg/1200px-Internet_Explorer_9_icon.svg.png
   backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
   explorerGreenImage = loadImage("assets/images/internetexplorergreen.png"); // edited on photoshop
@@ -115,8 +113,8 @@ function setup() {
 
   createCanvas(640, 480);
   google = new Predator(50, 50, 5, googleImage, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
-  fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
-  safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
+  //fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
+  //safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
   explorer = new Prey(100, 100, 10, explorerImage, 80);
   explorer1 = new Prey(100, 100, 8, explorerImage, 90);
   explorer2 = new Prey(200, 200, 20, explorerImage, 50);
@@ -129,13 +127,14 @@ function setup() {
 
 
 
+  //decoy
 
-
-for (let i = 0; i < numDecoys; i++) {
+  for (let i = 0; i < numDecoys; i++) {
     // Position the blue explorer
     let newdecoyFire = new Decoy(100, 100, 10, decoyImage1, 80);
+
     // Add the new browser to the  array
-  decoyFire.push(newdecoyFire);
+    decoyFire.push(newdecoyFire);
   }
 
   // to first show the title screen first
@@ -150,10 +149,6 @@ function setupSound() { // add 80s music
 
 }
 
-// reset game if game over is true
-function reset() {
-  gameOver = true;
-}
 
 // draw()
 //
@@ -174,8 +169,8 @@ function draw() {
 
     // Handle input for the tiger
     google.handleInput();
-    fire.handleInput();
-    safari.handleInput();
+    //  fire.handleInput();
+    //  safari.handleInput();
     // Move all the "browsers"
     google.move();
     explorer.move();
@@ -187,8 +182,8 @@ function draw() {
     explorer6.move();
     explorer7.move();
     explorer8.move();
-    fire.move();
-    safari.move();
+    //fire.move();
+    //  safari.move();
 
     // Handle the predators eating any of the prey
     google.handleEating(explorer);
@@ -203,26 +198,26 @@ function draw() {
 
 
 
-    fire.handleEating(explorer);
-    fire.handleEating(explorer1);
-    fire.handleEating(explorer2);
-    fire.handleEating(explorer3);
-    fire.handleEating(explorer4);
-    fire.handleEating(explorer5);
-    fire.handleEating(explorer6);
-    fire.handleEating(explorer7);
-    fire.handleEating(explorer8);
+    //  fire.handleEating(explorer);
+    //  fire.handleEating(explorer1);
+    //  fire.handleEating(explorer2);
+    //  fire.handleEating(explorer3);
+    //  fire.handleEating(explorer4);
+    //fire.handleEating(explorer5);
+    //  fire.handleEating(explorer6);
+    //fire.handleEating(explorer7);
+    //  fire.handleEating(explorer8);
 
 
-    safari.handleEating(explorer);
-    safari.handleEating(explorer1);
-    safari.handleEating(explorer2);
-    safari.handleEating(explorer3);
-    safari.handleEating(explorer4);
-    safari.handleEating(explorer5);
-    safari.handleEating(explorer6);
-    safari.handleEating(explorer7);
-    safari.handleEating(explorer8);
+    //safari.handleEating(explorer);
+    //safari.handleEating(explorer1);
+    //safari.handleEating(explorer2);
+    //  safari.handleEating(explorer3);
+    //  safari.handleEating(explorer4);
+    //  safari.handleEating(explorer5);
+    //  safari.handleEating(explorer6);
+    //  safari.handleEating(explorer7);
+    //  safari.handleEating(explorer8);
 
 
     // Display all the "browswers"
@@ -236,8 +231,8 @@ function draw() {
     explorer6.display();
     explorer7.display();
     explorer8.display();
-    fire.display();
-    safari.display();
+    //  fire.display();
+    //  safari.display();
 
 
 
@@ -249,27 +244,15 @@ function draw() {
     button.remove();
     button1.remove();
 
+
     push();
-
-
-    for (let i = 0; i < blueExplorer.length; i++) {
-      // ... and update and display it
-      blueExplorer[i].move();
-      blueExplorer[i].display();
-      google.handleEating(blueExplorer[i]);
-      fire.handleEating(blueExplorer[i]);
-      safari.handleEating(blueExplorer[i]);
-      pop();
-
-    }
-push();
     for (let i = 0; i < decoyFire.length; i++) {
       // ... and update and display it
 
       decoyFire[i].display();
       google.handleEating(decoyFire[i]);
-      fire.handleEating(decoyFire[i]);
-      safari.handleEating(decoyFire[i]);
+      //  fire.handleEating(decoyFire[i]);
+      //  safari.handleEating(decoyFire[i]);
       pop();
 
     }
@@ -327,8 +310,8 @@ function reset() {
   gameOver = false;
 
   google = new Predator(50, 50, 5, googleImage, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "Google:", 0, 16);
-  fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
-  safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
+  //  fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
+  //  safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
   explorer = new Prey(100, 100, 10, explorerImage, 80);
   explorer1 = new Prey(100, 100, 8, explorerImage, 90);
   explorer2 = new Prey(200, 200, 20, explorerImage, 50);

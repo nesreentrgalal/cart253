@@ -18,7 +18,7 @@ class Preypink {
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;
-    this.speed = speed;
+    this.speed = 0;
     // Time properties for noise() function
     this.tx = random(0, 500); // To make x and y noise different
     this.ty = random(0, 500); // we use random starting values
@@ -77,7 +77,7 @@ class Preypink {
     this.radius = this.health;
     //radius kinda disapears woo
     //starts bigger and gets smaller
-    //so that the radius is not big once it restarts 
+    //so that the radius is not big once it restarts
     if (this.radius > 0) {
       image(this.image, this.x, this.y, this.radius, this.radius, (frameCount % 80) * 20, 50);
 
