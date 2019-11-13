@@ -8,6 +8,7 @@
 let gameOver = false;
 // Our predator
 let google; // controls up,down, right and left arrow keys, sprint key is shift
+// not sure yet if I will keep these predators or not which is why I kept them. 
 let fire; // up is W, down is S, right is D and left is A, sprint key is enter
 let safari; //up is U and down is J, right is K and left is H, sprint key is ALT
 
