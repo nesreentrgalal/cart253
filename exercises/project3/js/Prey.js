@@ -4,8 +4,7 @@
 // on screen based on a noise() function. It can move around
 // the screen and be consumed by Predator objects.
 
-// will be adding more function for this class
-class Decoy {
+class Prey {
 
   // constructor
   //
@@ -20,24 +19,33 @@ class Decoy {
     this.vy = 0;
     this.speed = 0;
     // Time properties for noise() function
-    this.tx = random(0, 10); // To make x and y noise different
-    this.ty = random(0, 10); // we use random starting values
+    this.tx = random(0, 1000); // To make x and y noise different
+    this.ty = random(0, 1000); // we use random starting values
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
     this.image = image;
-
-    this.radius = radius;
-    console.log(this.radius);
-
+    this.radius = this.health;
   }
 
   // move
   //
   // Sets velocity based on the noise() function and the Prey's speed
   // Moves based on the resulting velocity and handles wrapping
-
+  move() {
+    // Set velocity via noise()
+    this.vx = map(noise(this.tx), 0, 1, -this.speed, this.speed);
+    this.vy = map(noise(this.ty), 0, 1, -this.speed, this.speed);
+    // Update position
+    this.x += this.vx;
+    this.y += this.vy;
+    // Update time properties
+    this.tx += 0.01;
+    this.ty += 0.01;
+    // Handle wrapping
+    this.handleWrapping();
+  }
 
   // handleWrapping
   //
@@ -64,15 +72,12 @@ class Decoy {
   // with a radius the same size as its current health.
   display() {
     push();
-    // bug is in the center
-    //radius kinda disapears woo
-    imageMode(CENTER);
-    text("decoy", this.x, this.y);
+    this.radius = this.health;
+    if (this.radius > 0) {
+      image(this.image, this.x, this.y, this.radius, this.radius, 50, 90);
+    }
     pop();
-
-
   }
-
 
   // reset
   //
@@ -84,7 +89,7 @@ class Decoy {
     this.y = random(0, height);
     // Default health
     this.health = this.maxHealth;
-
-
+    // Default radius
+    this.radius = this.health;
   }
 }
