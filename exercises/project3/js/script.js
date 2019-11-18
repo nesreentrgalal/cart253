@@ -198,29 +198,6 @@ function draw() {
     music.handleEating(explorer8);
 
 
-
-    //  fire.handleEating(explorer);
-    //  fire.handleEating(explorer1);
-    //  fire.handleEating(explorer2);
-    //  fire.handleEating(explorer3);
-    //  fire.handleEating(explorer4);
-    //fire.handleEating(explorer5);
-    //  fire.handleEating(explorer6);
-    //fire.handleEating(explorer7);
-    //  fire.handleEating(explorer8);
-
-
-    //safari.handleEating(explorer);
-    //safari.handleEating(explorer1);
-    //safari.handleEating(explorer2);
-    //  safari.handleEating(explorer3);
-    //  safari.handleEating(explorer4);
-    //  safari.handleEating(explorer5);
-    //  safari.handleEating(explorer6);
-    //  safari.handleEating(explorer7);
-    //  safari.handleEating(explorer8);
-
-
     // Display all the "browswers"
     music.display();
     explorer.display();
@@ -281,8 +258,6 @@ function gameOverScreen() {
 
     //game over text
     let gameOverText = music.name + music.score + " internet explorers\n";
-    //gameOverText = gameOverText + "Fire " + fire.score + " internet explorers\n";
-    //gameOverText = gameOverText + " Safari " + safari.score + " internet explorers\n";
     text(gameOverText, 320, 50);
     textAlign(CENTER);
 
@@ -328,8 +303,6 @@ function reset() {
   gameOver = false;
 
   music = new Predator(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
-  //  fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
-  //  safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
   explorer = new Pop(100, 100, 10, "pop", 80);
   //explorer1 = new Prey(100, 100, 8, explorerImage, 90);
   //explorer2 = new Prey(200, 200, 20, explorerImage, 50);
