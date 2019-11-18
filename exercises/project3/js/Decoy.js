@@ -11,7 +11,7 @@ class Decoy {
   //
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, y, speed, image, radius) {
+  constructor(x, y, speed, text, radius) {
     // Position
     this.x = x;
     this.y = y;
@@ -26,7 +26,7 @@ class Decoy {
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
-    this.image = image;
+    this.text = text;
 
     this.radius = radius;
     console.log(this.radius);

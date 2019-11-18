@@ -11,7 +11,7 @@ class Predator {
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
   //added the keys for several players to play
-  constructor(x, y, speed, image, radius, upKey, downKey, leftKey, rightKey, name, score, sprintKey) {
+  constructor(x, y, speed,radius, upKey, downKey, leftKey, rightKey, name, score, sprintKey) {
     // Position
     this.x = x;
     this.y = y;
@@ -41,6 +41,8 @@ class Predator {
     this.name = name;
     this.score = 0;
     this.overlappingBug = false;
+
+
 
   }
 
@@ -152,16 +154,17 @@ class Predator {
     push();
     this.radius = this.health;
     if (this.radius > 0) {
-      image(this.image, this.x, this.y, this.radius * 2, this.radius * 2);
+      push();
+      textFont(font);
+      textAlign(LEFT, TOP);
+      textSize(20);
+      fill(255, 255, 0);
+      text(this.name + this.score, this.x, this.y);
+      pop();
+      pop();
+
     }
-    push();
-    textFont(font);
-    textAlign(LEFT, TOP);
-    textSize(20);
-    fill(255);
-    text(this.name + this.score, this.x, this.y);
-    pop();
-    pop();
+
 
   }
 }
