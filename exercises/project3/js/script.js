@@ -265,6 +265,8 @@ function gameOverScreen() {
 
 }
 
+
+
 // title screen image and button and when is mouse clicked it redirects to instruction image
 function titleScreen() {
 
