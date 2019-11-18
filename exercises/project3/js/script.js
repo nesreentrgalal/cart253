@@ -311,7 +311,12 @@ function timeCount() {
   push();
   textFont('Futura');
   textSize(25);
+  fill(30,144,255);
   text("timer: " + floor(timeRemaining), 75, 20);
+  pop();
+  push();
+  fill(211, 211, 211, 127);
+  ellipse(25, 25, 300, 50);
   pop();
 }
 
