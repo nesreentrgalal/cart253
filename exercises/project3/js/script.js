@@ -193,7 +193,7 @@ function draw() {
 
 function gameOverScreen() {
   //if all predator radius are zero, game over screen shows up
-  if (timeRemaining <= 0) {
+  if (timeRemaining <= 0 || music.preyEaten === 3) {
     playing = false;
     titleScreen = false;
     gameOver = true;
@@ -209,14 +209,23 @@ function gameOverScreen() {
     text("Reset?", 320, 308);
     pop();
 
+   push();
+    if (timeRemaining <= 0 ) {
+      let gameOverText1 = "you couldn't find the music genres in time...music is lost";
+      text(gameOverText1, 320, 280);
+      textSize(20);
+      textAlign(CENTER);
+        }
+        pop();
 
+  if ( music.preyEaten === 3){
     //game over text
-    let gameOverText = music.name + music.score + " internet explorers\n";
-    text(gameOverText, 320, 50);
+    let gameOverText = " Congrats! music found it's genres\n";
+    text(gameOverText, 320, 280);
     textAlign(CENTER);
 
-  }
-
+   }
+}
 }
 
 
@@ -257,7 +266,7 @@ function reset() {
   playing = true;
   gameOver = false;
   //
-  timeRemaining = 60;
+  timeRemaining = 30;
 
   music.reset();
   pop1.reset();
