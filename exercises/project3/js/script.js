@@ -53,6 +53,8 @@ let startImage;
 let endImage;
 // add font
 let font;
+let timerFont;
+
 let backgroundMusic;
 //add button for instructions
 let button;
@@ -78,7 +80,7 @@ function preload() {
   backgroundMusic = loadSound('assets/sounds/Expanse.mp3'); // https://www.youtube.com/watch?v=oKH0_NI-4jU by Forhill
   endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/6e/9f/79/6e9f794cfbc61c12ad329b5abd8111dd.jpg but collage created by me
   instructionImage = loadImage("assets/images/instruction.png"); //https://bellykids.bigcartel.com/product/motel-by-yoko-honda
-
+  timerFont = loadFont("assets/font/summer85.ttf"); //
 
 
 
@@ -209,9 +211,11 @@ function gameOverScreen() {
     text("Reset?", 320, 308);
     pop();
 
-   push();
+
     if (timeRemaining <= 0 ) {
+      push();
       let gameOverText1 = "you couldn't find the music genres in time...music is lost";
+      textSize(24);
       text(gameOverText1, 320, 280);
       textSize(20);
       textAlign(CENTER);
@@ -246,7 +250,7 @@ function titleScreen() {
 function timeCount() {
   timeRemaining -= 1 / 60;
   push();
-  textFont('Futura');
+  textFont(timerFont);
   textSize(25);
   fill(30,144,255);
   text("timer: " + floor(timeRemaining), 75, 20);
