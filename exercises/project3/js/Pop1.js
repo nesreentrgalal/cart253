@@ -10,7 +10,7 @@ class Pop {
   //
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, y, text,speed, radius) {
+  constructor(x, y, text,speed,size) {
     // Position
     this.x = x;
     this.y = y;
@@ -21,12 +21,10 @@ class Pop {
     // Time properties for noise() function
     this.tx = random(0, 1000); // To make x and y noise different
     this.ty = random(0, 1000); // we use random starting values
-    // Health properties
-    this.maxHealth = radius;
-    this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
+  
     // Display properties
     this.text = text;
-    this.radius = this.health;
+    this.size = 16;
 
   }
 
@@ -73,8 +71,9 @@ class Pop {
   // with a radius the same size as its current health.
   display() {
     push();
-    this.radius = this.health;
-    if (this.radius > 0) {
+
+    if (this.size > 0) {
+    font
     text("pop", this.x, this.y);
 
     }
@@ -89,9 +88,6 @@ class Pop {
     // Random position
     this.x = random(0, width);
     this.y = random(0, height);
-    // Default health
-    this.health = this.maxHealth;
-    // Default radius
-    this.radius = this.health;
+
   }
 }

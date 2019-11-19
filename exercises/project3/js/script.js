@@ -13,9 +13,9 @@ let fire; // up is W, down is S, right is D and left is A, sprint key is enter
 let safari; //up is U and down is J, right is K and left is H, sprint key is ALT
 
 // The three prey
-let explorer;
-let explorer1;
-let explorer2;
+let pop1;
+
+
 
 // images of predators
 
@@ -43,12 +43,9 @@ let backgroundImage;
 
 // pink and yellow internet explorer
 let explorer3;
-let explorer4;
-let explorer5;
 
 // purple and green internet explorer
 let explorer6;
-let explorer7;
 
 // TIME COUNTER
 let timeRemaining = 60;
@@ -69,11 +66,6 @@ let button;
 // add button for play
 let button1;
 let instructionImage;
-//
-let bug;
-let bug1;
-let bug2;
-let bugImage;
 //
 let numDecoys = 100;
 
@@ -97,8 +89,6 @@ function preload() {
   endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/6e/9f/79/6e9f794cfbc61c12ad329b5abd8111dd.jpg but collage created by me
   instructionImage = loadImage("assets/images/instruction.png"); //https://bellykids.bigcartel.com/product/motel-by-yoko-honda
 
-  //decoy is all firefox for now, will modify
-  //decoyImage1 = loadImage("assets/images/firefox.png");
 
 
 
@@ -113,22 +103,14 @@ function setup() {
   //decided to make the predators small, since my canvas is small
 
   createCanvas(640, 480);
-  music = new Predator(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
-  //fire = new Predator(100, 100, 5, fireImage, 30, 87, 83, 65, 68, "Fire:", 0, 13);
-  //safari = new Predator(60, 60, 6, safariImage, 20, 85, 74, 72, 75, "Safari:", 0, 18);
-  explorer = new Pop(100, 100, 10, "pop", 80);
-  //explorer1 = new Prey(100, 100, 8, explorerImage, 90);
-  //explorer2 = new Prey(200, 200, 20, explorerImage, 50);
-  explorer3 = new Preypink(100, 100, 10, explorerPinkImage, 100);
-  explorer4 = new Preypink(100, 100, 10, explorerPinkImage, 200);
-  explorer5 = new Preypink(100, 100, 10, explorerPinkImage, 100);
-  explorer6 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
-  explorer7 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
-  explorer8 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
+  music = new Predator(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);;
+  pop1 = new Pop(random(0,width), random(0,height), 10, "pop", 80);
+  explorer3 = new Jazz(100, 100, 10, explorerPinkImage, 100);
+  explorer6 = new Rock(random(0,width), random(0,height), 10, "rock", 80);
 
 
 
-  //decoy
+  //an array for decoy
 
   for (let i = 0; i < numDecoys; i++) {
     // Position the blue explorer
@@ -170,47 +152,26 @@ function draw() {
      timeCount();
     // Handle input for the tiger
     music.handleInput();
-    //  fire.handleInput();
-    //  safari.handleInput();
     // Move all the "browsers"
     music.move();
-    explorer.move();
-  //  explorer1.move();
-  //  explorer2.move();
+    pop1.move();
     explorer3.move();
-    explorer4.move();
-    explorer5.move();
     explorer6.move();
-    explorer7.move();
-    explorer8.move();
-    //fire.move();
-    //  safari.move();
+
 
     // Handle the predators eating any of the prey
-    music.handleEating(explorer);
-    //music.handleEating(explorer1);
-    //music.handleEating(explorer2);
+    music.handleEating(pop1);
     music.handleEating(explorer3);
-    music.handleEating(explorer4);
-    music.handleEating(explorer5);
     music.handleEating(explorer6);
-    music.handleEating(explorer7);
-    music.handleEating(explorer8);
+
 
 
     // Display all the "browswers"
     music.display();
-    explorer.display();
-  //  explorer1.display();
-    //explorer2.display();
+    pop1.display();
     explorer3.display();
-    explorer4.display();
-    explorer5.display();
     explorer6.display();
-    explorer7.display();
-    explorer8.display();
-    //  fire.display();
-    //  safari.display();
+
 
 
 
@@ -228,8 +189,7 @@ function draw() {
    push();
       decoyFire[i].display();
       music.handleEating(decoyFire[i]);
-      //  fire.handleEating(decoyFire[i]);
-      //  safari.handleEating(decoyFire[i]);
+
       pop();
 
     }
@@ -305,15 +265,10 @@ function reset() {
   gameOver = false;
 
   music = new Predator(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
-  explorer = new Pop(100, 100, 10, "pop", 80);
-  //explorer1 = new Prey(100, 100, 8, explorerImage, 90);
-  //explorer2 = new Prey(200, 200, 20, explorerImage, 50);
-  explorer3 = new Preypink(100, 100, 10, explorerPinkImage, 400);
-  explorer4 = new Preypink(100, 100, 10, explorerPinkImage, 400);
-  explorer5 = new Preypink(100, 100, 10, explorerPinkImage, 400);
-  explorer6 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
-  explorer7 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
-  explorer8 = new Preygreen(100, 100, 10, explorerGreenImage, 80);
+  pop1 = new Pop(random(0,width), random(0,height), 10, "pop");
+  explorer3 = new Jazz(random(0,width), random(0,height), 10, "jazz", 16);
+  explorer6 = new Rock(random(0,width), random(0,height), 10, "rock", 16);
+
 
   setupSound();
 }

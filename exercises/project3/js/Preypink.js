@@ -4,14 +4,14 @@
 // on screen based on a noise() function. It can move around
 // the screen and be consumed by Predator objects.
 
-//PINK
-class Preypink {
+//JAZZ
+class Jazz {
 
   // constructor
   //
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, y, speed, image, radius) {
+  constructor(x, y, speed, text, radius) {
     // Position
     this.x = x;
     this.y = y;
@@ -26,7 +26,7 @@ class Preypink {
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
-    this.image = image;
+    this.text = text;
     this.radius = this.health;
   }
 
@@ -79,9 +79,8 @@ class Preypink {
     //starts bigger and gets smaller
     //so that the radius is not big once it restarts
     if (this.radius > 0) {
-      image(this.image, this.x, this.y, this.radius, this.radius, (frameCount % 80) * 20, 50);
-
-    }
+         text("jazz", this.x, this.y);
+   }
 
   }
 

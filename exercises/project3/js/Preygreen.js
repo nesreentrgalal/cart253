@@ -4,21 +4,21 @@
 // on screen based on a noise() function. It can move around
 // the screen and be consumed by Predator objects.
 
-//GREEN
-class Preygreen {
+//rock
+class Rock {
 
   // constructor
   //
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
-  constructor(x, y, speed, image, radius) {
+  constructor(x, y, speed, text, radius) {
     // Position
     this.x = x;
     this.y = y;
     // Velocity and speed
     this.vx = 0;
     this.vy = 0;
-    this.speed = speed;
+    this.speed = 0;
     // Time properties for noise() function
     this.tx = random(0, 1000); // To make x and y noise different
     this.ty = random(0, 1000); // we use random starting values
@@ -26,7 +26,7 @@ class Preygreen {
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
-    this.image = image;
+    this.text = text;
     this.radius = this.health;
   }
 
@@ -76,7 +76,7 @@ class Preygreen {
     this.radius = this.health;
     //so that the radius doesn't show that it's huge once it resets
     if (this.radius > 0) {
-      image(this.image, this.x, this.y, this.radius, this.radius);
+     text("rock", this.x, this.y);
     }
     pop();
   }
@@ -93,6 +93,6 @@ class Preygreen {
     this.health = this.maxHealth;
     // Default radius
     this.radius = this.health;
-    this.speed = this.speed + 5;
+
   }
 }
