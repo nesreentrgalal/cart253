@@ -8,13 +8,10 @@
 let gameOver = false;
 // Our predator
 let music; // controls up,down, right and left arrow keys, sprint key is shift
-// not sure yet if I will keep these predators or not which is why I kept them.
-let fire; // up is W, down is S, right is D and left is A, sprint key is enter
-let safari; //up is U and down is J, right is K and left is H, sprint key is ALT
-
-// The three prey
+// our music genres
 let pop1;
-
+let jazz;
+let rock;
 
 
 // images of predators
@@ -41,11 +38,7 @@ let explorerPinkImage;
 
 let backgroundImage;
 
-// pink and yellow internet explorer
-let explorer3;
 
-// purple and green internet explorer
-let explorer6;
 
 // TIME COUNTER
 let timeRemaining = 60;
@@ -79,10 +72,7 @@ let decoyText;
 
 // load images and sound
 function preload() {
-  explorerImage = loadImage("assets/images/internetexplorer.png"); // https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Internet_Explorer_9_icon.svg/1200px-Internet_Explorer_9_icon.svg.png
   backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
-  explorerGreenImage = loadImage("assets/images/internetexplorergreen.png"); // edited on photoshop
-  explorerPinkImage = loadImage("assets/images/internetexplorerpink.png"); //edited on photoshop
   startImage = loadImage("assets/images/startgame.png"); // collage created by me on photoshop
   font = loadFont("assets/font/source-sans.ttf"); // https://www.1001fonts.com/source-sans-pro-font.html
   backgroundMusic = loadSound('assets/sounds/Expanse.mp3'); // https://www.youtube.com/watch?v=oKH0_NI-4jU by Forhill
@@ -103,10 +93,11 @@ function setup() {
   //decided to make the predators small, since my canvas is small
 
   createCanvas(640, 480);
-  music = new Predator(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);;
-  pop1 = new Pop(random(0,width), random(0,height), 10, "pop", 80);
-  explorer3 = new Jazz(100, 100, 10, explorerPinkImage, 100);
-  explorer6 = new Rock(random(0,width), random(0,height), 10, "rock", 80);
+  music = new Music(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
+  pop1 = new Pop(random(0,width), random(0,height), 10, "pop");
+  jazz = new Jazz(random(0,width), random(0,height), 10, "jazz", 16);
+  rock = new Rock(random(0,width), random(0,height), 10, "rock", 16);
+
 
 
 
@@ -155,22 +146,22 @@ function draw() {
     // Move all the "browsers"
     music.move();
     pop1.move();
-    explorer3.move();
-    explorer6.move();
+    jazz.move();
+    rock.move();
 
 
     // Handle the predators eating any of the prey
     music.handleEating(pop1);
-    music.handleEating(explorer3);
-    music.handleEating(explorer6);
+    music.handleEating(jazz);
+    music.handleEating(rock);
 
 
 
     // Display all the "browswers"
     music.display();
     pop1.display();
-    explorer3.display();
-    explorer6.display();
+    jazz.display();
+    rock.display();
 
 
 
@@ -264,10 +255,10 @@ function reset() {
   playing = true;
   gameOver = false;
 
-  music = new Predator(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
+  music = new Music(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
   pop1 = new Pop(random(0,width), random(0,height), 10, "pop");
-  explorer3 = new Jazz(random(0,width), random(0,height), 10, "jazz", 16);
-  explorer6 = new Rock(random(0,width), random(0,height), 10, "rock", 16);
+  jazz = new Jazz(random(0,width), random(0,height), 10, "jazz", 16);
+  rock = new Rock(random(0,width), random(0,height), 10, "rock", 16);
 
 
   setupSound();
