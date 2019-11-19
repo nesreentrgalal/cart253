@@ -41,7 +41,7 @@ let backgroundImage;
 
 
 // TIME COUNTER
-let timeRemaining = 60;
+let timeRemaining = 30;
 
 // preload to put images
 // edited and modified images on photoshop
@@ -60,7 +60,7 @@ let button;
 let button1;
 let instructionImage;
 //
-let numDecoys = 100;
+let numDecoys = 10;
 
 let decoySuprise = [];
 let decoyFire = [];
@@ -94,9 +94,9 @@ function setup() {
 
   createCanvas(640, 480);
   music = new Music(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
-  pop1 = new Pop(random(0,width), random(0,height), 10, "pop");
-  jazz = new Jazz(random(0,width), random(0,height), 10, "jazz", 16);
-  rock = new Rock(random(0,width), random(0,height), 10, "rock", 16);
+  pop1 = new Pop(random(0,640), random(0,480), 10, "pop",16);
+  jazz = new Jazz(random(0,640), random(0,480), 10, "jazz", 16);
+  rock = new Rock(random(0,640), random(0,480), 10, "rock", 16);
 
 
 
@@ -106,7 +106,7 @@ function setup() {
   for (let i = 0; i < numDecoys; i++) {
     // Position the blue explorer
     let newdecoyFire = new Decoy(100, 100, 10, decoyText, 80);
-
+     newdecoyFire.reset();
     // Add the new browser to the  array
     decoyFire.push(newdecoyFire);
   }
@@ -141,7 +141,7 @@ function draw() {
     // added 80s image collage image
     background(backgroundImage, 0, 0); // done by me on photoshop
      timeCount();
-    // Handle input for the tiger
+    // Handle input for music
     music.handleInput();
     // Move all the "browsers"
     music.move();
@@ -165,7 +165,15 @@ function draw() {
 
 
 
+    for (let i = 0; i < decoyFire.length; i++) {
+      // ... and update and display it
+   push();
+      decoyFire[i].display();
+     music.handleEating(decoyFire[i]);
 
+      pop();
+
+    }
 
 
 
@@ -175,22 +183,17 @@ function draw() {
     button1.remove();
 
 
-    for (let i = 0; i < decoyFire.length; i++) {
-      // ... and update and display it
-   push();
-      decoyFire[i].display();
-      music.handleEating(decoyFire[i]);
 
-      pop();
-
-    }
 
   }
 }
 
+
+
+
 function gameOverScreen() {
   //if all predator radius are zero, game over screen shows up
-  if (music.radius === 0 && timeRemaining <= 0) {
+  if (timeRemaining <= 0) {
     playing = false;
     titleScreen = false;
     gameOver = true;
@@ -217,7 +220,6 @@ function gameOverScreen() {
 }
 
 
-
 // title screen image and button and when is mouse clicked it redirects to instruction image
 function titleScreen() {
 
@@ -232,8 +234,6 @@ function titleScreen() {
 
 
 }
-
-
 function timeCount() {
   timeRemaining -= 1 / 60;
   push();
@@ -249,17 +249,25 @@ function timeCount() {
 }
 
 
+
+
 // when reset is activated the preys and predators and music are reactivated
 function reset() {
 
   playing = true;
   gameOver = false;
+  //
+  timeRemaining = 60;
 
-  music = new Music(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
-  pop1 = new Pop(random(0,width), random(0,height), 10, "pop");
-  jazz = new Jazz(random(0,width), random(0,height), 10, "jazz", 16);
-  rock = new Rock(random(0,width), random(0,height), 10, "rock", 16);
+  music.reset();
+  pop1.reset();
+  rock.reset();
+  jazz.reset();
 
+  for (let i = 0; i < numDecoys; i++) {
+
+     decoyFire[i].reset();
+  }
 
   setupSound();
 }
@@ -291,7 +299,7 @@ function playPressed() {
   if (!playing) {
     playing = true;
     setupSound();
-    reset();
+    //reset();
 
   }
 }

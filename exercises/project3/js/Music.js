@@ -24,8 +24,8 @@ class Music {
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
-    this.healthLossPerMove = 0.1;
-    this.healthGainPerEat = 1;
+    this.healthLossPerMove = 0;
+    this.healthGainPerEat = 20;
     // Display properties
     this.image = image;
     this.radius = this.health; // Radius is defined in terms of health
@@ -121,6 +121,11 @@ class Music {
   // the predator's. If the prey dies, it gets reset.
   handleEating(prey) {
     // Calculate distance from this predator to the prey
+
+    if(prey instanceof Decoy){
+      return;
+    }
+
     let d = dist(this.x, this.y, prey.x, prey.y);
     // Check if the distance is less than their two radii (an overlap)
     if (d < this.radius + prey.radius) {
@@ -165,6 +170,19 @@ class Music {
 
     }
 
+
+  }
+  reset() {
+    // Random position
+    this.x = random(0, width);
+    this.y = random(0, height);
+    // Default health
+    this.health = this.maxHealth;
+    // Default radius
+    this.radius = this.health;
+
+    this.score = 0;
+    this.preyEaten = 0;
 
   }
 }
