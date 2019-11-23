@@ -1,6 +1,6 @@
-// Third prey
+// Third music genre
 //
-// A class that represents a simple prey that moves
+// A class that represents a genre that moves
 // on screen based on a noise() function. It can move around
 // the screen and be consumed by Predator objects.
 

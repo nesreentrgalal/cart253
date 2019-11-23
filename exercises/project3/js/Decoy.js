@@ -30,7 +30,7 @@ class Decoy {
 
     this.radius = radius;
     console.log(this.radius);
-    
+
 
   }
 
@@ -64,17 +64,13 @@ class Decoy {
   // Prey is an image  on the canvas
   // with a radius the same size as its current health.
   display() {
-    push();
-    // bug is in the center
-    //radius kinda disapears woo
-    imageMode(CENTER);
-    text("decoy", this.x, this.y);
-    pop();
 
 
   }
 
+move(){
 
+}
   // reset
   //
   // Set the position to a random location and reset health

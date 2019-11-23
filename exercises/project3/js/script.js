@@ -61,12 +61,13 @@ let button;
 // add button for play
 let button1;
 let instructionImage;
-//
+//amount of decoys 
 let numDecoys = 10;
 
+//array of decoy
 let decoySuprise = [];
 let decoyFire = [];
-//array for blue explorer
+
 
 
 //decoys
@@ -114,7 +115,8 @@ function setup() {
 
   for (let i = 0; i < numDecoys; i++) {
     // Position the blue explorer
-    let newdecoyFire = new Decoy(100, 100, 10, decoyText, 80);
+    let newdecoyFire = new Decoy1(100, 100, 10, decoyText, 80);
+
      newdecoyFire.reset();
     // Add the new browser to the  array
     decoyFire.push(newdecoyFire);
@@ -285,6 +287,7 @@ function reset() {
   rock.reset();
   jazz.reset();
 
+//loop for decoy
   for (let i = 0; i < numDecoys; i++) {
 
      decoyFire[i].reset();
