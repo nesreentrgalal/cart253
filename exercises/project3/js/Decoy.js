@@ -30,6 +30,7 @@ class Decoy {
 
     this.radius = radius;
     console.log(this.radius);
+    
 
   }
 

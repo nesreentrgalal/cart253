@@ -20,7 +20,7 @@ class Music {
     this.vy = 0;
     this.speed = speed;
     //add a property that keeps track of how many Prey it has eaten in the console
-    this.preyEaten = 0;
+    //this.preyEaten = 0;
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
@@ -40,7 +40,10 @@ class Music {
     // to give an individual name and score for every predator
     this.name = name;
     this.score = 0;
-    this.overlappingBug = false;
+    this.jazzEaten = 0;
+    this.popEaten = 0;
+    this.rockEaten = 0;
+
 
 
 
@@ -127,7 +130,7 @@ class Music {
     }
 
     let d = dist(this.x, this.y, prey.x, prey.y);
-    // Check if the distance is less than their two radii (an overlap)
+    // Check if the distance is less than their two radius (an overlap)
     if (d < this.radius + prey.radius) {
       // Increase predator health and constrain it to its possible range
       this.health += this.healthGainPerEat;
@@ -138,16 +141,51 @@ class Music {
       // Check if the prey died and reset it if so
       //added +1 for the keeps track of how many Prey the predator has eaten
 
-      if (prey.health < 0) {
-        this.preyEaten += 1;
+    //  if (prey.health < 0) {
+      //  this.preyEaten += 1;
+
+      if (jazz.health < 0) {
         this.score += 1;
+        this.jazzEaten +=1
+      jazz.vx = 6;
+      jazz.speed = 8;
+      jazz.vx =jazz.speed;
+        jazz.x+= jazz.vx;
+
+          //jazzMusic.stop();
+          jazzMusic.play();
         //console message
-        console.log(this.preyEaten, "getting all that fat");
-        prey.reset();
+        console.log(this.jazzEaten, "getting all that fat");
+         jazz.reset();
+
       }
-    }
+
+      if (pop1.health < 0) {
+        this.score += 1;
+        this.popEaten +=1;
+          //popMusic.stop();
+          popMusic.play();
+        //console message
+        console.log(this.popEaten, "getting all that fat");
+        pop1.reset();
+
+      }
+
+      if (rock.health < 0) {
+        this.score += 1;
+        this.rockEaten +=1
+        //rockMusic.stop();
+        rockMusic.play();
+        //console message
+        console.log(this.rockEaten, "getting all that fat");
+        rock.reset();
+
+      }
 
   }
+}
+
+
 
 
 
@@ -182,7 +220,8 @@ class Music {
     this.radius = this.health;
 
     this.score = 0;
-    this.preyEaten = 0;
+    //this.preyEaten = 0;
+    this.jazzEaten = 0;
 
   }
 }

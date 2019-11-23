@@ -72,7 +72,12 @@ let decoyFire = [];
 //decoys
 let decoyText;
 
-// load images and sound
+// music for preys
+let jazzMusic;
+let popMusic;
+let rockMusic;
+
+// load images,fonts and sound
 function preload() {
   backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
   startImage = loadImage("assets/images/startgame.png"); // collage created by me on photoshop
@@ -81,7 +86,9 @@ function preload() {
   endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/6e/9f/79/6e9f794cfbc61c12ad329b5abd8111dd.jpg but collage created by me
   instructionImage = loadImage("assets/images/instruction.png"); //https://bellykids.bigcartel.com/product/motel-by-yoko-honda
   timerFont = loadFont("assets/font/summer85.ttf"); //
-
+  rockMusic = loadSound("assets/sounds/rock.mp3");// https://www.youtube.com/watch?v=mBHr5XmzO4E
+  popMusic = loadSound("assets/sounds/pop.mp3");// https://www.youtube.com/watch?v=-uD7vczqPaY&t=37s
+  jazzMusic = loadSound ("assets/sounds/jazz.mp3"); // https://www.youtube.com/watch?v=-WrfPS_jS8g
 
 
 }
@@ -96,9 +103,9 @@ function setup() {
 
   createCanvas(640, 480);
   music = new Music(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
-  pop1 = new Pop(random(0,640), random(0,480), 10, "pop",16);
-  jazz = new Jazz(random(0,640), random(0,480), 10, "jazz", 16);
-  rock = new Rock(random(0,640), random(0,480), 10, "rock", 16);
+  pop1 = new Pop(random(0,500), random(0,400), 10, "pop",16);
+  jazz = new Jazz(random(0,500), random(0,400), 10, "jazz", 16);
+  rock = new Rock(random(0,500), random(0,400), 10, "rock", 16);
 
 
 
@@ -121,7 +128,7 @@ function setup() {
 
 function setupSound() { // add 80s music
   backgroundMusic.stop();
-  backgroundMusic.loop();
+ backgroundMusic.loop();
 
 }
 
@@ -132,9 +139,7 @@ function setupSound() { // add 80s music
 function draw() {
 
   if (playing === false) {
-    // Added function for title screen
 
-    // titleScreen();
   }
 
   // If the game is being played,
@@ -167,6 +172,9 @@ function draw() {
 
 
 
+
+
+
     for (let i = 0; i < decoyFire.length; i++) {
       // ... and update and display it
    push();
@@ -190,18 +198,18 @@ function draw() {
   }
 }
 
-
-
-
 function gameOverScreen() {
-  //if all predator radius are zero, game over screen shows up
-  if (timeRemaining <= 0 || music.preyEaten === 3) {
+  //if the player either wins or loses, show background image, stop music and show reset text
+  if (timeRemaining <= 0 || music.jazzEaten === 1 && music.popEaten == 1 && music.rockEaten === 1) {
     playing = false;
     titleScreen = false;
     gameOver = true;
     image(endImage, 0, 0, 640, 480);
     //stop music
     backgroundMusic.stop();
+    jazzMusic.stop();
+    popMusic.stop();
+    rockMusic.stop();
     // text for reset
     push();
     textFont(font);
@@ -211,7 +219,7 @@ function gameOverScreen() {
     text("Reset?", 320, 308);
     pop();
 
-
+// text if music couldn't find the genres in time
     if (timeRemaining <= 0 ) {
       push();
       let gameOverText1 = "you couldn't find the music genres in time...music is lost";
@@ -221,8 +229,8 @@ function gameOverScreen() {
       textAlign(CENTER);
         }
         pop();
-
-  if ( music.preyEaten === 3){
+// if the player found the genres, show congratsulation text
+  if ( music.jazzEaten === 1 && music.popEaten == 1 && music.rockEaten === 1){
     //game over text
     let gameOverText = " Congrats! music found it's genres\n";
     text(gameOverText, 320, 280);

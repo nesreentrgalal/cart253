@@ -16,9 +16,9 @@ class Jazz {
     this.x = x;
     this.y = y;
     // Velocity and speed
-    this.vx = 0;
+    this.vx = 8;
     this.vy = 0;
-    this.speed = 0;
+    this.speed = 5;
     // Time properties for noise() function
     this.tx = random(0, 500); // To make x and y noise different
     this.ty = random(0, 500); // we use random starting values
@@ -28,6 +28,8 @@ class Jazz {
     // Display properties
     this.text = text;
     this.radius = this.health;
+
+
   }
 
   // move
@@ -35,17 +37,10 @@ class Jazz {
   // Sets velocity based on the noise() function and the Prey's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
-    // Set velocity via noise()
-    this.vx = map(noise(this.tx), 0, 1, -this.speed, this.speed);
-    this.vy = map(noise(this.ty), 0, 1, -this.speed, this.speed);
-    // Update position
-    this.x += this.vx;
-    this.y += this.vy;
-    // Update time properties
-    this.tx += 0.01;
-    this.ty += 0.01;
+
     // Handle wrapping
     this.handleWrapping();
+
   }
 
 
@@ -80,10 +75,25 @@ class Jazz {
     //so that the radius is not big once it restarts
     if (this.radius > 0) {
          text("jazz", this.x, this.y);
+
+
    }
 
-  }
+   if (this.health > 0) {
 
+        this.vx =this.speed;
+        this.x+= this.vx;
+
+  }
+   //let d = dist(this.x, this.y, predator.x, predator.y);
+  // if (d < this.radius + predator.radius) {
+      // this.speed = 5;
+      // this.vx=6;
+
+
+   //}
+
+}
   // reset
   //
   // Set the position to a random location and reset health

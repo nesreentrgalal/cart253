@@ -68,7 +68,7 @@ class Pop {
 
   // display
   //
-  // Prey is an image  on the canvas
+  // Pop is a text 
   // with a radius the same size as its current health.
   display() {
     push();
