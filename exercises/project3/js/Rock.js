@@ -69,14 +69,14 @@ class Rock {
 
   // display
   //
-  // Prey is an image  on the canvas
+  //Rock is a text  on the canvas
   // with a radius the same size as its current health.
   display() {
     push();
     this.radius = this.health;
     //so that the radius doesn't show that it's huge once it resets
     if (this.radius > 0) {
-     text("rock", this.x, this.y);
+      text("rock", this.x, this.y);
     }
     pop();
   }

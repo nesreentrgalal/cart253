@@ -20,8 +20,8 @@ class Decoy {
     this.vy = 0;
     this.speed = 0;
     // Time properties for noise() function
-    this.tx = random(0, 10); // To make x and y noise different
-    this.ty = random(0, 10); // we use random starting values
+    this.x += random(-1, 1);
+    this.y += random(-1, 1); // we use random starting values
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
@@ -68,9 +68,7 @@ class Decoy {
 
   }
 
-move(){
 
-}
   // reset
   //
   // Set the position to a random location and reset health

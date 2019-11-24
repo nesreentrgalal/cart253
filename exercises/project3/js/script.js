@@ -61,8 +61,8 @@ let button;
 // add button for play
 let button1;
 let instructionImage;
-//amount of decoys 
-let numDecoys = 10;
+//amount of decoys
+let numDecoys = 100;
 
 //array of decoy
 let decoySuprise = [];
@@ -136,7 +136,7 @@ function setupSound() { // add 80s music
 
 
 // draw()
-//
+
 // Handles input, movement, eating, and displaying for the system's objects
 function draw() {
 
@@ -257,6 +257,7 @@ function titleScreen() {
 
 
 }
+// timer count
 function timeCount() {
   timeRemaining -= 1 / 60;
   push();
@@ -274,7 +275,7 @@ function timeCount() {
 
 
 
-// when reset is activated the preys and predators and music are reactivated
+// when reset is activated music, genres and array are reactivated
 function reset() {
 
   playing = true;

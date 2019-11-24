@@ -11,7 +11,7 @@ class Music {
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
   //added the keys for several players to play
-  constructor(x, y, speed,radius, upKey, downKey, leftKey, rightKey, name, score, sprintKey) {
+  constructor(x, y, speed, radius, upKey, downKey, leftKey, rightKey, name, score, sprintKey) {
     // Position
     this.x = x;
     this.y = y;
@@ -125,7 +125,7 @@ class Music {
   handleEating(prey) {
     // Calculate distance from this predator to the prey
 
-    if(prey instanceof Decoy){
+    if (prey instanceof Decoy) {
       return;
     }
 
@@ -141,30 +141,28 @@ class Music {
       // Check if the prey died and reset it if so
       //added +1 for the keeps track of how many Prey the predator has eaten
 
-    //  if (prey.health < 0) {
-      //  this.preyEaten += 1;
-
+      // for each genre, if they overlap, score gets added, and music starts playing
       if (jazz.health < 0) {
         this.score += 1;
-        this.jazzEaten +=1
-      jazz.vx = 6;
-      jazz.speed = 8;
-      jazz.vx =jazz.speed;
-        jazz.x+= jazz.vx;
+        this.jazzEaten += 1
+        jazz.vx = 6;
+        jazz.speed = 8;
+        jazz.vx = jazz.speed;
+        jazz.x += jazz.vx;
 
-          //jazzMusic.stop();
-          jazzMusic.play();
+        //jazzMusic.stop();
+        jazzMusic.play();
         //console message
         console.log(this.jazzEaten, "getting all that fat");
-         jazz.reset();
+        jazz.reset();
 
       }
 
       if (pop1.health < 0) {
         this.score += 1;
-        this.popEaten +=1;
-          //popMusic.stop();
-          popMusic.play();
+        this.popEaten += 1;
+        //popMusic.stop();
+        popMusic.play();
         //console message
         console.log(this.popEaten, "getting all that fat");
         pop1.reset();
@@ -173,7 +171,7 @@ class Music {
 
       if (rock.health < 0) {
         this.score += 1;
-        this.rockEaten +=1
+        this.rockEaten += 1
         //rockMusic.stop();
         rockMusic.play();
         //console message
@@ -182,12 +180,8 @@ class Music {
 
       }
 
+    }
   }
-}
-
-
-
-
 
   // display
   //

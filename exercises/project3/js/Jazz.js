@@ -16,9 +16,9 @@ class Jazz {
     this.x = x;
     this.y = y;
     // Velocity and speed
-    this.vx = 8;
+    this.vx = 0;
     this.vy = 0;
-    this.speed = 5;
+    this.speed = 0;
     // Time properties for noise() function
     this.tx = random(0, 500); // To make x and y noise different
     this.ty = random(0, 500); // we use random starting values
@@ -74,26 +74,19 @@ class Jazz {
     //starts bigger and gets smaller
     //so that the radius is not big once it restarts
     if (this.radius > 0) {
-         text("jazz", this.x, this.y);
+      text("jazz", this.x, this.y);
 
 
-   }
+    }
 
-   if (this.health > 0) {
+    if (this.health > 0) {
 
-        this.vx =this.speed;
-        this.x+= this.vx;
+      this.vx = this.speed;
+      this.x += this.vx;
+
+    }
 
   }
-   //let d = dist(this.x, this.y, predator.x, predator.y);
-  // if (d < this.radius + predator.radius) {
-      // this.speed = 5;
-      // this.vx=6;
-
-
-   //}
-
-}
   // reset
   //
   // Set the position to a random location and reset health
