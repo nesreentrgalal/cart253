@@ -19,6 +19,9 @@ class Music {
     this.vx = 0;
     this.vy = 0;
     this.speed = speed;
+
+
+
     //add a property that keeps track of how many Prey it has eaten in the console
     //this.preyEaten = 0;
     // Health properties
@@ -141,7 +144,7 @@ class Music {
       // Check if the prey died and reset it if so
       //added +1 for the keeps track of how many Prey the predator has eaten
 
-      // for each genre, if they overlap, score gets added, and music starts playing
+      // for each genre, if they overlap, animation effect, score gets added, and music starts playing
       if (jazz.health < 0) {
         this.score += 1;
         this.jazzEaten += 1
@@ -161,6 +164,10 @@ class Music {
       if (pop1.health < 0) {
         this.score += 1;
         this.popEaten += 1;
+         pop1.vy = 7;
+        pop1.speed = -8;
+        pop1.vy = pop1.speed;
+        pop1.y += pop.vy;
         //popMusic.stop();
         popMusic.play();
         //console message
@@ -172,6 +179,14 @@ class Music {
       if (rock.health < 0) {
         this.score += 1;
         this.rockEaten += 1
+        rock.x = 10;
+        rock.y = 5;
+        rock.speed = 5;
+        rock.vx = rock.speed;
+        rock.x = rock.x + rock.vx;
+        rock.y = rock.y + rock.vy;
+
+      text("rock",rock.x,rock.y,rock.radius*2);
         //rockMusic.stop();
         rockMusic.play();
         //console message
@@ -206,8 +221,8 @@ class Music {
   }
   reset() {
     // Random position
-    this.x = random(0, width);
-    this.y = random(0, height);
+    this.x = random(10, 500);
+    this.y = random(10, 400);
     // Default health
     this.health = this.maxHealth;
     // Default radius
@@ -216,6 +231,7 @@ class Music {
     this.score = 0;
     //this.preyEaten = 0;
     this.jazzEaten = 0;
+
 
   }
 }

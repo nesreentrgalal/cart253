@@ -19,9 +19,10 @@ class Rock {
     this.vx = 0;
     this.vy = 0;
     this.speed = 0;
+
     // Time properties for noise() function
-    this.tx = random(0, 1000); // To make x and y noise different
-    this.ty = random(0, 1000); // we use random starting values
+    //this.tx = random(0, 1000); // To make x and y noise different
+   //this.ty = random(0, 1000); // we use random starting values
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
@@ -35,15 +36,7 @@ class Rock {
   // Sets velocity based on the noise() function and the Prey's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
-    // Set velocity via noise()
-    this.vx = map(noise(this.tx), 0, 1, -this.speed, this.speed);
-    this.vy = map(noise(this.ty), 0, 1, -this.speed, this.speed);
-    // Update position
-    this.x += this.vx;
-    this.y += this.vy;
-    // Update time properties
-    this.tx += 0.01;
-    this.ty += 0.01;
+
     // Handle wrapping
     this.handleWrapping();
   }
@@ -87,12 +80,13 @@ class Rock {
   // and radius back to default
   reset() {
     // Random position
-    this.x = random(0, width);
-    this.y = random(0, height);
+    this.x = random(0, 500);
+    this.y = random(0, 400);
     // Default health
     this.health = this.maxHealth;
     // Default radius
     this.radius = this.health;
+
 
   }
 }

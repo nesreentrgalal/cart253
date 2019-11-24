@@ -93,8 +93,8 @@ class Jazz {
   // and radius back to default
   reset() {
     // Random position
-    this.x = random(0, width);
-    this.y = random(0, height);
+    this.x = random(0, 500);
+    this.y = random(0, 400);
     // Default health
     this.health = this.maxHealth;
     // Default radius

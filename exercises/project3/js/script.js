@@ -62,7 +62,7 @@ let button;
 let button1;
 let instructionImage;
 //amount of decoys
-let numDecoys = 100;
+let numDecoys = 10;
 
 //array of decoy
 let decoySuprise = [];
@@ -112,8 +112,7 @@ function setup() {
 
 
   //an array for decoy
-
-  for (let i = 0; i < numDecoys; i++) {
+   for (let i = 0; i < numDecoys; i++) {
     // Position the blue explorer
     let newdecoyFire = new Decoy1(100, 100, 10, decoyText, 80);
 
