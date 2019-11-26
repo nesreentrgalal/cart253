@@ -78,7 +78,7 @@ let jazzMusic;
 let popMusic;
 let rockMusic;
 //
-let gameoverMusic; 
+let gameoverMusic;
 // load images,fonts and sound
 function preload() {
   backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
@@ -91,6 +91,7 @@ function preload() {
   rockMusic = loadSound("assets/sounds/rock.mp3");// https://www.youtube.com/watch?v=mBHr5XmzO4E
   popMusic = loadSound("assets/sounds/pop.mp3");// https://www.youtube.com/watch?v=-uD7vczqPaY&t=37s
   jazzMusic = loadSound ("assets/sounds/jazz.mp3"); // https://www.youtube.com/watch?v=-WrfPS_jS8g
+  gameoverMusic = loadSound("assets/sounds/gameover.mp3");
 
 
 }
@@ -237,6 +238,7 @@ function gameOverScreen() {
     let gameOverText = " Congrats! music found it's genres\n";
     text(gameOverText, 320, 280);
     textAlign(CENTER);
+    gameoverMusic.play(); //only plays when player wins
 
    }
 }
@@ -287,6 +289,7 @@ function reset() {
   pop1.reset();
   rock.reset();
   jazz.reset();
+  gameoverMusic.stop();
 
 //loop for decoy
   for (let i = 0; i < numDecoys; i++) {
