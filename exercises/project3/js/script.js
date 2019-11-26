@@ -150,7 +150,7 @@ function draw() {
   else {
     // added 80s image collage image
     background(backgroundImage, 0, 0); // done by me on photoshop
-     timeCount();
+
     // Handle input for music
     music.handleInput();
     // Move all the "browsers"
@@ -197,8 +197,9 @@ function draw() {
 
 
 
-
+   timeCount();
   }
+
 }
 
 function gameOverScreen() {
