@@ -41,7 +41,7 @@ let backgroundImage;
 
 
 // TIME COUNTER
-let timeRemaining = 30;
+let timeRemaining = 20;
 
 // preload to put images
 // edited and modified images on photoshop
@@ -62,11 +62,11 @@ let button;
 let button1;
 let instructionImage;
 //amount of decoys
-let numDecoys = 10;
+let numDecoys = 100;
 
 //array of decoy
 let decoySuprise = [];
-let decoyFire = [];
+let decoyText1 = [];
 
 
 
@@ -77,7 +77,8 @@ let decoyText;
 let jazzMusic;
 let popMusic;
 let rockMusic;
-
+//
+let gameoverMusic; 
 // load images,fonts and sound
 function preload() {
   backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
@@ -114,11 +115,11 @@ function setup() {
   //an array for decoy
    for (let i = 0; i < numDecoys; i++) {
     // Position the blue explorer
-    let newdecoyFire = new Decoy1(100, 100, 10, decoyText, 80);
+    let newdecoyText1 = new Decoy1(200, 200, 10, decoyText, 80);
 
-     newdecoyFire.reset();
+     newdecoyText1.reset();
     // Add the new browser to the  array
-    decoyFire.push(newdecoyFire);
+    decoyText1.push(newdecoyText1);
   }
 
   // to first show the title screen first
@@ -176,11 +177,11 @@ function draw() {
 
 
 
-    for (let i = 0; i < decoyFire.length; i++) {
+    for (let i = 0; i < decoyText1.length; i++) {
       // ... and update and display it
    push();
-      decoyFire[i].display();
-     music.handleEating(decoyFire[i]);
+      decoyText1[i].display();
+     music.handleEating(decoyText1[i]);
 
       pop();
 
@@ -280,7 +281,7 @@ function reset() {
   playing = true;
   gameOver = false;
   //
-  timeRemaining = 30;
+  timeRemaining = 20;
 
   music.reset();
   pop1.reset();
@@ -290,7 +291,7 @@ function reset() {
 //loop for decoy
   for (let i = 0; i < numDecoys; i++) {
 
-     decoyFire[i].reset();
+     decoyText1[i].reset();
   }
 
   setupSound();

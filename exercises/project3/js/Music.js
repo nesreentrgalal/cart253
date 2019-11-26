@@ -145,19 +145,19 @@ class Music {
       //added +1 for the keeps track of how many Prey the predator has eaten
 
       // for each genre, if they overlap, animation effect, score gets added, and music starts playing
-      if (jazz.health < 0) {
+      if (jazz.health < 0 && jazz.health > -99) {
         this.score += 1;
+        jazz.health = -99;
         this.jazzEaten += 1
         jazz.vx = 6;
         jazz.speed = 8;
-        jazz.vx = jazz.speed;
-        jazz.x += jazz.vx;
+
 
         //jazzMusic.stop();
         jazzMusic.play();
         //console message
         console.log(this.jazzEaten, "getting all that fat");
-        jazz.reset();
+        jazz.kill();
 
       }
 
@@ -177,9 +177,10 @@ class Music {
 
       }
 
-      if (rock.health < 0) {
+      if (rock.health < 0 && rock.health > -99) {
         this.score += 1;
-        this.rockEaten += 1
+        rock.health = -99;
+        this.rockEaten += 1;
         rock.vx = 10;
         rock.vy = 5;
 
@@ -189,7 +190,7 @@ class Music {
         rockMusic.play();
         //console message
         console.log(this.rockEaten, "getting all that fat");
-
+          rock.kill();
 
 
       }
@@ -228,8 +229,9 @@ class Music {
     this.radius = this.health;
 
     this.score = 0;
-    //this.preyEaten = 0;
-    this.jazzEaten = 0;
+  this.jazzEaten = 0;
+  this.popEaten = 0;
+  this.rockEaten = 0;
 
   }
 }

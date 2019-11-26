@@ -12,6 +12,7 @@ class Jazz {
   // Sets the initial values for the Predator's properties
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, text, radius) {
+    this.alive = true;
     // Position
     this.x = x;
     this.y = y;
@@ -37,7 +38,8 @@ class Jazz {
   // Sets velocity based on the noise() function and the Prey's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
-
+    this.vx = this.speed;
+    this.x += this.vx;
     // Handle wrapping
     this.handleWrapping();
 
@@ -51,15 +53,15 @@ class Jazz {
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
-      this.x += width;
+         this.kill();
     } else if (this.x > width) {
-      this.x -= width;
+         this.kill();
     }
     // Off the top or bottom
     if (this.y < 0) {
-      this.y += height;
+         this.kill();
     } else if (this.y > height) {
-      this.y -= height;
+         this.kill();
     }
   }
 
@@ -69,7 +71,7 @@ class Jazz {
   // with a radius the same size as its current health.
   display() {
 
-    this.radius = this.health;
+
     //radius kinda disapears woo
     //starts bigger and gets smaller
     //so that the radius is not big once it restarts
@@ -79,14 +81,11 @@ class Jazz {
 
     }
 
-    if (this.health > 0) {
+}
 
-      this.vx = this.speed;
-      this.x += this.vx;
-
-    }
-
-  }
+kill(){
+    this.alive = false;
+}
   // reset
   //
   // Set the position to a random location and reset health
@@ -99,5 +98,9 @@ class Jazz {
     this.health = this.maxHealth;
     // Default radius
     this.radius = this.health;
+    this.alive = true;
+    this.vx = 0;
+    this.vy = 0;
+   this.speed = 0;
   }
 }

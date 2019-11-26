@@ -13,7 +13,7 @@ class Rock {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, text, radius) {
     // Position
-  
+    this.alive = true;
     this.x = x;
     this.y = y;
     // Velocity and speed
@@ -50,15 +50,15 @@ class Rock {
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
-      this.x += width;
+      this.kill();
     } else if (this.x > width) {
-      this.x -= width;
+      this.kill();
     }
     // Off the top or bottom
     if (this.y < 0) {
-      this.y += height;
+      this.kill();
     } else if (this.y > height) {
-      this.y -= height;
+    this.kill();
     }
   }
 
@@ -69,11 +69,15 @@ class Rock {
   display() {
     push();
     this.radius = this.health;
-    //so that the radius doesn't show that it's huge once it resets
 
+//text
       text("rock", this.x, this.y);
 
     pop();
+  }
+
+  kill(){
+      this.alive = false;
   }
 
   // reset
@@ -88,7 +92,9 @@ class Rock {
     this.health = this.maxHealth;
     // Default radius
     this.radius = this.health;
-
+    this.alive = true;
+    rock.vx = 0;
+    rock.vy = 0;
 
   }
 }
