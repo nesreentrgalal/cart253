@@ -14,7 +14,7 @@ class Decoy1 extends Decoy {
 
   // display
   //
-  // Prey is an image  on the canvas
+  // decoy is a text on the canvas
   // with a radius the same size as its current health.
   display() {
     push();

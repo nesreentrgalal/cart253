@@ -12,6 +12,7 @@ class Pop {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, text, radius) {
     // Position
+    this.alive = true;
     this.x = x;
     this.y = y;
     // Velocity and speed
@@ -34,6 +35,7 @@ class Pop {
   // Sets velocity based on the noise() function and the Prey's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
+
     // Set velocity via noise()
     this.vx = map(noise(this.tx), 0, 1, -this.speed, this.speed);
     this.vy = map(noise(this.ty), 0, 1, -this.speed, this.speed);
@@ -54,15 +56,15 @@ class Pop {
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
-      this.x += width;
+       this.kill();
     } else if (this.x > width) {
-      this.x -= width;
+       this.kill();
     }
     // Off the top or bottom
     if (this.y < 0) {
-      this.y += height;
+       this.kill();
     } else if (this.y > height) {
-      this.y -= height;
+       this.kill();
     }
   }
 
@@ -71,7 +73,7 @@ class Pop {
   // Pop is a text
   // with a radius the same size as its current health.
   display() {
-    push();
+
 
     if (this.radius > 0) {
 
@@ -79,6 +81,10 @@ class Pop {
 
     }
 
+  }
+
+  kill(){
+      this.alive = false;
   }
 
   // reset
@@ -93,6 +99,10 @@ class Pop {
     this.health = this.maxHealth;
     // Default radius
     this.radius = this.health;
+   this.alive = true;
+   this.vx = 0;
+   this.vy = 0;
+   this.speed = 0;
 
   }
 }

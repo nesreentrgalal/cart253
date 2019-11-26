@@ -13,6 +13,7 @@ class Rock {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, text, radius) {
     // Position
+  
     this.x = x;
     this.y = y;
     // Velocity and speed
@@ -36,7 +37,8 @@ class Rock {
   // Sets velocity based on the noise() function and the Prey's speed
   // Moves based on the resulting velocity and handles wrapping
   move() {
-
+   this.x += this.vx;
+   this.y += this.vy;
     // Handle wrapping
     this.handleWrapping();
   }
@@ -68,9 +70,9 @@ class Rock {
     push();
     this.radius = this.health;
     //so that the radius doesn't show that it's huge once it resets
-    if (this.radius > 0) {
+
       text("rock", this.x, this.y);
-    }
+
     pop();
   }
 

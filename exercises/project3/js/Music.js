@@ -161,37 +161,36 @@ class Music {
 
       }
 
-      if (pop1.health < 0) {
+      if (pop1.health < 0 && pop1.health > -99) {
         this.score += 1;
+        pop1.health = -99;
         this.popEaten += 1;
          pop1.vy = 7;
         pop1.speed = -8;
         pop1.vy = pop1.speed;
-        pop1.y += pop.vy;
+        pop1.y += pop1.vy;
         //popMusic.stop();
-        popMusic.play();
+       popMusic.play();
         //console message
         console.log(this.popEaten, "getting all that fat");
-        pop1.reset();
+        pop1.kill();
 
       }
 
       if (rock.health < 0) {
         this.score += 1;
         this.rockEaten += 1
-        rock.x = 10;
-        rock.y = 5;
-        rock.speed = 5;
-        rock.vx = rock.speed;
-        rock.x = rock.x + rock.vx;
-        rock.y = rock.y + rock.vy;
+        rock.vx = 10;
+        rock.vy = 5;
 
-      text("rock",rock.x,rock.y,rock.radius*2);
+
+
         //rockMusic.stop();
         rockMusic.play();
         //console message
         console.log(this.rockEaten, "getting all that fat");
-        rock.reset();
+
+
 
       }
 
@@ -231,7 +230,6 @@ class Music {
     this.score = 0;
     //this.preyEaten = 0;
     this.jazzEaten = 0;
-
 
   }
 }
