@@ -189,7 +189,7 @@ function draw() {
     }
 
 
-
+   timeCount();
     gameOverScreen();
     //remove buttons when playing
     button.remove();
@@ -197,7 +197,7 @@ function draw() {
 
 
 
-   timeCount();
+
   }
 
 }
