@@ -84,7 +84,7 @@ function preload() {
   backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
   startImage = loadImage("assets/images/startgame.png"); // collage created by me on photoshop
   font = loadFont("assets/font/source-sans.ttf"); // https://www.1001fonts.com/source-sans-pro-font.html
-  backgroundSound = loadSound('assets/sounds/click.mp3'); // https://www.youtube.com/watch?v=nZFFjn9nOwU
+  backgroundSound = loadSound('assets/sounds/click2.mp3'); // https://www.youtube.com/watch?v=nZFFjn9nOwU
   endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/6e/9f/79/6e9f794cfbc61c12ad329b5abd8111dd.jpg but collage created by me
   instructionImage = loadImage("assets/images/instruction.png"); //https://bellykids.bigcartel.com/product/motel-by-yoko-honda
   timerFont = loadFont("assets/font/summer85.ttf"); //
@@ -243,12 +243,7 @@ function gameOverScreen() {
 
    }
 }
-push();
-//make the speed faster
-  if (timeRemaining === 6 ) {
-    backgroundSound.rate(0.5);
-  }
-  pop();
+
 }
 
 
