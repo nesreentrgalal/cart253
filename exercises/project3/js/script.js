@@ -67,8 +67,8 @@ let numDecoys = 100;
 //array of decoy
 let decoySuprise = [];
 let decoyText1 = [];
-
-
+//
+let winImage;
 
 //decoys
 let decoyText;
@@ -87,6 +87,7 @@ function preload() {
   backgroundSound = loadSound('assets/sounds/click2.mp3'); // https://www.youtube.com/watch?v=nZFFjn9nOwU
   endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/6e/9f/79/6e9f794cfbc61c12ad329b5abd8111dd.jpg but collage created by me
   instructionImage = loadImage("assets/images/instruction.png"); //https://bellykids.bigcartel.com/product/motel-by-yoko-honda
+  winImage = loadImage("assets/images/win.png");
   timerFont = loadFont("assets/font/summer85.ttf"); //
   rockMusic = loadSound("assets/sounds/rock.mp3");// https://www.youtube.com/watch?v=mBHr5XmzO4E
   popMusic = loadSound("assets/sounds/pop.mp3");// https://www.youtube.com/watch?v=-uD7vczqPaY&t=37s
@@ -208,37 +209,47 @@ function gameOverScreen() {
     playing = false;
     titleScreen = false;
     gameOver = true;
-    image(endImage, 0, 0, 640, 480);
+
     //stop music
     backgroundSound.stop();
     jazzMusic.stop();
     popMusic.stop();
     rockMusic.stop();
     // text for reset
-    push();
-    textFont(font);
-    fill(255);
-    textAlign(CENTER);
-    textSize(30);
-    text("Reset?", 320, 308);
-    pop();
+
+
+
 
 // text if music couldn't find the genres in time
     if (timeRemaining <= 0 ) {
       push();
+      image(endImage, 0, 0, 640, 480);
       let gameOverText1 = "you couldn't find the music genres in time...music is lost";
       textSize(24);
       text(gameOverText1, 320, 280);
       textSize(20);
       textAlign(CENTER);
+
+      textFont(font);
+      fill(255);
+      textAlign(CENTER);
+      textSize(30);
+      text("Reset?", 320, 308);
         }
         pop();
 // if the player found the genres, show congratsulation text
   if ( music.jazzEaten === 1 && music.popEaten == 1 && music.rockEaten === 1){
     //game over text
+    image(winImage, 0, 0, 640, 480);
     let gameOverText = " Congrats! music found it's genres\n";
     text(gameOverText, 320, 280);
     textAlign(CENTER);
+
+    textFont(font);
+    fill(255);
+    textAlign(CENTER);
+    textSize(30);
+    text("Reset?", 320, 308);
     gameoverMusic.play(); //only plays when player wins
 
    }
