@@ -155,6 +155,8 @@ class Music {
 
         //jazzMusic.stop();
         jazzMusic.play();
+        rect(0,0,640,480);
+        fill(random(255), random(255),255);
         //console message
         console.log(this.jazzEaten, "getting all that fat");
         jazz.kill();
@@ -171,9 +173,15 @@ class Music {
         pop1.y += pop1.vy;
         //popMusic.stop();
        popMusic.play();
+       rect(0,0,640,480);
+      fill(random(255), random(255),255);
         //console message
         console.log(this.popEaten, "getting all that fat");
         pop1.kill();
+
+
+
+
 
       }
 
@@ -188,6 +196,8 @@ class Music {
 
         //rockMusic.stop();
         rockMusic.play();
+        rect(0,0,640,480);
+        fill(random(255), random(255),random(255),255);
         //console message
         console.log(this.rockEaten, "getting all that fat");
           rock.kill();
@@ -221,8 +231,8 @@ class Music {
   }
   reset() {
     // Random position
-    this.x = random(10, 500);
-    this.y = random(10, 400);
+    this.x = random(50, 500);
+    this.y = random(50, 400);
     // Default health
     this.health = this.maxHealth;
     // Default radius

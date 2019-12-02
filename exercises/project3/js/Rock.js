@@ -13,6 +13,7 @@ class Rock {
   // Either sets default values or uses the arguments provided
   constructor(x, y, speed, text, radius) {
     // Position
+    //displayed text at first
     this.alive = true;
     this.x = x;
     this.y = y;
@@ -45,7 +46,7 @@ class Rock {
 
   // handleWrapping
   //
-  // Checks if the prey has gone off the canvas and
+  // Genre goes off the canvas once it dies
   // wraps it to the other side if so
   handleWrapping() {
     // Off the left or right
@@ -70,12 +71,12 @@ class Rock {
     push();
     this.radius = this.health;
 
-//text
+     //text
       text("rock", this.x, this.y);
 
     pop();
   }
-
+//It's not alive anymore, which means it won't be displayed on the screen anymore.
   kill(){
       this.alive = false;
   }
@@ -86,8 +87,8 @@ class Rock {
   // and radius back to default
   reset() {
     // Random position
-    this.x = random(0, 500);
-    this.y = random(0, 400);
+    this.x = random(50, 500);
+    this.y = random(50, 400);
     // Default health
     this.health = this.maxHealth;
     // Default radius

@@ -55,7 +55,7 @@ let endImage;
 let font;
 let timerFont;
 
-let backgroundMusic;
+let backgroundSound;
 //add button for instructions
 let button;
 // add button for play
@@ -84,7 +84,7 @@ function preload() {
   backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
   startImage = loadImage("assets/images/startgame.png"); // collage created by me on photoshop
   font = loadFont("assets/font/source-sans.ttf"); // https://www.1001fonts.com/source-sans-pro-font.html
-  backgroundMusic = loadSound('assets/sounds/Expanse.mp3'); // https://www.youtube.com/watch?v=oKH0_NI-4jU by Forhill
+  backgroundSound = loadSound('assets/sounds/click.mp3'); // https://www.youtube.com/watch?v=nZFFjn9nOwU
   endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/6e/9f/79/6e9f794cfbc61c12ad329b5abd8111dd.jpg but collage created by me
   instructionImage = loadImage("assets/images/instruction.png"); //https://bellykids.bigcartel.com/product/motel-by-yoko-honda
   timerFont = loadFont("assets/font/summer85.ttf"); //
@@ -106,9 +106,9 @@ function setup() {
 
   createCanvas(640, 480);
   music = new Music(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
-  pop1 = new Pop(random(0,500), random(0,400), 10, "pop",16);
-  jazz = new Jazz(random(0,500), random(0,400), 10, "jazz", 16);
-  rock = new Rock(random(0,500), random(0,400), 10, "rock", 16);
+  pop1 = new Pop(random(50,500), random(50,400), 10, "pop",16);
+  jazz = new Jazz(random(50,500), random(50,400), 10, "jazz", 16);
+  rock = new Rock(random(50,500), random(50,400), 10, "rock", 16);
 
 
 
@@ -130,8 +130,8 @@ function setup() {
 }
 
 function setupSound() { // add 80s music
-  backgroundMusic.stop();
- backgroundMusic.loop();
+  backgroundSound.stop();
+ backgroundSound.loop();
 
 }
 
@@ -177,10 +177,10 @@ function draw() {
 
 
 
-
+   //array
     for (let i = 0; i < decoyText1.length; i++) {
       // ... and update and display it
-   push();
+     push();
       decoyText1[i].display();
      music.handleEating(decoyText1[i]);
 
@@ -189,7 +189,7 @@ function draw() {
     }
 
 
-   timeCount();
+    timeCount();
     gameOverScreen();
     //remove buttons when playing
     button.remove();
@@ -201,7 +201,7 @@ function draw() {
   }
 
 }
-
+//Game over screen function.
 function gameOverScreen() {
   //if the player either wins or loses, show background image, stop music and show reset text
   if (timeRemaining <= 0 || music.jazzEaten === 1 && music.popEaten == 1 && music.rockEaten === 1) {
@@ -210,7 +210,7 @@ function gameOverScreen() {
     gameOver = true;
     image(endImage, 0, 0, 640, 480);
     //stop music
-    backgroundMusic.stop();
+    backgroundSound.stop();
     jazzMusic.stop();
     popMusic.stop();
     rockMusic.stop();
@@ -243,6 +243,12 @@ function gameOverScreen() {
 
    }
 }
+push();
+//make the speed faster
+  if (timeRemaining === 6 ) {
+    backgroundSound.rate(0.5);
+  }
+  pop();
 }
 
 
@@ -306,7 +312,7 @@ function reset() {
 function clickFunction() {
   playing = false;
   background(instructionImage);
-  backgroundMusic.stop();
+  backgroundSound.stop();
   //
   textFont(font);
   fill(255);
