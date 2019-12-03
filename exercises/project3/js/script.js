@@ -72,7 +72,15 @@ let winImage;
 
 //decoys
 let decoyText;
+// stuck
+let numStuck = 5;
 
+//array for stuck
+let decoyStuck = [];
+let stuckText1 = [];
+
+//stuck text
+let stuckText;
 // music for preys
 let jazzMusic;
 let popMusic;
@@ -124,6 +132,15 @@ function setup() {
     decoyText1.push(newdecoyText1);
   }
 
+  //an array for decoy
+   for (let i = 0; i < numStuck; i++) {
+    // Position the blue explorer
+    let  newstuckText1 = new Stuck (200, 200, 10, stuckText, 80);
+
+    newstuckText1 .reset();
+    // Add the new browser to the  array
+    stuckText1.push(newstuckText1);
+  }
   // to first show the title screen first
   titleScreen();
 
@@ -154,6 +171,7 @@ function draw() {
 
     // Handle input for music
     music.handleInput();
+
     // Move all the "browsers"
     music.move();
     pop1.move();
@@ -189,6 +207,16 @@ function draw() {
 
     }
 
+    //array
+     for (let i = 0; i < stuckText1.length; i++) {
+       // ... and update and display it
+      push();
+       stuckText1[i].display();
+      music.handleEating(stuckText1[i]);
+
+       pop();
+
+     }
 
     timeCount();
     gameOverScreen();
@@ -324,7 +352,7 @@ function clickFunction() {
   fill(255);
   textAlign(CENTER, TOP);
   textSize(30);
-  text("click the button to play!", 320, 380);
+  text("click the button to play!", 320, 400);
   //button for play
   push();
   button1 = createButton("play");

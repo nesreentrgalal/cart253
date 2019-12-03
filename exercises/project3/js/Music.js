@@ -46,7 +46,7 @@ class Music {
     this.jazzEaten = 0;
     this.popEaten = 0;
     this.rockEaten = 0;
-
+    this.musicIsPlaying = false;
 
 
 
@@ -58,6 +58,7 @@ class Music {
   // Checks if an arrow key is pressed and sets the predator's
   // velocity appropriately.
   handleInput() {
+    if  (this.musicIsPlaying = true) {
     // Horizontal movement
     if (keyIsDown(this.leftKey)) {
       this.vx = -this.speed;
@@ -82,7 +83,7 @@ class Music {
       this.vy = 10;
     }
   }
-
+}
   // move
   //
   // Updates the position according to velocity
@@ -206,7 +207,20 @@ class Music {
       }
 
     }
+
+
   }
+
+  stuck(stuck) {
+    let d = dist(this.x, this.y, stuck.x, stuck.y);
+    // Check if the distance is less than their two radius (an overlap)
+    if (d < this.radius + stuck.radius) {
+      this.musicIsPlaying = false;
+    }
+
+
+  }
+
 
   // display
   //

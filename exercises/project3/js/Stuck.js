@@ -5,7 +5,7 @@
 // the screen and be consumed by Predator objects.
 
 // will be adding more function for this class
-class Decoy1 extends Decoy {
+class Stuck extends Decoy {
   constructor() {
     super();
   }
@@ -21,9 +21,10 @@ class Decoy1 extends Decoy {
     // bug is in the center
     //radius kinda disapears woo
     imageMode(CENTER);
-    text("decoy", this.x, this.y);
+    text("stuck", this.x, this.y);
     pop();
 
+  
 
   }
 
