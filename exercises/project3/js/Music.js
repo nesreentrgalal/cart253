@@ -47,6 +47,9 @@ class Music {
     this.popEaten = 0;
     this.rockEaten = 0;
     this.musicIsPlaying = false;
+    this.alpha = 255;
+    this.tint = 0;
+
 
 
 
@@ -77,10 +80,10 @@ class Music {
     } else {
       this.vy = 0;
     }
-    //sprinting value
+    //sprinting value is spacebar 
     if (keyIsDown(this.sprintKey)) {
-      this.vx = 10;
-      this.vy = 10;
+      this.vx *= 2;
+      this.vy *= 2;
     }
   }
 }
@@ -128,7 +131,7 @@ class Music {
   // the predator's. If the prey dies, it gets reset.
   handleEating(prey) {
     // Calculate distance from this predator to the prey
-
+//this if statement to specify that decoy is not eaten unlike the other genres
     if (prey instanceof Decoy) {
       return;
     }
@@ -211,6 +214,8 @@ class Music {
 
   }
 
+
+
   stuck(stuck) {
     let d = dist(this.x, this.y, stuck.x, stuck.y);
     // Check if the distance is less than their two radius (an overlap)
@@ -238,8 +243,8 @@ class Music {
       text(this.name + this.score, this.x, this.y);
       pop();
       pop();
-
     }
+
 
 
   }

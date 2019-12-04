@@ -1,8 +1,10 @@
 // Predator-Prey Simulation
 // by Pippin Barr
-//Modified by Nesreen Galal
+  //Modified by Nesreen Galal
 
-// Hidden Objects game, a spin on Agatha Chrisite's game
+// Hidden Objects game, a spin on Agatha Chrisite's game, but using text rather than images
+// really wanted to play with the idea of kinetic typography, and wanted to something different the idea
+// you can do something fun with the use of text, using text for art is underatted.
 
 //game over
 let gameOver = false;
@@ -13,38 +15,14 @@ let pop1;
 let jazz;
 let rock;
 
-
-// images of predators
-
-
-let fireImage;
-let safariImage;
-
-//images of preys
-
-let explorerImage;
-let explorer1Image;
-let explorer2Image;
-
-// // purple and green internet explorer
-let explorerGreenImage;
-
-// pink and yellow internet explorer images
-let explorerPinkImage;
-
-
-
 //background
 
 let backgroundImage;
 
-
-
 // TIME COUNTER
 let timeRemaining = 20;
 
-// preload to put images
-// edited and modified images on photoshop
+
 //playing property to add in the title function for the player to know when to play and when to not to
 let playing = false;
 // title screen
@@ -87,6 +65,7 @@ let popMusic;
 let rockMusic;
 //
 let gameoverMusic;
+
 // load images,fonts and sound
 function preload() {
   backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
@@ -97,47 +76,46 @@ function preload() {
   instructionImage = loadImage("assets/images/instruction.png"); //https://bellykids.bigcartel.com/product/motel-by-yoko-honda
   winImage = loadImage("assets/images/win.png");
   timerFont = loadFont("assets/font/summer85.ttf"); //
-  rockMusic = loadSound("assets/sounds/rock.mp3");// https://www.youtube.com/watch?v=mBHr5XmzO4E
-  popMusic = loadSound("assets/sounds/pop.mp3");// https://www.youtube.com/watch?v=-uD7vczqPaY&t=37s
-  jazzMusic = loadSound ("assets/sounds/jazz.mp3"); // https://www.youtube.com/watch?v=-WrfPS_jS8g
+  rockMusic = loadSound("assets/sounds/rock.mp3"); // https://www.youtube.com/watch?v=mBHr5XmzO4E
+  popMusic = loadSound("assets/sounds/pop.mp3"); // https://www.youtube.com/watch?v=-uD7vczqPaY&t=37s
+  jazzMusic = loadSound("assets/sounds/jazz.mp3"); // https://www.youtube.com/watch?v=-WrfPS_jS8g
   gameoverMusic = loadSound("assets/sounds/gameover.mp3");
-
 
 }
 
 // setup()
 //
 // Sets up a canvas
-// Creates objects for the predator and three prey
+// Creates objects for the player and three genres, and arrays for stuck and decoy
 //added key codes
 function setup() {
   //decided to make the predators small, since my canvas is small
 
   createCanvas(640, 480);
-  music = new Music(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 16);
-  pop1 = new Pop(random(50,500), random(50,400), 10, "pop",16);
-  jazz = new Jazz(random(50,500), random(50,400), 10, "jazz", 16);
-  rock = new Rock(random(50,500), random(50,400), 10, "rock", 16);
+  music = new Music(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 32);
+  pop1 = new Pop(random(50, 500), random(50, 400), 10, "pop", 16);
+  jazz = new Jazz(random(50, 500), random(50, 400), 10, "jazz", 16);
+  rock = new Rock(random(50, 500), random(50, 400), 10, "rock", 16);
 
 
 
 
   //an array for decoy
-   for (let i = 0; i < numDecoys; i++) {
+  for (let i = 0; i < numDecoys; i++) {
     // Position the blue explorer
     let newdecoyText1 = new Decoy1(200, 200, 10, decoyText, 80);
 
-     newdecoyText1.reset();
+    newdecoyText1.reset();
     // Add the new browser to the  array
     decoyText1.push(newdecoyText1);
   }
 
   //an array for decoy
-   for (let i = 0; i < numStuck; i++) {
+  for (let i = 0; i < numStuck; i++) {
     // Position the blue explorer
-    let  newstuckText1 = new Stuck (200, 200, 10, stuckText, 80);
+    let newstuckText1 = new Stuck(200, 200, 10, stuckText, 80);
 
-    newstuckText1 .reset();
+    newstuckText1.reset();
     // Add the new browser to the  array
     stuckText1.push(newstuckText1);
   }
@@ -147,16 +125,16 @@ function setup() {
 
 }
 
-function setupSound() { // add 80s music
+function setupSound() { // add timer sound to induce stress >:)
   backgroundSound.stop();
- backgroundSound.loop();
+  backgroundSound.loop();
 
 }
 
 
 // draw()
 
-// Handles input, movement, eating, and displaying for the system's objects
+// Handles input, movement, eating, and displaying for the the game as well as showing the different screens
 function draw() {
 
   if (playing === false) {
@@ -164,7 +142,7 @@ function draw() {
   }
 
   // If the game is being played,
-  // then the preys and predators will be active
+  // then the music and genres will be activated
   else {
     // added 80s image collage image
     background(backgroundImage, 0, 0); // done by me on photoshop
@@ -193,40 +171,33 @@ function draw() {
     rock.display();
 
 
-
-
-
-   //array
+    //array
     for (let i = 0; i < decoyText1.length; i++) {
       // ... and update and display it
-     push();
+      push();
       decoyText1[i].display();
-     music.handleEating(decoyText1[i]);
+      music.handleEating(decoyText1[i]);
 
       pop();
 
     }
 
     //array
-     for (let i = 0; i < stuckText1.length; i++) {
-       // ... and update and display it
+    for (let i = 0; i < stuckText1.length; i++) {
+      // ... and update and display it
       push();
-       stuckText1[i].display();
+      stuckText1[i].display();
       music.handleEating(stuckText1[i]);
 
-       pop();
+      pop();
 
-     }
+    }
 
     timeCount();
     gameOverScreen();
     //remove buttons when playing
     button.remove();
     button1.remove();
-
-
-
-
   }
 
 }
@@ -243,13 +214,10 @@ function gameOverScreen() {
     jazzMusic.stop();
     popMusic.stop();
     rockMusic.stop();
-    // text for reset
 
 
-
-
-// text if music couldn't find the genres in time
-    if (timeRemaining <= 0 ) {
+  // text if music couldn't find the genres in time aka if the player loses
+    if (timeRemaining <= 0) {
       push();
       image(endImage, 0, 0, 640, 480);
       let gameOverText1 = "you couldn't find the music genres in time...music is lost";
@@ -263,41 +231,38 @@ function gameOverScreen() {
       textAlign(CENTER);
       textSize(30);
       text("Reset?", 320, 308);
-        }
-        pop();
-// if the player found the genres, show congratsulation text
-  if ( music.jazzEaten === 1 && music.popEaten == 1 && music.rockEaten === 1){
-    //game over text
-    image(winImage, 0, 0, 640, 480);
-    let gameOverText = " Congrats! music found it's genres\n";
-    text(gameOverText, 320, 280);
-    textAlign(CENTER);
+    }
+    pop();
+    // if the player found the genres, show congrats text and win image
+    if (music.jazzEaten === 1 && music.popEaten == 1 && music.rockEaten === 1) {
+      //game over text
+      image(winImage, 0, 0, 640, 480);
+      let gameOverText = " Congrats! music found it's genres\n";
+      text(gameOverText, 320, 280);
+      textAlign(CENTER);
 
-    textFont(font);
-    fill(255);
-    textAlign(CENTER);
-    textSize(30);
-    text("Reset?", 320, 308);
-    gameoverMusic.play(); //only plays when player wins
+      textFont(font);
+      fill(255);
+      textAlign(CENTER);
+      textSize(30);
+      text("Reset?", 320, 308);
+      gameoverMusic.play(); //only plays when player wins
 
-   }
+    }
+  }
+
 }
-
-}
-
 
 // title screen image and button and when is mouse clicked it redirects to instruction image
 function titleScreen() {
 
   background(startImage, 0, 0);
   push();
-  //button
+  //button to click on instructions
   button = createButton("Instructions");
   button.position(280, 450);
   button.mouseClicked(clickFunction);
   pop();
-
-
 
 }
 // timer count
@@ -306,7 +271,7 @@ function timeCount() {
   push();
   textFont(timerFont);
   textSize(25);
-  fill(30,144,255);
+  fill(30, 144, 255);
   text("timer: " + floor(timeRemaining), 75, 20);
   pop();
   push();
@@ -316,14 +281,11 @@ function timeCount() {
 }
 
 
-
-
-// when reset is activated music, genres and array are reactivated
+// when reset is activated music, genres, time remaining and array are reactivated
 function reset() {
 
   playing = true;
   gameOver = false;
-  //
   timeRemaining = 20;
 
   music.reset();
@@ -332,10 +294,10 @@ function reset() {
   jazz.reset();
   gameoverMusic.stop();
 
-//loop for decoy
+  //array for decoy to reset
   for (let i = 0; i < numDecoys; i++) {
 
-     decoyText1[i].reset();
+    decoyText1[i].reset();
   }
 
   setupSound();
@@ -347,7 +309,7 @@ function clickFunction() {
   playing = false;
   background(instructionImage);
   backgroundSound.stop();
-  //
+  //text for button
   textFont(font);
   fill(255);
   textAlign(CENTER, TOP);
