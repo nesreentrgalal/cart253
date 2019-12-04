@@ -1,6 +1,7 @@
 // Predator-Prey Simulation
 // by Pippin Barr
-  //Modified by Nesreen Galal
+
+//Modified by Nesreen Galal
 
 // Hidden Objects game, a spin on Agatha Chrisite's game, but using text rather than images
 // really wanted to play with the idea of kinetic typography, and wanted to something different the idea
@@ -20,7 +21,7 @@ let rock;
 let backgroundImage;
 
 // TIME COUNTER
-let timeRemaining = 20;
+let timeRemaining = 15;
 
 
 //playing property to add in the title function for the player to know when to play and when to not to
@@ -40,7 +41,7 @@ let button;
 let button1;
 let instructionImage;
 //amount of decoys
-let numDecoys = 100;
+let numDecoys = 120;
 
 //array of decoy
 let decoySuprise = [];
@@ -68,18 +69,18 @@ let gameoverMusic;
 
 // load images,fonts and sound
 function preload() {
-  backgroundImage = loadImage("assets/images/background.jpg"); // https://pixabay.com/vectors/landscape-countryside-fields-nature-409551/
-  startImage = loadImage("assets/images/startgame.png"); // collage created by me on photoshop
+  backgroundImage = loadImage("assets/images/background.jpg"); // collage created on photoshop by nesreen
+  startImage = loadImage("assets/images/startgame.png"); // https://i.pinimg.com/564x/a1/11/f6/a111f6d4afa5802e870ca8f5a282bdb3.jpg collage created by me on photoshop
   font = loadFont("assets/font/source-sans.ttf"); // https://www.1001fonts.com/source-sans-pro-font.html
   backgroundSound = loadSound('assets/sounds/click2.mp3'); // https://www.youtube.com/watch?v=nZFFjn9nOwU
-  endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/6e/9f/79/6e9f794cfbc61c12ad329b5abd8111dd.jpg but collage created by me
+  endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/52/90/eb/5290eb1d5f1571922daddb47bf35a617.jpg but collage created by me
   instructionImage = loadImage("assets/images/instruction.png"); //https://bellykids.bigcartel.com/product/motel-by-yoko-honda
-  winImage = loadImage("assets/images/win.png");
-  timerFont = loadFont("assets/font/summer85.ttf"); //
+  winImage = loadImage("assets/images/win.png"); // https://i.pinimg.com/564x/de/33/07/de3307d33dc6c4360fa98ea3c460e73f.jpg
+  timerFont = loadFont("assets/font/summer85.ttf"); //https://www.behance.net/gallery/75434351/SUMMER-85-Free-Font
   rockMusic = loadSound("assets/sounds/rock.mp3"); // https://www.youtube.com/watch?v=mBHr5XmzO4E
   popMusic = loadSound("assets/sounds/pop.mp3"); // https://www.youtube.com/watch?v=-uD7vczqPaY&t=37s
   jazzMusic = loadSound("assets/sounds/jazz.mp3"); // https://www.youtube.com/watch?v=-WrfPS_jS8g
-  gameoverMusic = loadSound("assets/sounds/gameover.mp3");
+  gameoverMusic = loadSound("assets/sounds/gameover.mp3"); //https://www.youtube.com/watch?v=n6F2z1XSkGc
 
 }
 
@@ -102,22 +103,18 @@ function setup() {
 
   //an array for decoy
   for (let i = 0; i < numDecoys; i++) {
-    // Position the blue explorer
-    let newdecoyText1 = new Decoy1(200, 200, 10, decoyText, 80);
-
+    // Position the decoy
+    let newdecoyText1 = new Decoy1(200, 200, decoyText);
     newdecoyText1.reset();
-    // Add the new browser to the  array
     decoyText1.push(newdecoyText1);
   }
 
-  //an array for decoy
+  //an array for stuck
   for (let i = 0; i < numStuck; i++) {
-    // Position the blue explorer
     let newstuckText1 = new Stuck(200, 200, 10, stuckText, 80);
-
     newstuckText1.reset();
-    // Add the new browser to the  array
     stuckText1.push(newstuckText1);
+
   }
   // to first show the title screen first
   titleScreen();
@@ -131,9 +128,6 @@ function setupSound() { // add timer sound to induce stress >:)
 
 }
 
-
-// draw()
-
 // Handles input, movement, eating, and displaying for the the game as well as showing the different screens
 function draw() {
 
@@ -145,12 +139,12 @@ function draw() {
   // then the music and genres will be activated
   else {
     // added 80s image collage image
-    background(backgroundImage, 0, 0); // done by me on photoshop
+    background(backgroundImage, 0, 0);
 
     // Handle input for music
     music.handleInput();
 
-    // Move all the "browsers"
+    // Move all the "genres"
     music.move();
     pop1.move();
     jazz.move();
@@ -164,14 +158,16 @@ function draw() {
 
 
 
+
     // Display all the "browswers"
     music.display();
     pop1.display();
     jazz.display();
     rock.display();
 
-
-    //array
+   music.stuckOverlap(stuckText1)
+    music.fade();
+    //array for decoy
     for (let i = 0; i < decoyText1.length; i++) {
       // ... and update and display it
       push();
@@ -182,7 +178,7 @@ function draw() {
 
     }
 
-    //array
+    //array for stuck
     for (let i = 0; i < stuckText1.length; i++) {
       // ... and update and display it
       push();
@@ -216,7 +212,7 @@ function gameOverScreen() {
     rockMusic.stop();
 
 
-  // text if music couldn't find the genres in time aka if the player loses
+    // text if music couldn't find the genres in time aka if the player loses
     if (timeRemaining <= 0) {
       push();
       image(endImage, 0, 0, 640, 480);
@@ -286,7 +282,7 @@ function reset() {
 
   playing = true;
   gameOver = false;
-  timeRemaining = 20;
+  timeRemaining = 15;
 
   music.reset();
   pop1.reset();

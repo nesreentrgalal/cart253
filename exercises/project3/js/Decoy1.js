@@ -37,8 +37,7 @@ class Decoy1 extends Decoy {
     // Random position
     this.x = random(0, width);
     this.y = random(0, height);
-    // Default health
-    this.health = this.maxHealth;
+  
 
 
   }

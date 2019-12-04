@@ -1,10 +1,6 @@
-// Decoy
-//
-// A class that represents a simple prey that moves
-// on screen based on a noise() function. It can move around
-// the screen and be consumed by Predator objects.
+//Class stuck
 
-// will be adding more function for this class
+// will be taking its properties from decoy, just the display will be different and when it overlaps with music genre
 class Stuck extends Decoy {
   constructor() {
     super();
@@ -13,20 +9,17 @@ class Stuck extends Decoy {
 
 
   // display
-  //
-  // decoy is a text on the canvas
-  // with a radius the same size as its current health.
   display() {
     push();
-    // bug is in the center
-    //radius kinda disapears woo
+  //display stuck as text
     imageMode(CENTER);
     text("stuck", this.x, this.y);
     pop();
 
-  
+
 
   }
+
 
 
 

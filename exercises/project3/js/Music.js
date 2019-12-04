@@ -46,9 +46,9 @@ class Music {
     this.jazzEaten = 0;
     this.popEaten = 0;
     this.rockEaten = 0;
-    this.musicIsPlaying = false;
-    this.alpha = 255;
-    this.tint = 0;
+    this.musicIsPlaying = true;
+    //  this.alpha = 255;
+    //  this.tint = 100;
 
 
 
@@ -61,32 +61,31 @@ class Music {
   // Checks if an arrow key is pressed and sets the predator's
   // velocity appropriately.
   handleInput() {
-    if  (this.musicIsPlaying = true) {
-    // Horizontal movement
-    if (keyIsDown(this.leftKey)) {
-      this.vx = -this.speed;
-    } else if (keyIsDown(this.rightKey)) {
-      this.vx = this.speed;
-    } else {
-      this.vx = 0;
-    }
+      this.musicIsPlaying = true;
+      // Horizontal movement
+      if (keyIsDown(this.leftKey)) {
+        this.vx = -this.speed;
+      } else if (keyIsDown(this.rightKey)) {
+        this.vx = this.speed;
+      } else {
+        this.vx = 0;
+      }
 
 
-    // Vertical movement
-    if (keyIsDown(this.upKey)) {
-      this.vy = -this.speed;
-    } else if (keyIsDown(this.downKey)) {
-      this.vy = this.speed;
-    } else {
-      this.vy = 0;
-    }
-    //sprinting value is spacebar 
-    if (keyIsDown(this.sprintKey)) {
-      this.vx *= 2;
-      this.vy *= 2;
-    }
+      // Vertical movement
+      if (keyIsDown(this.upKey)) {
+        this.vy = -this.speed;
+      } else if (keyIsDown(this.downKey)) {
+        this.vy = this.speed;
+      } else {
+        this.vy = 0;
+      }
+      //sprinting value
+      if (keyIsDown(this.sprintKey)) {
+        this.vx *= 3;
+        this.vy *= 3;
+      }
   }
-}
   // move
   //
   // Updates the position according to velocity
@@ -94,6 +93,7 @@ class Music {
   // Handles wrapping
   move() {
     // if the radius of the predator is bigger than O , you can move if not you can't move anymore
+  this.musicIsPlaying = true;
     if (this.radius > 0) {
       this.x += this.vx;
       this.y += this.vy;
@@ -105,11 +105,13 @@ class Music {
     this.handleWrapping();
   }
 
+
   // handleWrapping
   //
-  // Checks if the predator has gone off the canvas and
+  // Checks if the music has gone off the canvas and
   // wraps it to the other side if so
   handleWrapping() {
+    this.musicIsPlaying = true;
     // Off the left or right
     if (this.x < 0) {
       this.x += width;
@@ -122,20 +124,18 @@ class Music {
     } else if (this.y > height) {
       this.y -= height;
     }
+
   }
 
-  // handleEating
-  //
-  // Takes a Prey object as an argument and checks if the predator
-  // overlaps it. If so, reduces the prey's health and increases
-  // the predator's. If the prey dies, it gets reset.
+  // if music overlaps with the other genres, it gets a point
   handleEating(prey) {
     // Calculate distance from this predator to the prey
-//this if statement to specify that decoy is not eaten unlike the other genres
+    //this if statement to specify that decoy is not eaten unlike the other genres
+    this.musicIsPlaying = true;
     if (prey instanceof Decoy) {
       return;
     }
-
+    //check the distanc
     let d = dist(this.x, this.y, prey.x, prey.y);
     // Check if the distance is less than their two radius (an overlap)
     if (d < this.radius + prey.radius) {
@@ -145,8 +145,7 @@ class Music {
 
       // Decrease prey health by the same amount
       prey.health -= this.healthGainPerEat;
-      // Check if the prey died and reset it if so
-      //added +1 for the keeps track of how many Prey the predator has eaten
+
 
       // for each genre, if they overlap, animation effect, score gets added, and music starts playing
       if (jazz.health < 0 && jazz.health > -99) {
@@ -155,39 +154,34 @@ class Music {
         this.jazzEaten += 1
         jazz.vx = 6;
         jazz.speed = 8;
-
-
-        //jazzMusic.stop();
         jazzMusic.play();
-        rect(640,480);
-        fill(random(255), random(255),random(255),255);
+        rect(640, 480);
+        fill(random(255), random(255), random(255), 255);
         //console message
-        console.log(this.jazzEaten, "getting all that fat");
+        console.log(this.jazzEaten, "all that jazz");
+        //to go off the canvas
         jazz.kill();
 
       }
-
+      // for each genre, if they overlap, animation effect, score gets added, and music starts playing
+      // pop1.heath >-99 because we don't want the score to go under 0
       if (pop1.health < 0 && pop1.health > -99) {
         this.score += 1;
         pop1.health = -99;
         this.popEaten += 1;
-         pop1.vy = 7;
+        pop1.vy = 7;
         pop1.speed = -8;
         pop1.vy = pop1.speed;
         pop1.y += pop1.vy;
-        //popMusic.stop();
-       popMusic.play();
-       rect(640,480);
-      fill(random(255), random(255),random(255),255);
+        popMusic.play();
+        rect(640, 480);
+        fill(random(255), random(255), random(255), 255);
         //console message
-        console.log(this.popEaten, "getting all that fat");
+        console.log(this.popEaten, "pop is the way to go");
+        //to go off the canvas
         pop1.kill();
-
-
-
-
-
       }
+      // for each genre, if they overlap, animation effect, score gets added, and music starts playing
 
       if (rock.health < 0 && rock.health > -99) {
         this.score += 1;
@@ -195,41 +189,38 @@ class Music {
         this.rockEaten += 1;
         rock.vx = 10;
         rock.vy = 5;
-
-
-
-        //rockMusic.stop();
         rockMusic.play();
-        rect(640,480);
-        fill(random(255), random(255),random(255),255);
+        rect(640, 480);
+        fill(random(255), random(255), random(255), 255);
         //console message
-        console.log(this.rockEaten, "getting all that fat");
-          rock.kill();
-
-
-      }
-
-    }
-
-
+        console.log(this.rockEaten, "rock n rolll baby!!");
+        //to go off the canvas
+        rock.kill();
+     }
   }
+}
 
+stuckOverlap(stuck) {
+   let d = dist(this.x, this.y, stuck.x, stuck.y);
+   // Check if the distance is less than their two radius (an overlap)
+   if (d < this.radius + stuck.radius) {
+     notMoving();
+   }
+}
 
+//how do i add for 4 seconds ? 
+notMoving(){
+this.musicIsPlaying = false;
+this.vx = 0;
+this.vy = 0;
+this.speed = 0;
 
-  stuck(stuck) {
-    let d = dist(this.x, this.y, stuck.x, stuck.y);
-    // Check if the distance is less than their two radius (an overlap)
-    if (d < this.radius + stuck.radius) {
-      this.musicIsPlaying = false;
-    }
+}
 
-
-  }
 
 
   // display
-  //
-  // Draw the predator as an browser image  on the canvas
+  // Music genre is a text
   // with a radius the same size as its current health.
   display() {
     push();
@@ -246,8 +237,18 @@ class Music {
     }
 
 
+  }
+
+  fade() {
+    push();
+    if (timeRemaining === 3) {
+      tint(255, 153, 204, 126);
+      text(this.name + this.score, this.x, this.y);
+      pop();
+    }
 
   }
+  // when resetting the game, everything goes back to the way it was before the game started
   reset() {
     // Random position
     this.x = random(50, 500);
@@ -256,11 +257,12 @@ class Music {
     this.health = this.maxHealth;
     // Default radius
     this.radius = this.health;
-
+   //get the scores back to zero
     this.score = 0;
-  this.jazzEaten = 0;
-  this.popEaten = 0;
-  this.rockEaten = 0;
+    this.jazzEaten = 0;
+    this.popEaten = 0;
+    this.rockEaten = 0;
+   this.musicIsPlaying = true;
 
   }
 }
