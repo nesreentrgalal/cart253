@@ -166,7 +166,7 @@ function draw() {
     rock.display();
 
    music.stuckOverlap(stuckText1)
-    music.fade();
+
     //array for decoy
     for (let i = 0; i < decoyText1.length; i++) {
       // ... and update and display it
@@ -275,6 +275,7 @@ function timeCount() {
   ellipse(25, 25, 300, 50);
   pop();
 }
+
 
 
 // when reset is activated music, genres, time remaining and array are reactivated
