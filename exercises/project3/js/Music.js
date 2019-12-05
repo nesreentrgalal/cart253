@@ -233,10 +233,9 @@ class Music {
       fill(255, 255, 0, this.textAlpha);
       text(this.name + this.score, this.x, this.y);
     }
-    // when the timer hits 3 seconds, music slowly fades... time is almost up :( 
-    if (timeRemaining <= 3) {
+    // when the timer hits 4 seconds, music slowly fades... time is almost up :(
+    if (timeRemaining <= 4) {
       this.textAlpha = this.textAlpha - 1;
-      // to make sure it doesn't go negative
     }
     pop();
     pop();
