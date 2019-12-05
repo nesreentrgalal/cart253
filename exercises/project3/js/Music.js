@@ -37,7 +37,7 @@ class Music {
     this.sprintKey = sprintKey;
 
 
-    // to give an individual name and score for every predator
+    // to give a name, tint for text, and score for each genre
     this.name = name;
     this.score = 0;
     this.jazzEaten = 0;
@@ -85,7 +85,6 @@ class Music {
   // move
   //
   // Updates the position according to velocity
-  // Lowers health (as a cost of living)
   // Handles wrapping
   move() {
     // if the radius of the predator is bigger than O , you can move if not you can't move anymore
@@ -103,7 +102,6 @@ class Music {
 
 
   // handleWrapping
-  //
   // Checks if the music has gone off the canvas and
   // wraps it to the other side if so
   handleWrapping() {
@@ -151,6 +149,9 @@ class Music {
         jazz.vx = 6;
         jazz.speed = 8;
         jazzMusic.play();
+        // added these so the sound don't overlap
+        rockMusic.stop();
+        popMusic.stop();
         rect(640, 480);
         fill(random(255), random(255), random(255), 255);
         //console message
@@ -170,6 +171,9 @@ class Music {
         pop1.vy = pop1.speed;
         pop1.y += pop1.vy;
         popMusic.play();
+      // added these so the sound don't overlap
+        rockMusic.stop();
+        jazzMusic.stop();
         rect(640, 480);
         fill(random(255), random(255), random(255), 255);
         //console message
@@ -186,6 +190,9 @@ class Music {
         rock.vx = 10;
         rock.vy = 5;
         rockMusic.play();
+      // added these so the sound don't overlap
+        popMusic.stop();
+        jazzMusic.stop();
         rect(640, 480);
         fill(random(255), random(255), random(255), 255);
         //console message
