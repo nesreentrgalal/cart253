@@ -257,6 +257,7 @@ class Music {
     this.popEaten = 0;
     this.rockEaten = 0;
     this.musicIsPlaying = true;
+    this.textAlpha = 255;
 
   }
 }
