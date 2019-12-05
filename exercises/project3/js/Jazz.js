@@ -1,4 +1,4 @@
-// Prey
+// First music genre, jazz 
 //
 // A class that represents a simple prey that moves
 // on screen based on a noise() function. It can move around
@@ -53,15 +53,15 @@ class Jazz {
   handleWrapping() {
     // Off the left or right
     if (this.x < 0) {
-         this.kill();
+      this.kill();
     } else if (this.x > width) {
-         this.kill();
+      this.kill();
     }
     // Off the top or bottom
     if (this.y < 0) {
-         this.kill();
+      this.kill();
     } else if (this.y > height) {
-         this.kill();
+      this.kill();
     }
   }
 
@@ -81,11 +81,11 @@ class Jazz {
 
     }
 
-}
+  }
 
-kill(){
+  kill() {
     this.alive = false;
-}
+  }
   // reset
   //
   // Set the position to a random location and reset health
@@ -101,6 +101,6 @@ kill(){
     this.alive = true;
     this.vx = 0;
     this.vy = 0;
-   this.speed = 0;
+    this.speed = 0;
   }
 }

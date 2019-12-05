@@ -1,7 +1,5 @@
-
 // Decoy
 //A class that represents the decoy array
-
 // will be adding more function for this class
 class Decoy {
 
@@ -13,13 +11,8 @@ class Decoy {
     // Position
     this.x = x;
     this.y = y;
-
     // Display properties
     this.text = text;
-
-
-
-
   }
 
   // Checks if decoy has gone off the canvas and
@@ -44,10 +37,10 @@ class Decoy {
 
 
   }
-//for stuck 
-    handleEating(){
+  //for stuck
+  handleEating() {
 
-    }
+  }
 
 
   // reset

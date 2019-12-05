@@ -84,8 +84,7 @@ function preload() {
 
 }
 
-// setup()
-//
+// setup
 // Sets up a canvas
 // Creates objects for the player and three genres, and arrays for stuck and decoy
 //added key codes
@@ -165,7 +164,8 @@ function draw() {
     jazz.display();
     rock.display();
 
-   music.stuckOverlap(stuckText1)
+    //music overlaps with stuck array
+    music.stuckOverlap(stuckText1)
 
     //array for decoy
     for (let i = 0; i < decoyText1.length; i++) {
@@ -191,7 +191,7 @@ function draw() {
 
     timeCount();
     gameOverScreen();
-    //remove buttons when playing
+    //remove both buttons when playing
     button.remove();
     button1.remove();
   }

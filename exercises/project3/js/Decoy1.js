@@ -1,10 +1,8 @@
-// Decoy
-//
-// A class that represents a simple prey that moves
-// on screen based on a noise() function. It can move around
-// the screen and be consumed by Predator objects.
-
+// Decoy1
+//A class that represents the decoy array
 // will be adding more function for this class
+
+// a child class taking information from the parent's class Decoy
 class Decoy1 extends Decoy {
   constructor() {
     super();
@@ -37,7 +35,7 @@ class Decoy1 extends Decoy {
     // Random position
     this.x = random(0, width);
     this.y = random(0, height);
-  
+
 
 
   }

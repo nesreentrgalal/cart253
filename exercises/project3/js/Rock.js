@@ -1,4 +1,4 @@
-// Third music genre
+// Third music genre, Rock 
 //
 // A class that represents a genre that moves
 // on the screen after it is killed which is basically consumed by the music genre
@@ -37,7 +37,6 @@ class Rock {
   }
 
   // handleWrapping
-  //
   // Genre goes off the canvas once it dies which is this.kill function is being called.
   // wraps it to the other side if so
   handleWrapping() {

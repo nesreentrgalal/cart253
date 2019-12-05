@@ -1,4 +1,4 @@
-// Predator
+// Player
 //
 // A class that represents a simple predator
 // controlled by the arrow keys. It can move around
@@ -20,10 +20,7 @@ class Music {
     this.vy = 0;
     this.speed = speed;
 
-
-
     //add a property that keeps track of how many Prey it has eaten in the console
-    //this.preyEaten = 0;
     // Health properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
@@ -54,7 +51,6 @@ class Music {
 
 
   }
-
 
   // handleInput
   //Added Sprinting with SHIFT
@@ -147,7 +143,7 @@ class Music {
       prey.health -= this.healthGainPerEat;
 
 
-      // for each genre, if they overlap, animation effect, score gets added, and music starts playing
+      // for each genre, if they overlap, animation effect, score gets added, and music from that genre starts playing
       if (jazz.health < 0 && jazz.health > -99) {
         this.score += 1;
         jazz.health = -99;
@@ -163,7 +159,7 @@ class Music {
         jazz.kill();
 
       }
-      // for each genre, if they overlap, animation effect, score gets added, and music starts playing
+      // for each genre, if they overlap, animation effect, score gets added, and music from that genre starts playing
       // pop1.heath >-99 because we don't want the score to go under 0
       if (pop1.health < 0 && pop1.health > -99) {
         this.score += 1;
@@ -181,7 +177,7 @@ class Music {
         //to go off the canvas
         pop1.kill();
       }
-      // for each genre, if they overlap, animation effect, score gets added, and music starts playing
+      // for each genre, if they overlap, animation effect, score gets added, and music from that genre starts playing
 
       if (rock.health < 0 && rock.health > -99) {
         this.score += 1;
@@ -233,7 +229,7 @@ class Music {
       fill(255, 255, 0, this.textAlpha);
       text(this.name + this.score, this.x, this.y);
     }
-    // when the timer hits 4 seconds, music slowly fades... time is almost up :(
+    // when the timer hits 4 seconds, music player is slowly fades... time is almost up :(
     if (timeRemaining <= 4) {
       this.textAlpha = this.textAlpha - 1;
     }

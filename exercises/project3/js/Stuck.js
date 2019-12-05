@@ -1,6 +1,7 @@
 //Class stuck
+// will be taking its properties from decoy,
+//just the display will be different and when it overlaps with music genre
 
-// will be taking its properties from decoy, just the display will be different and when it overlaps with music genre
 class Stuck extends Decoy {
   constructor() {
     super();
@@ -11,17 +12,11 @@ class Stuck extends Decoy {
   // display
   display() {
     push();
-  //display stuck as text
+    //display stuck as text
     imageMode(CENTER);
     text("stuck", this.x, this.y);
     pop();
-
-
-
   }
-
-
-
 
   // reset
   //
