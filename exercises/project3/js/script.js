@@ -21,7 +21,7 @@ let rock;
 let backgroundImage;
 
 // TIME COUNTER
-let timeRemaining = 15;
+let timeRemaining = 25;
 
 
 //playing property to add in the title function for the player to know when to play and when to not to
@@ -164,8 +164,8 @@ function draw() {
     jazz.display();
     rock.display();
 
-    //music overlaps with stuck array
-    music.stuckOverlap(stuckText1)
+  //
+   music.updateTimer();
 
     //array for decoy
     for (let i = 0; i < decoyText1.length; i++) {
@@ -182,8 +182,9 @@ function draw() {
     for (let i = 0; i < stuckText1.length; i++) {
       // ... and update and display it
       push();
+
       stuckText1[i].display();
-      music.handleEating(stuckText1[i]);
+      music.stuckOverlap(stuckText1[i]);
 
       pop();
 
@@ -311,7 +312,7 @@ function clickFunction() {
   fill(255);
   textAlign(CENTER, TOP);
   textSize(30);
-  text("click the button to play!", 320, 400);
+  //text("click the button to play!", 320, 410);
   //button for play
   push();
   button1 = createButton("play");

@@ -5,6 +5,7 @@
 class Stuck extends Decoy {
   constructor() {
     super();
+
   }
 
 
@@ -18,8 +19,9 @@ class Stuck extends Decoy {
     pop();
   }
 
+
+
   // reset
-  //
   // Set the position to a random location and reset health
   // and radius back to default
   reset() {

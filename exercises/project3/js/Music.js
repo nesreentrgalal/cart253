@@ -46,6 +46,12 @@ class Music {
     this.musicIsPlaying = true;
     this.textAlpha = 255;
 
+    this.startTimer = 0;
+    this.timePassed =0;
+    this.collidedWith =false;
+
+
+
 
 
 
@@ -60,20 +66,35 @@ class Music {
     this.musicIsPlaying = true;
     // Horizontal movement
     if (keyIsDown(this.leftKey)) {
+      if(this.speed!==0){
+        this.collidedWith =false;
       this.vx = -this.speed;
-    } else if (keyIsDown(this.rightKey)) {
+    }
+    }
+
+    else if (keyIsDown(this.rightKey)) {
+      if(this.speed!==0){
+      this.collidedWith =false;
       this.vx = this.speed;
-    } else {
+    }
+    }
+     else {
       this.vx = 0;
     }
 
-
-    // Vertical movement
+  // Vertical movement
     if (keyIsDown(this.upKey)) {
+        if(this.speed!==0){
+      this.collidedWith =false;
       this.vy = -this.speed;
+    }
     } else if (keyIsDown(this.downKey)) {
+        if(this.speed!==0){
+      this.collidedWith =false;
       this.vy = this.speed;
-    } else {
+    }
+    }
+    else {
       this.vy = 0;
     }
     //sprinting value
@@ -81,6 +102,7 @@ class Music {
       this.vx *= 3;
       this.vy *= 3;
     }
+
   }
   // move
   //
@@ -203,21 +225,42 @@ class Music {
     }
   }
 
+//check if its overlapping with stuck 
   stuckOverlap(stuck) {
+
     let d = dist(this.x, this.y, stuck.x, stuck.y);
     // Check if the distance is less than their two radius (an overlap)
-    if (d < this.radius + stuck.radius) {
-      notMoving();
+    if (d < (this.radius/2) && this.collidedWith ===false) {
+      this.notMoving();
     }
   }
 
-  //how do i add for 4 seconds ?
+  //
   notMoving() {
+    console.log("not moving");
+    this.collidedWith =true;
+    this.startTimer =millis();
+    this.timePassed = 0;
     this.musicIsPlaying = false;
-    this.vx = 0;
-    this.vy = 0;
-    this.speed = 0;
+   this.vx = 0;
+   this.vy = 0;
+  this.speed = 0;
 
+  }
+
+  updateTimer(){
+    if(this.collidedWith===true){
+      this.timePassed = millis()-this.startTimer;
+      console.log(this.timePassed);
+
+      if(this.timePassed >5000){
+
+        this.speed = 5;
+        this.x =0;
+        this.y =50;
+       this.collidedWith =false;
+      }
+    }
   }
 
 

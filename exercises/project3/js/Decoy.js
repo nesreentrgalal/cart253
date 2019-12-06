@@ -13,6 +13,7 @@ class Decoy {
     this.y = y;
     // Display properties
     this.text = text;
+  
   }
 
   // Checks if decoy has gone off the canvas and
