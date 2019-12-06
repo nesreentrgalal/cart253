@@ -1,7 +1,7 @@
 //Class stuck
 // will be taking its properties from decoy,
 //just the display will be different and when it overlaps with music genre
-
+//Stuck text is basically a decoy BUT if the player overlaps with stuck it won't  be able to move for 5 seconds, losing time to win the game!!
 class Stuck extends Decoy {
   constructor() {
     super();

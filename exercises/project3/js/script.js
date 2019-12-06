@@ -1,16 +1,19 @@
 // Predator-Prey Simulation
 // by Pippin Barr
 
+
 //Modified by Nesreen Galal
 
 // Hidden Objects game, a spin on Agatha Chrisite's game, but using text rather than images
-// really wanted to play with the idea of kinetic typography, and wanted to something different the idea
+// really wanted to play with the idea of kinetic typography, and wanted to something different. The idea
 // you can do something fun with the use of text, using text for art is underatted.
+// Music genre which is the player has to find the other music genres jazz, pop and rock in time which is hidden because of the decoys
+// Avoid stuck, because basically you get stuck for 5 seconds.
 
 //game over
 let gameOver = false;
-// Our predator
-let music; // controls up,down, right and left arrow keys, sprint key is shift
+// Our predator aka music
+let music; // controls up,down, right and left arrow keys, space bar key is shift
 // our music genres
 let pop1;
 let jazz;
@@ -21,7 +24,7 @@ let rock;
 let backgroundImage;
 
 // TIME COUNTER
-let timeRemaining = 25;
+let timeRemaining = 20;
 
 
 //playing property to add in the title function for the player to know when to play and when to not to
@@ -30,7 +33,7 @@ let playing = false;
 let startImage;
 //game over Screen
 let endImage;
-// add font
+// add fonts
 let font;
 let timerFont;
 
@@ -41,7 +44,7 @@ let button;
 let button1;
 let instructionImage;
 //amount of decoys
-let numDecoys = 120;
+let numDecoys = 110;
 
 //array of decoy
 let decoySuprise = [];
@@ -51,8 +54,8 @@ let winImage;
 
 //decoys
 let decoyText;
-// stuck
-let numStuck = 5;
+// number of stuck on the canvas
+let numStuck = 12;
 
 //array for stuck
 let decoyStuck = [];
@@ -74,7 +77,7 @@ function preload() {
   font = loadFont("assets/font/source-sans.ttf"); // https://www.1001fonts.com/source-sans-pro-font.html
   backgroundSound = loadSound('assets/sounds/click2.mp3'); // https://www.youtube.com/watch?v=nZFFjn9nOwU
   endImage = loadImage("assets/images/gameover.png"); // background https://i.pinimg.com/564x/52/90/eb/5290eb1d5f1571922daddb47bf35a617.jpg but collage created by me
-  instructionImage = loadImage("assets/images/instruction.png"); //https://bellykids.bigcartel.com/product/motel-by-yoko-honda
+  instructionImage = loadImage("assets/images/instruction.png"); //https://vinylespassion.tumblr.com/post/35529609816
   winImage = loadImage("assets/images/win.png"); // https://i.pinimg.com/564x/de/33/07/de3307d33dc6c4360fa98ea3c460e73f.jpg
   timerFont = loadFont("assets/font/summer85.ttf"); //https://www.behance.net/gallery/75434351/SUMMER-85-Free-Font
   rockMusic = loadSound("assets/sounds/rock.mp3"); // https://www.youtube.com/watch?v=mBHr5XmzO4E
@@ -89,15 +92,12 @@ function preload() {
 // Creates objects for the player and three genres, and arrays for stuck and decoy
 //added key codes
 function setup() {
-  //decided to make the predators small, since my canvas is small
 
   createCanvas(640, 480);
   music = new Music(50, 50, 5, 25, UP_ARROW, DOWN_ARROW, LEFT_ARROW, RIGHT_ARROW, "music:", 0, 32);
   pop1 = new Pop(random(50, 500), random(50, 400), 10, "pop", 16);
   jazz = new Jazz(random(50, 500), random(50, 400), 10, "jazz", 16);
   rock = new Rock(random(50, 500), random(50, 400), 10, "rock", 16);
-
-
 
 
   //an array for decoy
@@ -127,7 +127,7 @@ function setupSound() { // add timer sound to induce stress >:)
 
 }
 
-// Handles input, movement, eating, and displaying for the the game as well as showing the different screens
+// Handles input, movement, eating, buttons, calling functions and displaying for the the game as well as showing the different screens
 function draw() {
 
   if (playing === false) {
@@ -164,8 +164,8 @@ function draw() {
     jazz.display();
     rock.display();
 
-  //
-   music.updateTimer();
+    //
+    music.updateTimer();
 
     //array for decoy
     for (let i = 0; i < decoyText1.length; i++) {
@@ -182,7 +182,7 @@ function draw() {
     for (let i = 0; i < stuckText1.length; i++) {
       // ... and update and display it
       push();
-
+      //show stuck and call the function of stuckoverlap
       stuckText1[i].display();
       music.stuckOverlap(stuckText1[i]);
 
@@ -200,7 +200,7 @@ function draw() {
 }
 //Game over screen function.
 function gameOverScreen() {
-  //if the player either wins or loses, show background image, stop music and show reset text
+  //if the player either wins or loses, stop music  and playing is false, and game over is true while titlescreen is false to not overlap with the other screens
   if (timeRemaining <= 0 || music.jazzEaten === 1 && music.popEaten == 1 && music.rockEaten === 1) {
     playing = false;
     titleScreen = false;
@@ -213,7 +213,7 @@ function gameOverScreen() {
     rockMusic.stop();
 
 
-    // text if music couldn't find the genres in time aka if the player loses
+    // text and gameover image  if music couldn't find the genres in time aka if the player loses
     if (timeRemaining <= 0) {
       push();
       image(endImage, 0, 0, 640, 480);
@@ -222,7 +222,7 @@ function gameOverScreen() {
       text(gameOverText1, 320, 280);
       textSize(20);
       textAlign(CENTER);
-
+     //reset text
       textFont(font);
       fill(255);
       textAlign(CENTER);
@@ -230,14 +230,14 @@ function gameOverScreen() {
       text("Reset?", 320, 308);
     }
     pop();
-    // if the player found the genres, show congrats text and win image
+    // if the player found the genres, show congrats text, win music and win image
     if (music.jazzEaten === 1 && music.popEaten == 1 && music.rockEaten === 1) {
       //game over text
       image(winImage, 0, 0, 640, 480);
       let gameOverText = " Congrats! music found it's genres\n";
       text(gameOverText, 320, 280);
       textAlign(CENTER);
-
+      //text for reset
       textFont(font);
       fill(255);
       textAlign(CENTER);
@@ -281,10 +281,10 @@ function timeCount() {
 
 // when reset is activated music, genres, time remaining and array are reactivated
 function reset() {
-
+//playing is true since game starts again
   playing = true;
   gameOver = false;
-  timeRemaining = 15;
+  timeRemaining = 20;
 
   music.reset();
   pop1.reset();
@@ -297,7 +297,7 @@ function reset() {
 
     decoyText1[i].reset();
   }
-
+// timer and music to reset too
   setupSound();
 }
 
@@ -312,7 +312,7 @@ function clickFunction() {
   fill(255);
   textAlign(CENTER, TOP);
   textSize(30);
-  //text("click the button to play!", 320, 410);
+
   //button for play
   push();
   button1 = createButton("play");

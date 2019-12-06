@@ -37,7 +37,7 @@ class Music {
     this.sprintKey = sprintKey;
 
 
-    // to give a name, tint for text, and score for each genre
+    // to give a name, tint for text, and score for each genre, and time for stuck collison
     this.name = name;
     this.score = 0;
     this.jazzEaten = 0;
@@ -47,54 +47,44 @@ class Music {
     this.textAlpha = 255;
 
     this.startTimer = 0;
-    this.timePassed =0;
-    this.collidedWith =false;
-
-
-
-
-
-
+    this.timePassed = 0;
+    this.collidedWith = false;
 
   }
 
   // handleInput
-  //Added Sprinting with SHIFT
+  //Added Sprinting with spacebar
   // Checks if an arrow key is pressed and sets the predator's
   // velocity appropriately.
   handleInput() {
     this.musicIsPlaying = true;
     // Horizontal movement
     if (keyIsDown(this.leftKey)) {
-      if(this.speed!==0){
-        this.collidedWith =false;
-      this.vx = -this.speed;
-    }
-    }
-
-    else if (keyIsDown(this.rightKey)) {
-      if(this.speed!==0){
-      this.collidedWith =false;
-      this.vx = this.speed;
-    }
-    }
-     else {
+      if (this.speed !== 0) {
+        this.collidedWith = false;
+        this.vx = -this.speed;
+      }
+    } else if (keyIsDown(this.rightKey)) {
+      if (this.speed !== 0) {
+        this.collidedWith = false;
+        this.vx = this.speed;
+      }
+    } else {
       this.vx = 0;
     }
 
-  // Vertical movement
+    // Vertical movement
     if (keyIsDown(this.upKey)) {
-        if(this.speed!==0){
-      this.collidedWith =false;
-      this.vy = -this.speed;
-    }
+      if (this.speed !== 0) {
+        this.collidedWith = false;
+        this.vy = -this.speed;
+      }
     } else if (keyIsDown(this.downKey)) {
-        if(this.speed!==0){
-      this.collidedWith =false;
-      this.vy = this.speed;
-    }
-    }
-    else {
+      if (this.speed !== 0) {
+        this.collidedWith = false;
+        this.vy = this.speed;
+      }
+    } else {
       this.vy = 0;
     }
     //sprinting value
@@ -163,7 +153,7 @@ class Music {
       prey.health -= this.healthGainPerEat;
 
 
-      // for each genre, if they overlap, animation effect, score gets added, and music from that genre starts playing
+      // for each genre, if they overlap, animation effect thanks to velocity and speed, score gets added, and music from that genre starts playing
       if (jazz.health < 0 && jazz.health > -99) {
         this.score += 1;
         jazz.health = -99;
@@ -193,7 +183,7 @@ class Music {
         pop1.vy = pop1.speed;
         pop1.y += pop1.vy;
         popMusic.play();
-      // added these so the sound don't overlap
+        // added these so the sound don't overlap
         rockMusic.stop();
         jazzMusic.stop();
         rect(640, 480);
@@ -212,7 +202,7 @@ class Music {
         rock.vx = 10;
         rock.vy = 5;
         rockMusic.play();
-      // added these so the sound don't overlap
+        // added these so the sound don't overlap
         popMusic.stop();
         jazzMusic.stop();
         rect(640, 480);
@@ -225,40 +215,41 @@ class Music {
     }
   }
 
-//check if its overlapping with stuck 
+  //check if its overlapping with stuck
   stuckOverlap(stuck) {
 
     let d = dist(this.x, this.y, stuck.x, stuck.y);
     // Check if the distance is less than their two radius (an overlap)
-    if (d < (this.radius/2) && this.collidedWith ===false) {
+    // music radius is divided by 2 so that if two stuck text are close to a music genre, it doesn't get stuck for ever
+    //call out not moving function
+    if (d < (this.radius / 2) && this.collidedWith === false) {
       this.notMoving();
     }
   }
 
-  //
+  // collision happens, music doesn't move
   notMoving() {
     console.log("not moving");
-    this.collidedWith =true;
-    this.startTimer =millis();
+    this.collidedWith = true;
+    this.startTimer = millis();
     this.timePassed = 0;
     this.musicIsPlaying = false;
-   this.vx = 0;
-   this.vy = 0;
-  this.speed = 0;
-
+    this.vx = 0;
+    this.vy = 0;
+    this.speed = 0;
   }
+  //after time has passed, music gets reset at a different location
+  updateTimer() {
+    //if collision happens, start timer
+    if (this.collidedWith === true) {
+      this.timePassed = millis() - this.startTimer;
 
-  updateTimer(){
-    if(this.collidedWith===true){
-      this.timePassed = millis()-this.startTimer;
-      console.log(this.timePassed);
-
-      if(this.timePassed >5000){
-
+      // when time surpasses 5 seconds, reset position and collision is false.
+      if (this.timePassed > 5000) {
         this.speed = 5;
-        this.x =0;
-        this.y =50;
-       this.collidedWith =false;
+        this.x = 0;
+        this.y = 50;
+        this.collidedWith = false;
       }
     }
   }
@@ -297,7 +288,7 @@ class Music {
     this.health = this.maxHealth;
     // Default radius
     this.radius = this.health;
-    //get the scores back to zero
+    //get the scores back to zero and tint
     this.score = 0;
     this.jazzEaten = 0;
     this.popEaten = 0;

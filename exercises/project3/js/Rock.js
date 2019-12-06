@@ -1,4 +1,4 @@
-// Third music genre, Rock 
+// Third music genre, Rock
 //
 // A class that represents a genre that moves
 // on the screen after it is killed which is basically consumed by the music genre
@@ -18,7 +18,7 @@ class Rock {
     this.vx = 0;
     this.vy = 0;
     this.speed = 0;
-    // Health properties
+    // Health aka radius properties
     this.maxHealth = radius;
     this.health = this.maxHealth; // Must be AFTER defining this.maxHealth
     // Display properties
@@ -71,8 +71,7 @@ class Rock {
   }
 
   // reset
-  // Set the position to a random location and reset health
-  // and radius back to default
+  // Set the position to a random location and reset health,velocity and radius back to default
   reset() {
     // Random position
     this.x = random(50, 500);
