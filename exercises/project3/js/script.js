@@ -1,8 +1,4 @@
-// Predator-Prey Simulation
-// by Pippin Barr
-
-
-//Modified by Nesreen Galal
+//Music through type by Nesreen Galal
 
 // Hidden Objects game, a spin on Agatha Chrisite's game, but using text rather than images
 // really wanted to play with the idea of kinetic typography, and wanted to something different. The idea
@@ -44,7 +40,7 @@ let button;
 let button1;
 let instructionImage;
 //amount of decoys
-let numDecoys = 110;
+let numDecoys = 120;
 
 //array of decoy
 let decoySuprise = [];
@@ -55,7 +51,7 @@ let winImage;
 //decoys
 let decoyText;
 // number of stuck on the canvas
-let numStuck = 12;
+let numStuck = 14;
 
 //array for stuck
 let decoyStuck = [];

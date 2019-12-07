@@ -11,13 +11,11 @@ class Decoy1 extends Decoy {
 
 
   // display
-  //
+  //display decoy on canvas
   // decoy is a text on the canvas
   // with a radius the same size as its current health.
   display() {
     push();
-    // bug is in the center
-    //radius kinda disapears woo
     imageMode(CENTER);
     text("decoy", this.x, this.y);
     pop();
@@ -28,7 +26,6 @@ class Decoy1 extends Decoy {
 
 
   // reset
-  //
   // Set the position to a random location and reset health
   // and radius back to default
   reset() {

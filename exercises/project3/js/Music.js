@@ -220,9 +220,9 @@ class Music {
 
     let d = dist(this.x, this.y, stuck.x, stuck.y);
     // Check if the distance is less than their two radius (an overlap)
-    // music radius is divided by 2 so that if two stuck text are close to a music genre, it doesn't get stuck for ever
+    // music radius is divided by 2 so that if two stuck text are close to a music genre, it doesn't remain in the same position for ever
     //call out not moving function
-    if (d < (this.radius / 2) && this.collidedWith === false) {
+    if (d < (this.radius /2) && this.collidedWith === false) {
       this.notMoving();
     }
   }
