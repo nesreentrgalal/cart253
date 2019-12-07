@@ -1,5 +1,8 @@
 //Music through type by Nesreen Galal
 
+//some codes have helped me thanks to project 2 that I have done https://github.com/nesreentrgalal/cart253/blob/master/exercises/project2/js/script.js
+
+
 // Hidden Objects game, a spin on Agatha Chrisite's game, but using text rather than images
 // really wanted to play with the idea of kinetic typography, and wanted to something different. The idea
 // you can do something fun with the use of text, using text for art is underatted.
@@ -160,7 +163,7 @@ function draw() {
     jazz.display();
     rock.display();
 
-    //
+    //call function to update timer
     music.updateTimer();
 
     //array for decoy
@@ -218,7 +221,7 @@ function gameOverScreen() {
       text(gameOverText1, 320, 280);
       textSize(20);
       textAlign(CENTER);
-     //reset text
+      //reset text
       textFont(font);
       fill(255);
       textAlign(CENTER);
@@ -277,7 +280,7 @@ function timeCount() {
 
 // when reset is activated music, genres, time remaining and array are reactivated
 function reset() {
-//playing is true since game starts again
+  //playing is true since game starts again
   playing = true;
   gameOver = false;
   timeRemaining = 16;
@@ -293,7 +296,7 @@ function reset() {
 
     decoyText1[i].reset();
   }
-// timer and music to reset too
+  // timer and music to reset too
   setupSound();
 }
 

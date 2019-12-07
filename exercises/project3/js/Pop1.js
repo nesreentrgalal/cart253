@@ -46,7 +46,7 @@ class Pop {
     this.ty += 0.01;
     // Handle wrapping
     this.handleWrapping();
-  }
+  }        
 
   // handleWrapping
   // Genre goes off the canvas once it dies which is this.kill function is being called.
