@@ -20,7 +20,7 @@ let rock;
 let backgroundImage;
 
 // TIME COUNTER
-let timeRemaining = 20;
+let timeRemaining = 16;
 
 
 //playing property to add in the title function for the player to know when to play and when to not to
@@ -280,7 +280,7 @@ function reset() {
 //playing is true since game starts again
   playing = true;
   gameOver = false;
-  timeRemaining = 20;
+  timeRemaining = 16;
 
   music.reset();
   pop1.reset();
